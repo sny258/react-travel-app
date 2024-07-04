@@ -1,0 +1,33 @@
+npx create-react-app react-login-signup
+cd react-login-signup
+
+mkdir server
+cd server
+npm init -y
+
+npm install express sqlite3 body-parser cors
+
+create server.JSX
+
+go to react app dir, then -->  npm install axios
+
+run server --> node server.js 
+start app --> npm start
+
+
+access db --> sqlite3 users.db
+
+
+npm install concurrently  --> to start DB and app together.
+
+
+update app's package.json
+------------------------------
+"scripts": {
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/server.js",
+    "client": "react-scripts start"
+  }
