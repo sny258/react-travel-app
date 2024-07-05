@@ -5,6 +5,7 @@ import './styles.css';
 //import { Link } from 'react-router-dom';
 
 import BasicNavbar from './Navbar';
+import Button from 'react-bootstrap/Button';
 
 function Signup() {
   const [firstname, setFirstname] = useState('');
@@ -12,7 +13,6 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   // Set the default config for axios
@@ -71,7 +71,6 @@ function Signup() {
       setIsSingUpPopupOpen(true);
     } catch (error) {
       console.error('Signup error:', error.response?.data?.message || error.message);
-      setError(error.response?.data?.message || 'Signup failed');
     }
   };
 
@@ -82,13 +81,13 @@ function Signup() {
     
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', border: '1px solid black', height: '80vh', margin: '20px', borderRadius: '20px' }}>
 
-      <div className='SignupContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid black', width: '35%', borderRadius: '15px', background: '#fff' }}>
+      <div className='SignupContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%' }}>
         {/* heading */}
-        <div style={{margin: '15px'}}>
+        <div style={{margin: '15px', borderBottom: '2px solid #ddd'}}>
           <h2>Please Signup !!!</h2>
         </div>
         {/* form to take signup details */}
-        <form className="signupForm" onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1px solid black', width: '70%', borderRadius: '10px', marginBottom: '10px'}}>
+        <form className="signupForm" onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', width: '60%', borderRadius: '10px', margin: '10px 0 30px 0', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}>
           <input
             type="text"
             placeholder="Firstname"
@@ -124,12 +123,8 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" style={{marginTop: '15px', width: '40%'}}>Signup</button>
-        </form>
-        {/* error message will be displayed at bottom on div */}
-        <div style={{marginTop: '20px'}}>
-          {error && <p style={{color: 'red', fontSize: '25px'}}>{error}</p>}
-        </div> 
+          <Button variant="success" type="submit" style={{ marginTop: '15px', width: '30%', padding: '4px' }}>Signup</Button>
+        </form> 
       </div>
   
       {/* Popup to show success message */}

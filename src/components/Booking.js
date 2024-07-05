@@ -162,7 +162,7 @@ const styles = {
     border: '1px solid #ccc',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     margin: '20px auto',
     width: '40%'
   },
@@ -181,7 +181,7 @@ const styles = {
   },
   formGroup: {
     width: '80%',
-    marginBottom: '5px',
+    marginBottom: '2px',
   },
   input: {
     borderRadius: '5px',

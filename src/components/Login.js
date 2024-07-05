@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles.css';
+
 import BasicNavbar from './Navbar';
+import Button from 'react-bootstrap/Button';
 
 
 function Login() {
@@ -127,14 +129,14 @@ function Login() {
         <img id="logo" src={logo} alt="Logo" style={{width: '350px', height: '350px'}}></img>
       </div> */}
 
-      <div className='LoginContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid black', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', borderRadius: '15px', width: '40%' }}>
+      <div className='LoginContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%' }}>
         {/* Login Header */}
-        <div style={{margin: '20px'}}>
+        <div style={{margin: '20px', borderBottom: '2px solid #ddd'}}>
           <h2>Please Login !!!</h2>
         </div>
 
         {/* Login form */}
-        <form onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1px solid black', borderRadius: '10px'}}>
+        <form className="loginForm" onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}>
           <input
             type="text"
             placeholder="Username"
@@ -150,18 +152,18 @@ function Login() {
             required
           />
           {/* Login button to subnit the form */}
-          <button type="submit" style={{marginTop: '15px', width: '40%'}}>Login</button>
+          <Button type="submit" style={{marginTop: '20px', width: '40%', padding: '3px'}}>Login</Button>
 
           {/* link to open the forgot password popup, but it throws warning since no link used */}
           {/* <a href="#" id="forgot-password-link" onClick={() => document.getElementById  ('reset-password').style.display = 'flex'}>forgot password ?</a> */}
 
           {/* button to open the forgot password popup */}
-          <button type='button' id='forgot-password-link' style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}} onClick={showPopup}>forgot password ?</button>
+          <button type='button' id='forgot-password-link' style={{background: 'none', border: 'none', color: 'purple', textDecoration: 'underline', cursor: 'pointer'}} onClick={showPopup}>forgot password ?</button>
         </form>
 
         {/* Signup button */}
         <div style={{marginTop: '20px'}}>
-          <button type="submit" style={{width: '100px'}} onClick={() => navigate('/signup')}>Signup</button>
+          <Button variant="success" type="submit" style={{width: '100px', padding: '4px'}} onClick={() => navigate('/signup')}>Signup</Button>
         </div>
 
         {/* for error message */}
@@ -175,7 +177,7 @@ function Login() {
       <div id="reset-password" className='resetPassword'>
         {/* Reset Password Header */}
         <div>
-          <h1 style={{ marginBottom: '20px' }}>Reset Password</h1>
+          <h1 style={{ marginBottom: '20px', borderBottom: '2px solid #ddd' }}>Reset Password !!!</h1>
         </div>
 
         {/* form forreset password */}
@@ -202,12 +204,12 @@ function Login() {
             required
           />
           {/* Reset Password button */}
-          <button type="submit" style={{marginTop: '20px'}}>Reset Password</button>
+          <Button type="submit" style={{marginTop: '20px', width: '60%', padding: '4px'}}>Reset Password</Button>
         </form>
 
         {/* button to close the reset password form */}
         {/* <button className="close-btn" type="button" style={{margin: '15px'}} onClick={() =>   document.getElementById('reset-password').style.display = 'none'}>Close</button> */}
-        <button id="close-btn" type="button" style={{margin: '15px'}} onClick=  {closeResetPasswordPopup}>Close</button>
+        <Button variant="secondary" type="button" style={{margin: '15px', width: '18%', padding: '4px'}} onClick=  {closeResetPasswordPopup}>Close</Button>
 
         {/* reset message */}
         <p id="reset-message" style={{color: 'red', fontSize: '25px', height: '30px'}}></p>

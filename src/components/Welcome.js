@@ -73,6 +73,7 @@ function Welcome() {
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
+              <p>test</p>
               <Button variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
             </Card.Body>
           </Card>
