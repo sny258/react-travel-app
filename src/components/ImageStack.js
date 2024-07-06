@@ -22,15 +22,23 @@ function ImageStack(props) {
     return (
     <div>
       <div style={styles.mainDiv} onMouseOver={onMouseOverMainDiv} onMouseOut={onMouseOutMainDiv}>
-        <div style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
-          <img src={props.image1} style={styles.image} alt="Image 1"/>
+        
+        {/* <div style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
+          <img src={props.image1} style={styles.image} alt="place 1"/>
         </div>
         <div style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
-          <img src={props.image2} style={styles.image} alt="Image 2"/>
+          <img src={props.image2} style={styles.image} alt="place 2"/>
         </div>
         <div style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
-          <img src={props.image3} style={styles.image} alt="Image 3"/>
-        </div>
+          <img src={props.image3} style={styles.image} alt="place 3"/>
+        </div> */}
+
+        {props.images.map((image, index) => (
+          <div key={index} style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
+            <img src={image} style={styles.image} alt={`place ${index + 1}`}/>
+          </div>
+        ))}
+
       </div> 
     </div>
   );

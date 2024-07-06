@@ -9,7 +9,7 @@
   border: 1px solid white !important;
   max-width: 97% !important;
   border-radius: 15px;
-  background-color: #343a40; /* Added background color to match the Navbar */
+  background-color: #282c34; /* Added background color to match the Navbar */
 }
 .nav-link {
   color: #ffffff !important;
@@ -17,7 +17,7 @@
 }
 .nav-link:hover,
 .AboutBtn:hover {
-  color: #16a0f0 !important;
+  color: #5cbcf7 !important;
 }
 /* .custom-dropdown-toggle {
   border: 1px solid #019cf6;
@@ -92,13 +92,12 @@ li {
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    padding: 25px 25px 0px 25px;           /* padding: top right bottom left */
-    /* box-sizing: border-box; */
+    padding: 25px;           /* padding: top right bottom left */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
     z-index: 1000;
     width: 35%;
-    /*height: 60%; */
+    margin-top: 5px;
 }
 .resetPasswordForm {
     display: flex;
@@ -109,6 +108,7 @@ li {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 70%;
+    margin-bottom: 10px;
 }
 .resetPasswordForm input {
     width: 100%;
@@ -133,4 +133,30 @@ li {
     border-radius: 5px;
     margin-bottom: 2px;
     border: 1px solid #ccc;
+}
+
+
+
+/* for icons */
+.icon {
+  color: #fff;
+  font-size: 27px;
+  transition: color 0.3s, transform 0.3s;
+}
+.icon:hover {
+  color: #5cbcf7;               /* Light blue */
+  transform: scale(1.4);
+}
+/* for grid columns */
+.gridColumnLinks {
+  color: #858585;
+  transition: color 0.3s, transform 0.3s; /* Ensure both color and transform have a smooth transition */
+}
+.gridColumnLinks:hover {
+  color: #5cbcf7;               /* Light blue */
+  transform: scale(1.1);
+  transform-origin: left;
+}
+.gridItems:not(:last-child) {
+  border-right: 1px solid #ddd;
 }

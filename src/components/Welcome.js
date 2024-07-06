@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 
 import BasicNavbar from './Navbar';
+import Footer from './Footer';
 
 //import ProgressBar from 'react-bootstrap/ProgressBar';
-
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+
 
 function Welcome() {
   const navigate = useNavigate();
@@ -73,7 +74,6 @@ function Welcome() {
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
-              <p>test</p>
               <Button variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
             </Card.Body>
           </Card>
@@ -108,6 +108,51 @@ function Welcome() {
             </Card.Body>
           </Card>
 
+          <Card style={styles.card}>
+            <Card.Img
+              variant="top"
+              style={styles.cardImage}
+              src="https://images.unsplash.com/photo-1699214101660-df4e21fbabcd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <Card.Body>
+              <Card.Title>Tungnath</Card.Title>
+              <Card.Text>
+                At astonishing elevation of 3680 metres above sea level, this temple is the highest Shiva temple in the world. Chandrashila AKA the Moon Peak is the peak situated above the Tungnath Temple, offers majestic view of the Himalayas.
+              </Card.Text>
+              <Button variant="primary">Explore</Button>
+            </Card.Body>
+          </Card>
+
+          <Card style={styles.card}>
+            <Card.Img
+              variant="top"
+              style={styles.cardImage}
+              src="https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <Card.Body>
+              <Card.Title>Munnar</Card.Title>
+              <Card.Text>
+                Munnar is a hill station situated about 1600m above sea level at the confluence of three mountain streams Muthirapuzha, Nallathanni and Kundala. Munnar is renowned for its scenic tea plantations, lush green hills, and serene lakes.
+              </Card.Text>
+              <Button variant="primary">Explore</Button>
+            </Card.Body>
+          </Card>
+
+          <Card style={styles.card}>
+            <Card.Img
+              variant="top"
+              style={styles.cardImage}
+              src="https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <Card.Body>
+              <Card.Title>Goa</Card.Title>
+              <Card.Text>
+              Goa, on India's southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa's diverse cuisine and festive vibe make it a top destination.
+              </Card.Text>
+              <Button variant="primary">Explore</Button>
+            </Card.Body>
+          </Card>
+
         </div>
       </div>
 
@@ -123,6 +168,8 @@ function Welcome() {
         </div>
 
       </div> */}
+
+      <Footer />
 
     </div>
   );
@@ -154,11 +201,11 @@ const styles = {
     margin: '5px',
     padding: '5px',
     width: '100%',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   card: {
     width: '18rem',
-    margin: '10px',
+    margin: '10px 10px 100px 10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '10px',
   },

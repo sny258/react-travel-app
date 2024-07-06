@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles.css';
+import { toast } from 'react-toastify';
 
 import BasicNavbar from './Navbar';
 import Button from 'react-bootstrap/Button';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  //const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const [resetUsername, setResetUsername] = useState('');
@@ -52,7 +54,7 @@ function Login() {
   const [isResetPasswordPopupOpen, setIsResetPasswordPopupOpen] = useState(false);
   const showPopup = () => { 
     setIsResetPasswordPopupOpen(!isResetPasswordPopupOpen);     // make true to false and vice-versa
-    setError('');     // clear the error message when the popup is opened
+    //setError('');     // clear the error message when the popup is opened
     setPassword('');   // clear the password field when the popup is opened
   }
 
@@ -68,9 +70,11 @@ function Login() {
     setResetEmail('');
     setNewPassword('');
     // Also clear the reset message
-    document.getElementById('reset-message').innerHTML = '';
+    //document.getElementById('reset-message').innerHTML = '';
     // Close the popup by setting the state
     setIsResetPasswordPopupOpen(false);
+    // close the toast if it's open
+    toast.dismiss();
   }
   const resetPassword = async (e) => {
     e.preventDefault();
@@ -83,13 +87,25 @@ function Login() {
       });
       console.log('Response:', response);
       if (response.data.message === 'Password reset successful') {
-        document.getElementById("reset-message").textContent = 'Password reset successful 🙂';
+        //document.getElementById("reset-message").textContent = 'Password reset successful 🙂';
+        toast.success('Password reset successful 🙂', {
+          position: "top-center",
+          onClose: () => {
+            closeResetPasswordPopup();  // Close the popup when the toast is closed
+          }
+        });
+        // close the reset password popup once toast is gone
+        setTimeout(() => {
+          closeResetPasswordPopup();
+        }, 5700);
       } else {
-        document.getElementById("reset-message").textContent = 'Invalid details, user not found. 😬';
+        //document.getElementById("reset-message").textContent = 'Invalid details, user not found. 😬';
+        toast.error('Invalid details, user not found. 😬', {position: "top-center"});
       }
     } catch (error) {
       console.error('Reset password error:', error.response?.data?.message || error.message);
-      document.getElementById("reset-status").textContent = 'Password reset failed';
+      //document.getElementById("reset-status").textContent = 'Password reset failed';
+      toast.error('Password reset failed', {position: "top-center"});
     }
   }
 
@@ -109,11 +125,13 @@ function Login() {
         // navigate to the welcome page
         navigate('/welcome');
       } else {
-        setError(response.data.message);
+        //setError(response.data.message);
+        toast.error(response.data.message, {position: "top-center"});
       }
     } catch (error) {
       console.error('Login error:', error.response?.data?.message || error.message);
-      setError('Login failed');
+      //setError('Login failed');
+      toast.error('Login failed', {position: "top-center"});
     }
   };
 
@@ -163,13 +181,13 @@ function Login() {
 
         {/* Signup button */}
         <div style={{marginTop: '20px'}}>
-          <Button variant="success" type="submit" style={{width: '100px', padding: '4px'}} onClick={() => navigate('/signup')}>Signup</Button>
+          <Button variant="success" type="submit" style={{width: '100px', padding: '4px', marginBottom: '30px'}} onClick={() => navigate('/signup')}>Signup</Button>
         </div>
 
         {/* for error message */}
-        <div style={{marginTop: '20px', height: '40px'}}>
+        {/* <div style={{marginTop: '20px', height: '40px'}}>
           {error && <p style={{color: 'red', fontSize: '25px'}}>{error}</p>}
-        </div>
+        </div> */}
       </div>
   
       {/* Reset Password Popup on condition, this way browser will only render this untill it's required, it's styling is present is styles.css */}
@@ -179,6 +197,8 @@ function Login() {
         <div>
           <h1 style={{ marginBottom: '20px', borderBottom: '2px solid #ddd' }}>Reset Password !!!</h1>
         </div>
+
+        <CloseButton onClick={() => closeResetPasswordPopup()} style={{position: 'absolute', top: '5px', right: '5px' }} />
 
         {/* form forreset password */}
         <form id="reset-password-form" className='resetPasswordForm' onSubmit={resetPassword}>
@@ -204,15 +224,15 @@ function Login() {
             required
           />
           {/* Reset Password button */}
-          <Button type="submit" style={{marginTop: '20px', width: '60%', padding: '4px'}}>Reset Password</Button>
+          <Button type="submit" style={{margin: '20px 20px 0 20px', width: '60%', padding: '4px'}}>Reset Password</Button>
         </form>
 
         {/* button to close the reset password form */}
         {/* <button className="close-btn" type="button" style={{margin: '15px'}} onClick={() =>   document.getElementById('reset-password').style.display = 'none'}>Close</button> */}
-        <Button variant="secondary" type="button" style={{margin: '15px', width: '18%', padding: '4px'}} onClick=  {closeResetPasswordPopup}>Close</Button>
+        {/* <Button variant="secondary" type="button" style={{margin: '15px', width: '18%', padding: '4px'}} onClick=  {closeResetPasswordPopup}>Close</Button> */}
 
         {/* reset message */}
-        <p id="reset-message" style={{color: 'red', fontSize: '25px', height: '30px'}}></p>
+        {/* <p id="reset-message" style={{color: 'red', fontSize: '25px', height: '30px'}}></p> */}
       </div>
     )}
 

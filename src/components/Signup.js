@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-//import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import BasicNavbar from './Navbar';
 import Button from 'react-bootstrap/Button';
+//import FloatingLabel from 'react-bootstrap/FloatingLabel';
+//import Form from 'react-bootstrap/Form';
 
 function Signup() {
   const [firstname, setFirstname] = useState('');
@@ -21,10 +23,10 @@ function Signup() {
   // Using state to toggle the reset password popup
   // this way page will not render the reset password popup when the state is false
   // use this fucntion at line 145 to show the reset password popup
-  const [isSingUpPopupOpen, setIsSingUpPopupOpen] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
-  const [buttonText, setButtonText] = useState('');
-  const [buttonAction, setButtonAction] = useState(() => () => {});
+  //const [isSingUpPopupOpen, setIsSingUpPopupOpen] = useState(false);
+  //const [popupMessage, setPopupMessage] = useState('');
+  //const [buttonText, setButtonText] = useState('');
+  //const [buttonAction, setButtonAction] = useState(() => () => {});
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -60,15 +62,26 @@ function Signup() {
 
       // JS logic to show the popup conditionally
       if (response.data.message === 'User registered successfully') {
-        setPopupMessage('You are Onboarded 🙂');
-        setButtonText('Login ->');
-        setButtonAction(() => () => navigate('/login'));
+        toast.success('You are Onboarded 🙂', {
+          position: "top-center",
+          onClose: () => {
+            navigate('/login')
+          }  
+        });
+        //navigate to login after toast is closed
+        setTimeout(() => {
+          navigate('/login');
+        }, 5700);
+        //setPopupMessage('You are Onboarded 🙂');
+        //setButtonText('Login ->');
+        //setButtonAction(() => () => navigate('/login'));
+        //setIsSingUpPopupOpen(true);
       } else {
-        setPopupMessage('Username already exists. Please choose a different one😬');
-        setButtonText('Retry');
-        setButtonAction(() => () => setIsSingUpPopupOpen(false));
+        toast.error('Username already exists 😬', {position: "top-center"});
+        //setPopupMessage('Username already exists 😬');
+        //setButtonText('Retry');
+        //setButtonAction(() => () => setIsSingUpPopupOpen(false));
       }
-      setIsSingUpPopupOpen(true);
     } catch (error) {
       console.error('Signup error:', error.response?.data?.message || error.message);
     }
@@ -125,12 +138,14 @@ function Signup() {
           />
           <Button variant="success" type="submit" style={{ marginTop: '15px', width: '30%', padding: '4px' }}>Signup</Button>
         </form> 
+
       </div>
   
       {/* Popup to show success message */}
       {/* SignUp Popup on condition, this way browser will only render this untill it's required */}
-      {isSingUpPopupOpen && (
-      <div className="success-popup" id="successPopup">
+
+      {/* {isSingUpPopupOpen && ( */}
+      {/* <div className="success-popup" id="successPopup"> */}
 
         {/* <h1 id="successMessage" style={{margin: '15px'}}>Popup</h1> */}
         {/* <button type="button" className="btn-popup" onClick={() => navigate('/login')>Login</  button> */}
@@ -139,11 +154,11 @@ function Signup() {
         {/* <button type="button" id="btn-popup" style={{margin: '15px'}}>Login</button> */}
 
         {/* this code for conditionally showing popup*/}
-        <h1 id="successMessage" style={{margin: '15px', fontSize: '1.8rem'}}>{popupMessage}</h1>
+        {/* <h1 id="successMessage" style={{margin: '15px', fontSize: '1.8rem'}}>{popupMessage}</h1>
         <button type="button" id="btn-popup" style={{margin: '15px'}} onClick={buttonAction}>{buttonText}</button>
 
       </div>
-      )}
+      )} */}
 
     </div>
     </>
