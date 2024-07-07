@@ -5,7 +5,7 @@ import axios from 'axios';
 import './styles.css';
 import { toast } from 'react-toastify';
 
-import BasicNavbar from './Navbar';
+//import BasicNavbar from './Navbar';
 import Button from 'react-bootstrap/Button';
 import CloseButton from 'react-bootstrap/CloseButton';
 
@@ -138,7 +138,8 @@ function Login() {
 
   return (
     <>
-    <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" />
+    {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
+    {/* <BasicNavbar /> */}
 
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', border: '1px solid black', height: '80vh', margin: '20px', borderRadius: '20px' }}>
       

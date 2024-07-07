@@ -1,3 +1,4 @@
+ /* Navbar css */
  .bg-body-tertiary {
   padding: 0;
   --bs-navbar-brand-padding-y: 0;
@@ -19,17 +20,14 @@
 .AboutBtn:hover {
   color: #5cbcf7 !important;
 }
-/* .custom-dropdown-toggle {
-  border: 1px solid #019cf6;
-} */
 /* .custom-dropdown-toggle .dropdown-toggle::after {
   display: none;
 } */
 .custom-dropdown-toggle .dropdown-menu {
   left: -55px !important;
   width: 100px !important;
-  min-width: 0 !important; /* to remove the default min-width */
-  background-color: #343a40; /* Added background color to match the Navbar */
+  min-width: 0 !important;          /* to remove the default min-width */
+  background-color: #343a40;      /* Added background color to match the Navbar */
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -43,12 +41,11 @@
 
 
 
-/* for corousel */
+/* spiti Page css */
+/* for carousel */
 .carousel-indicators  {
   margin-bottom: 1.3rem;
 }
-
-
 /* for accordion */
 .accordion {
   --bs-accordion-btn-focus-box-shadow: none;
@@ -56,13 +53,10 @@
 .accordion-header {
   color: #f9f9f9;
   border-radius: 10px;
-  /* border: 1px solid rgb(48, 179, 236);
-  overflow: hidden; */
 }
 .accordion-header .accordion-button {
   font-weight: 600 !important;
 }
-
 /* for list items */
 /* li::marker {
   content: '➡️';
@@ -71,8 +65,6 @@
 li {
   margin: 5px 0 5px 0px;
 }
-
-
 /* for enquiry form */
 .form-control:focus {
   box-shadow: none;
@@ -80,63 +72,99 @@ li {
 
 
 
-/* for popups using className*/
-.resetPassword,
-.success-popup {
-    display: flex;
-    position: absolute;
-    align-items: center;                /* Align items at center */
-    text-align: center;
-    flex-direction: column;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 25px;           /* padding: top right bottom left */
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    z-index: 1000;
-    width: 35%;
-    margin-top: 5px;
+/* Login page css */
+.resetPassword {
+  display: flex;
+  position: absolute;
+  align-items: center;                /* Align items at center */
+  text-align: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 25px;           /* padding: top right bottom left */
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  z-index: 1000;
+  width: 35%;
+  margin-top: 5px;
 }
 .resetPasswordForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  margin-bottom: 10px;
 }
 .resetPasswordForm input {
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 2px;
-    border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  border: 1px solid #ccc;
 }
-
-
+.resetPasswordForm input[type="text"]:focus,
+.resetPasswordForm input[type="email"]:focus,
+.resetPasswordForm input[type="password"]:focus {
+  outline: none;
+  border-color: #86b7fe;
+}
 .loginForm input {
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 2px;
-    border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  border: 1px solid #ccc;
+}
+.loginForm input[type="text"]:focus,
+.loginForm input[type="password"]:focus {
+  outline: none;
+  border-color: #86b7fe;
 }
 
+
+
+
+/* Signup page css */
+.success-popup {
+  display: flex;
+  position: absolute;
+  align-items: center;                /* Align items at center */
+  text-align: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 25px;           /* padding: top right bottom left */
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  z-index: 1000;
+  width: 35%;
+  margin-top: 5px;
+}
 .signupForm input {
-    width: 80%;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 2px;
-    border: 1px solid #ccc;
+  width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  border: 1px solid #ccc;
+}
+.signupForm input[type="text"]:focus,
+.signupForm input[type="email"]:focus,
+.signupForm input[type="password"]:focus {
+  outline: none;
+  border-color: #86b7fe;
 }
 
 
 
+/* Footer css */
 /* for icons */
 .icon {
   color: #fff;
@@ -150,13 +178,35 @@ li {
 /* for grid columns */
 .gridColumnLinks {
   color: #858585;
-  transition: color 0.3s, transform 0.3s; /* Ensure both color and transform have a smooth transition */
+  /*transition: color 0.3s, transform 0.3s;   /* Smooth transition */
+  transition: all 0.1s linear;
+  transform-origin: left;
 }
 .gridColumnLinks:hover {
   color: #5cbcf7;               /* Light blue */
   transform: scale(1.1);
-  transform-origin: left;
 }
 .gridItems:not(:last-child) {
   border-right: 1px solid #ddd;
+}
+
+
+
+/* Manage Bookings css */
+.deletePopup {
+  display: flex;
+  position: absolute;
+  align-items: center;                /* Align items at center */
+  text-align: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 25px;           /* padding: top right bottom left */
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  z-index: 1000;
+  width: 35%;
+  margin-top: 5px;
 }

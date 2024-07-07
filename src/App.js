@@ -9,6 +9,9 @@ import Signup from './components/Signup';
 import Welcome from './components/Welcome';
 import Spiti from './components/Spiti';
 import Booking from './components/Booking';
+import ManageBookings from './components/ManageBookings';
+
+import BasicNavbar from './components/Navbar';
 
 
 function App() {
@@ -43,6 +46,8 @@ function App() {
         <Link to="/welcome">Welcome</Link>
       </div> */}
         
+      <BasicNavbar />
+
       <Routes>
   
         <Route path="/login" element={<Login />} />
@@ -51,6 +56,7 @@ function App() {
         <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/spiti" element={<Spiti />} />
         <Route path="/booking" element={<Booking />} />
+        <Route path="/managebookings" element={<ManageBookings />} />
 
       </Routes>
 

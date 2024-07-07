@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(cors(
   {
   origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "DELETE"],
   credentials: true
   }
 ));
@@ -46,6 +46,7 @@ db.serialize(() => {
   )`);
   db.run(`CREATE TABLE IF NOT EXISTS bookings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
     name TEXT,
     email TEXT,
     trip TEXT,
@@ -153,12 +154,34 @@ app.post('/reset-password', (req, res) => {
 
 // Booking endpoint
 app.post('/booking', (req, res) => {
-  const { name, email, trip, people, date } = req.body;
-  db.run(`INSERT INTO bookings(name, email, trip, people, date) VALUES(?, ?, ?, ?, ?)`, [name, email, trip, people, date], function(err) {
+  const { username, name, email, trip, people, date } = req.body;
+  db.run(`INSERT INTO bookings(username, name, email, trip, people, date) VALUES(?, ?, ?, ?, ?, ?)`, [username, name, email, trip, people, date], function(err) {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
     return res.status(200).json({ message: 'Booking successful' });
+  });
+});
+
+// Get bookings by username endpoint
+app.get('/bookings/:username', (req, res) => {
+  const username = req.params.username;
+  db.all(`SELECT * FROM bookings WHERE username = ?`, [username], (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    return res.status(200).json({ bookings: rows });
+  });
+});
+
+// Delete booking by id endpoint
+app.delete('/booking/cancel/:id', (req, res) => {
+  const id = req.params.id;
+  db.run(`DELETE FROM bookings WHERE id = ?`, [id], function(err) {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    return res.status(200).json({ message: 'Booking deleted successfully' });
   });
 });
 

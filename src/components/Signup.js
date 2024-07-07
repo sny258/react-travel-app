@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import { toast } from 'react-toastify';
 
-import BasicNavbar from './Navbar';
+//import BasicNavbar from './Navbar';
 import Button from 'react-bootstrap/Button';
-//import FloatingLabel from 'react-bootstrap/FloatingLabel';
-//import Form from 'react-bootstrap/Form';
+
 
 function Signup() {
   const [firstname, setFirstname] = useState('');
@@ -23,10 +22,10 @@ function Signup() {
   // Using state to toggle the reset password popup
   // this way page will not render the reset password popup when the state is false
   // use this fucntion at line 145 to show the reset password popup
-  //const [isSingUpPopupOpen, setIsSingUpPopupOpen] = useState(false);
-  //const [popupMessage, setPopupMessage] = useState('');
-  //const [buttonText, setButtonText] = useState('');
-  //const [buttonAction, setButtonAction] = useState(() => () => {});
+  const [isSingUpPopupOpen, setIsSingUpPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [buttonAction, setButtonAction] = useState(() => () => {});
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -62,20 +61,20 @@ function Signup() {
 
       // JS logic to show the popup conditionally
       if (response.data.message === 'User registered successfully') {
-        toast.success('You are Onboarded 🙂', {
-          position: "top-center",
-          onClose: () => {
-            navigate('/login')
-          }  
-        });
-        //navigate to login after toast is closed
-        setTimeout(() => {
-          navigate('/login');
-        }, 5700);
-        //setPopupMessage('You are Onboarded 🙂');
-        //setButtonText('Login ->');
-        //setButtonAction(() => () => navigate('/login'));
-        //setIsSingUpPopupOpen(true);
+        // toast.success(`You are Onboarded, ${username} 🙂`, {
+        //   position: "top-center",
+        //   onClose: () => {
+        //     navigate('/login')
+        //   }  
+        // });
+        // //navigate to login after toast is closed
+        // setTimeout(() => {
+        //   navigate('/login');
+        // }, 5700);
+        setPopupMessage(`You are Onboarded, ${username} 🙂`);
+        setButtonText('Login');
+        setButtonAction(() => () => navigate('/login'));
+        setIsSingUpPopupOpen(true);
       } else {
         toast.error('Username already exists 😬', {position: "top-center"});
         //setPopupMessage('Username already exists 😬');
@@ -90,7 +89,8 @@ function Signup() {
   return (
     
     <>
-    <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" />
+    {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
+    {/* <BasicNavbar /> */}
     
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', border: '1px solid black', height: '80vh', margin: '20px', borderRadius: '20px' }}>
 
@@ -144,8 +144,8 @@ function Signup() {
       {/* Popup to show success message */}
       {/* SignUp Popup on condition, this way browser will only render this untill it's required */}
 
-      {/* {isSingUpPopupOpen && ( */}
-      {/* <div className="success-popup" id="successPopup"> */}
+      {isSingUpPopupOpen && (
+      <div className="success-popup" id="successPopup">
 
         {/* <h1 id="successMessage" style={{margin: '15px'}}>Popup</h1> */}
         {/* <button type="button" className="btn-popup" onClick={() => navigate('/login')>Login</  button> */}
@@ -154,11 +154,11 @@ function Signup() {
         {/* <button type="button" id="btn-popup" style={{margin: '15px'}}>Login</button> */}
 
         {/* this code for conditionally showing popup*/}
-        {/* <h1 id="successMessage" style={{margin: '15px', fontSize: '1.8rem'}}>{popupMessage}</h1>
-        <button type="button" id="btn-popup" style={{margin: '15px'}} onClick={buttonAction}>{buttonText}</button>
+        <h1 id="successMessage" style={{margin: '15px', fontSize: '1.5rem'}}>{popupMessage}</h1>
+        <Button type="button" id="btn-popup" style={{margin: '15px'}} onClick={buttonAction}>{buttonText}</Button>
 
       </div>
-      )} */}
+      )} 
 
     </div>
     </>

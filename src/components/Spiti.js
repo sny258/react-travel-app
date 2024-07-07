@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BasicNavbar from './Navbar';
+//import BasicNavbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 import Carousel from 'react-bootstrap/Carousel';
@@ -85,7 +85,8 @@ const Spiti = () => {
   return (
     <div>
 
-      <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" />
+      {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
+      {/* <BasicNavbar /> */}
 
       <div className="Spiti" style={styles.itinerary}>
         <div className="Heading" style={styles.heading}>

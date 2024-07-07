@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import BasicNavbar from './Navbar';
+//import BasicNavbar from './Navbar';
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import axios from 'axios';
+import Footer from './Footer';
 
 
-function Booking() {
+function Booking({ sessionUser }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [trip, setTrip] = useState('');
@@ -37,10 +38,11 @@ function Booking() {
   //function to handle booking
   const handleBooking = async (e) => {
     e.preventDefault();
+    const username = localStorage.getItem("user");
     try {
       console.log('Booking a trip...');
       // //server side call to booking API
-      const response = await axios.post('http://localhost:5000/booking', { name, email, trip, people, date }, {
+      const response = await axios.post('http://localhost:5000/booking', { username, name, email, trip, people, date }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;
@@ -62,15 +64,20 @@ function Booking() {
     setShow(true);
   };
 
-
   const handlePeopleChange = (increment) => {
     setPeople((prevPeople) => Math.max(1, prevPeople + increment));
   };
 
+  // Scroll to top on page, since react router routes to new page on the same position as the parent page. Thats a drawback of react router since it doesn't reload child page.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   return (
     <>
-    <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" />
+    {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
+    {/* <BasicNavbar /> */}
 
     <div style={{border: '1px solid black', borderRadius: '20px', margin: '20px'}}>
       <div className="Booking" style={styles.booking}>
@@ -149,6 +156,9 @@ function Booking() {
         <Button variant="secondary" onClick={handleClose}>Close</Button>
       </Modal.Footer>
     </Modal>
+
+    <Footer />
+
     </>
   );
 }

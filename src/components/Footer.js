@@ -100,16 +100,16 @@ function Footer() {
         <a className="icon" href="https://www.facebook.com/Adventure.India.Thrillophilia" target="_blank" rel="noopener noreferrer">
           <FaFacebookSquare />
         </a>
-        <a className="icon" href="https://www.instagram.com/thrillophilia/" target="_blank" rel="noopener noreferrer">
+        <a className="icon" href="https://www.instagram.com/bvb09/" target="_blank" rel="noopener noreferrer">
           <FaInstagram />
         </a>
-        <a className="icon" href="https://twitter.com/thrillophilia" target="_blank" rel="noopener noreferrer">
+        <a className="icon" href="https://x.com/HLTVorg/" target="_blank" rel="noopener noreferrer">
           <FaTwitter />
         </a>
-        <a className="icon" href="https://www.linkedin.com/company/thrillophilia/" target="_blank" rel="noopener noreferrer">
+        <a className="icon" href="https://www.linkedin.com/in/sanjay-verma-70402a12a/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </a>
-        <a className="icon" href="https://www.youtube.com/c/Thrillophilia" target="_blank" rel="noopener noreferrer">
+        <a className="icon" href="https://www.youtube.com/watch?v=zHA4NnnGZ3w" target="_blank" rel="noopener noreferrer">
           <FaYoutube />
         </a>
       </div>

@@ -1,22 +1,28 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-
 import logo from '../logo192.png';
-import PropTypes from 'prop-types';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+function BasicNavbar({
+  link1 = 'Home',
+  link2 = 'About',
+  //dropdown = '☰',
+  //dropdownAction1 = 'username',
+  dropdownAction2 = 'Bookings',
+  dropdownAction3 = 'Logout' }) {
 
-
-function BasicNavbar(props) {
-
+  // useNavigate hook returns a navigate function that can be used to programmatically navigate to a different route
   const navigate = useNavigate();
+  // useLocation hook returns the location object that represents the current URL
   const location = useLocation();
   // useRef hook is mutable object that persists across re-renders.
   const isMounted = useRef(false);
@@ -38,7 +44,8 @@ function BasicNavbar(props) {
     //Mark the component as mounted
     isMounted.current = true;
     // Skip authentication check if page is not booking
-    if ( (location.pathname !== '/booking') && localStorage.getItem("user") == null) {
+    //if (location.pathname !== '/booking' && localStorage.getItem("user") == null) {
+    if (!['/booking', '/managebookings'].includes(location.pathname) && localStorage.getItem("user") == null) {
       console.log('No auth check required !!!');
       // Exit the useEffect hook early
       return; 
@@ -85,7 +92,8 @@ function BasicNavbar(props) {
       if (response.data.message === 'Logout successful') {
         // Clear the local storage user and redirect to login
         localStorage.removeItem("user");
-        //setSessionUser(null);
+        // Update the sessionUser state to null, so that the navbar can be updated
+        setSessionUser(null);
         // if (location.pathname === '/welcome') {
         //   window.location.reload();  // Force a page reload if already on the welcome page
         // } else {
@@ -101,41 +109,49 @@ function BasicNavbar(props) {
     }
   };
 
-  // Use handleLogout if onHref3Click is not provided
-  // const onHref3Click = props.onHref3Click || handleLogout;
+  const manageBookings = () => {
+    navigate('/managebookings');
+  }
 
 
   return (
     
     <>
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="md" className="bg-body-tertiary">
     {/* <Navbar bg="dark" variant="dark" className="basic-navbar"> */}
+      
       <Container className='navbar-container-custom'>
-        {/* <Navbar.Brand href="#home"> */}
+
         <Navbar.Brand as={Link} to="/welcome">
           <img id="logo" src={logo} alt="Logo" style={{width: '35px', height: '35px'}}></img>
         </Navbar.Brand>
+
+        {/* this will show the hamburger menu once the screen size is reduced */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
           <div className="d-flex align-items-center">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/welcome">{props.link1}</Nav.Link>
               {/* <Nav.Link as={Link} to="/welcome">Home</Nav.Link> */}
+              <Nav.Link as={Link} to="/welcome">{link1}</Nav.Link>
               {/* <Nav.Link href="#link">{props.link2}</Nav.Link> */}
-              <button className="AboutBtn" type='button' style={{background: 'none', border: 'none', color: '#ffffff', cursor: 'pointer'}} onClick={handleShow}>{props.link2}</button>
+              <button className="AboutBtn" type='button' style={{background: 'none', border: 'none', color: '#ffffff', cursor: 'pointer'}} onClick={handleShow}>{link2}</button>
             </Nav>
           </div>
-          <Nav>
-            
+          
+          {/* show username if logged in, otherwise show login and signup links */}
+          <Nav>  
             {sessionUser ? (
-              <NavDropdown title={sessionUser} id="basic-nav-dropdown" className="custom-dropdown-toggle">
-                <NavDropdown.Item href="#action/3.1">{props.dropdownAction1 || sessionUser ||   'Default Action1'}</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  {props.dropdownAction2}
+              <NavDropdown title={sessionUser} id="basic-nav-dropdown"className="custom-dropdown-toggle">
+                <NavDropdown.Item href="#action/3.1">
+                  {sessionUser}
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={manageBookings}>
+                  {dropdownAction2}
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={props.onHref3Click || handleLogout}>
-                  {props.dropdownAction3}
+                <NavDropdown.Item onClick={handleLogout}>
+                  {dropdownAction3}
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
@@ -146,14 +162,12 @@ function BasicNavbar(props) {
             )}
 
             {/* <NavDropdown title={props.dropdown} id="basic-nav-dropdown" className="custom-dropdown-toggle">
-              <NavDropdown.Item href="#action/3.1">{props.dropdownAction1 || sessionUser || 'Default Action1'}</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1">{props.dropdownAction1}</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 {props.dropdownAction2}
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              {/* <NavDropdown.Item href="#action/3.3"> */}
-              {/* <NavDropdown.Item onClick={props.onHref3Click}> */}
-              {/* <NavDropdown.Item onClick={props.onHref3Click || handleLogout}>
+              <NavDropdown.Item href="#action/3.3">
                 {props.dropdownAction3}
               </NavDropdown.Item>
             </NavDropdown> */}
@@ -183,19 +197,16 @@ BasicNavbar.propTypes = {
   dropdown: PropTypes.string,
   dropdownAction1: PropTypes.string,
   dropdownAction2: PropTypes.string,
-  onHref3Click: PropTypes.func,
   dropdownAction3: PropTypes.string 
 }
   
-BasicNavbar.defaultProps = {
-  page1: 'Home',
-  page2: 'Link2',
-  dropdown: '☰',
-  //dropdownAction1: 'Action1',
-  dropdownAction2: 'Action2',
-  // onHref3Click: () => {},
-  //onHref3Click: () => {handleLogout},
-  dropdownAction3: 'Action3'
-}
+// BasicNavbar.defaultProps = {
+//   link1: 'Home',
+//   link2: 'About',
+//   dropdown: '☰',
+//   dropdownAction1: 'username',
+//   dropdownAction2: 'Bookings',
+//   dropdownAction3: 'Logout'
+// }
 
 export default BasicNavbar;

@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 
-import BasicNavbar from './Navbar';
+//import BasicNavbar from './Navbar';
 import Footer from './Footer';
 
 //import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -48,9 +48,8 @@ function Welcome() {
     
     <div>
       
-      {/* <BasicNavbar/> */}
-      {/* <BasicNavbar link1="Home" link2="About" dropdown="Explore" dropdownAction1="Products" dropdownAction2="Prices" onHref3Click= {handleLogout2} dropdownAction3="Logout"></BasicNavbar> */}
-      <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout"></BasicNavbar>
+      {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout"></BasicNavbar> */}
+      {/* <BasicNavbar /> */}
       
       {/* Wrap ProgressBar in a div and apply fixed positioning */}
       {/* <div style={{position: 'fixed', top: 0, width: '100%', zIndex: 1000}}>
