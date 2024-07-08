@@ -79,7 +79,7 @@ function Booking({ sessionUser }) {
     {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
     {/* <BasicNavbar /> */}
 
-    <div style={{border: '1px solid black', borderRadius: '20px', margin: '20px'}}>
+    <div style={{border: '1px solid #ccc', borderRadius: '20px', margin: '20px'}}>
       <div className="Booking" style={styles.booking}>
         <div className="Heading" style={styles.heading}>
           <h1>Booking a trip 😃</h1>

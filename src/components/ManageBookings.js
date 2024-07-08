@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Table, Button } from 'react-bootstrap'; 
+import Footer from './Footer';
 
 
 function ManageBookings() {
@@ -123,6 +124,9 @@ function ManageBookings() {
         )}
 
       </div>
+
+      <Footer />
+      
     </>
   );
 }
@@ -136,7 +140,7 @@ const styles = {
     textAlign: 'center',
     margin: '20px',
     padding: '40px',
-    border: '1px solid black',
+    border: '1px solid #ccc',
     borderRadius: '20px',
   },
   heading: {
@@ -162,7 +166,6 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#fff',
     padding: '20px',
-    backgroundColor: 'white',
     border: '1px solid #ccc',
     borderRadius: '10px',
     zIndex: 1000,

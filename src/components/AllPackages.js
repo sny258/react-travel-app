@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 
 //import BasicNavbar from './Navbar';
-import Footer from './Footer';
+//import Footer from './Footer';
 
 //import ProgressBar from 'react-bootstrap/ProgressBar';
-//import Button from 'react-bootstrap/Button';
-//import Card from 'react-bootstrap/Card';
-
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-
-import ExploreSVG from '../svg/exploreSVG';
-import LadakhSVG from '../svg/ladakhSVG';
-import SpitiSVG from '../svg/spitiSVG';
-import KashmirSVG from '../svg/kashmirSVG';
-import ThailandSVG from '../svg/thailandSVG';
-import AllPackages from './AllPackages';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
-function Welcome() {
+
+
+function AllPackages() {
   const navigate = useNavigate();
 
   // Progress Bar JS logic
@@ -53,78 +45,12 @@ function Welcome() {
   //   }
   // };
 
-  // code for tab's SVG coloring when selected
-  const [activeKey, setActiveKey] = useState('explore');
-  const getColor = (key) => (key === activeKey ? '#0599fb' : 'black');
+  
 
 
   return (
     
     <div>
-      
-      <div className='WelcomeTabContent' style={styles.welcomeContent}>
-        <Tabs
-          //defaultActiveKey="explore"
-          activeKey={activeKey}
-          onSelect={(k) => setActiveKey(k)}
-          id="controlled-tab-example"
-          className="mb-3 custom-tabs" // Apply the custom class here
-          justify// or fill
-        >
-          <Tab eventKey="explore" title=
-            {
-              <div>
-                {/* <SpitiSVG color={'green'} /> */}
-                <ExploreSVG color={getColor('explore')} />
-                <p>Explore</p>
-              </div>
-            }>
-            <AllPackages />
-          </Tab>
-
-          <Tab eventKey="spiti" title=
-            {
-              <div>
-                <SpitiSVG color={getColor('spiti')} />
-                <p>spiti</p>
-              </div>
-            }>
-            <AllPackages />
-          </Tab>
-
-
-          <Tab eventKey="ladakh" title=
-            {
-              <div>
-                <LadakhSVG color={getColor('ladakh')} />
-                <p>ladakh</p>
-              </div>
-            }>
-            <AllPackages />
-          </Tab>
-
-          <Tab eventKey="kashmir" title=
-            {
-              <div>
-                <KashmirSVG color={'gray'} />
-                <p style={{color: 'gray'}}>kashmir</p>
-              </div>
-            } disabled>
-            <AllPackages />
-          </Tab>
-
-          <Tab eventKey="thailand" title=
-            {
-              <div>
-                <ThailandSVG color={'gray'} />
-                <p style={{color: 'gray'}}>thailand</p>
-              </div>
-            } disabled>
-            <AllPackages />
-          </Tab>
-   
-        </Tabs>        
-      </div>
 
       {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout"></BasicNavbar> */}
       {/* <BasicNavbar /> */}
@@ -134,11 +60,10 @@ function Welcome() {
         <ProgressBar striped variant="success" now={progress} label={`${Math.round(progress)}%`} />
       </div> */}
 
-      {/* this part has been moved to AllPackages.js */}
-      {/* <div className='WelcomeContent' style={styles.welcomeContent}>
-        <div style={styles.headingContainer}>
+      <div className='WelcomeContent' style={styles.welcomeContent}>
+        {/* <div style={styles.headingContainer}>
           <h2>Where would you like to go ?</h2>
-        </div>
+        </div> */}
 
         <div style={styles.cardContainer}>
           <Card style={styles.card}>
@@ -232,7 +157,7 @@ function Welcome() {
           </Card>
 
         </div>
-      </div> */}
+      </div>
 
       {/* Display the GIFs from the Giphy API */}
       {/* <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '5px', border: '1px solid black'}}>
@@ -247,8 +172,6 @@ function Welcome() {
 
       </div> */}
 
-      <Footer />
-
     </div>
   );
 }
@@ -260,38 +183,38 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    border: '1px solid #ccc',
+    //border: '1px solid black',
     padding: '20px',
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    margin: '20px ',
+    margin: '20px',
   },
-  // headingContainer: {
-  //   margin: '10px',
-  //   padding: '5px',
-  //   textAlign: 'center',
-  //   borderBottom: '2px solid #ddd',
-  // },
-  // cardContainer: {
-  //   display: 'flex',
-  //   justifyContent: 'space-around',
-  //   margin: '5px',
-  //   padding: '5px',
-  //   width: '100%',
-  //   flexWrap: 'wrap'
-  // },
-  // card: {
-  //   width: '18rem',
-  //   margin: '10px 10px 100px 10px',
-  //   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  //   borderRadius: '10px',
-  // },
-  // cardImage: {
-  //   height: '200px',
-  //   objectFit: 'cover',
-  //   borderRadius: '10px 10px 0 0',
-  // },
+  headingContainer: {
+    margin: '10px',
+    padding: '5px',
+    textAlign: 'center',
+    borderBottom: '2px solid #ddd',
+  },
+  cardContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    margin: '5px',
+    padding: '5px',
+    width: '100%',
+    flexWrap: 'wrap'
+  },
+  card: {
+    width: '18rem',
+    margin: '10px 10px 100px 10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '10px',
+  },
+  cardImage: {
+    height: '200px',
+    objectFit: 'cover',
+    borderRadius: '10px 10px 0 0',
+  },
 };
 
-export default Welcome;
+export default AllPackages;

@@ -137,7 +137,7 @@ li {
   align-items: center;                /* Align items at center */
   text-align: center;
   flex-direction: column;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
@@ -192,21 +192,30 @@ li {
 
 
 
-/* Manage Bookings css */
-.deletePopup {
-  display: flex;
-  position: absolute;
-  align-items: center;                /* Align items at center */
-  text-align: center;
-  flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 25px;           /* padding: top right bottom left */
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  z-index: 1000;
-  width: 35%;
-  margin-top: 5px;
+/* for modal */
+/* .modal {
+  --bs-modal-margin: 7.0rem;
+} */
+
+
+
+/* for custom tabs in welcome page*/
+.custom-tabs .nav-link {
+  color: black !important;  /* Set default text color to black */
+  background-color: white !important;  /* Set default background color to white */
+  border: 1px solid transparent;  /* Ensure there's a border for visual separation */
+  font-weight: 500;
+  font-size: 13px;
+  padding-bottom: 5px;
+  border-radius: 10px;
 }
+.custom-tabs .nav-link:hover {
+  /*border-color: #0599fb !important;  /* Change text color to blue on hover */
+  background-color: white !important;  /* Keep background color white on hover */
+}
+.custom-tabs .nav-link.active {
+  color: #0599fb !important;  /* Set text color to blue for active tab */
+  background-color: white !important;  /* Keep background color white for active tab */
+  /*border-color: #0599fb !important;  /* Change border color to blue for active tab */
+}
+
