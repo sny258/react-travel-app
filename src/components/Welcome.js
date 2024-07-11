@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 
 //import BasicNavbar from './Navbar';
@@ -21,7 +21,8 @@ import AllPackages from './AllPackages';
 
 
 function Welcome() {
-  const navigate = useNavigate();
+  
+  //const navigate = useNavigate();
 
   // Progress Bar JS logic
   // const [progress, setProgress] = useState(0);

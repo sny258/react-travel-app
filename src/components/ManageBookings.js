@@ -3,9 +3,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Table, Button } from 'react-bootstrap'; 
 import Footer from './Footer';
+import { Modal } from 'react-bootstrap';
+//import './styles.css';
 
 
 function ManageBookings() {
+  
   // Use state to store the bookings
   const [bookings, setBookings] = useState([]);
   // Use state to trigger re-fetching bookings
@@ -53,23 +56,30 @@ function ManageBookings() {
     }
   };
 
-  // delete confirmation popup
-  const [deletePopupOpen, setDeletePopupOpen] = useState(false);
+  // delete confirmation popup (popup's position is fixed, wasn't working for lower table rows)
+  //const [deletePopupOpen, setDeletePopupOpen] = useState(false);
   const [bookingId, setBookingId] = useState(null);
   // function to handle the delete button action
   const deleteButtonAction = (id) => {
     setBookingId(id);
-    setDeletePopupOpen(true);
+    //setDeletePopupOpen(true);
+    setShow(true);
   };
-  // function to handle the confirm button action
+  // function to handle the confirm button action on popup
   const confirmButtonAction = () => {
     handleCancelBooking(bookingId);
-    setDeletePopupOpen(false);
+    //setDeletePopupOpen(false);
+    setShow(false);
   };
-  // function to handle the cancel button action
-  const cancelButtonAction = () => {
-    setDeletePopupOpen(false);
-  };
+  // function to handle the cancel button action on popup
+  // const cancelButtonAction = () => {
+  //   setDeletePopupOpen(false);
+  // };
+
+  // Modal state
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
 
   return (
     <>
@@ -113,16 +123,30 @@ function ManageBookings() {
           </Table>
         </div>
 
-        {deletePopupOpen && (
+        {/* Delete confirmation popup */}
+        {/* {deletePopupOpen && (
           <div className="deletePopup" style={styles.deletePopup}>
             <h1 style={{margin: '15px', fontSize: '1.5rem'}}>Are you sure 🤔</h1>
             <div>
-              <Button type="button" style={{margin: '15px'}} onClick={confirmButtonAction}>Yes</Button>
-              <Button type="button" variant="secondary" style={{margin: '15px'}} onClick={cancelButtonAction}>No</Button>
+              <Button type="button" style={{margin: '25px', width: '20%'}} onClick={confirmButtonAction}>Yes</Button>
+              <Button type="button" variant="secondary" style={{margin: '25px', width: '18%'}} onClick={cancelButtonAction}>No</Button>
             </div>
           </div>
-        )}
+        )} */}
 
+        <Modal show={show} onHide={handleClose} dialogClassName="custom-modal-width">
+          {/* <Modal.Header closeButton>
+            <Modal.Title>Cancellation Alert !!!</Modal.Title>
+          </Modal.Header> */}
+          <Modal.Body style={{ fontSize: '1.5rem', margin: '10px', textAlign: 'center' }}>
+            Are you sure 🤔
+          </Modal.Body>
+          <Modal.Footer style={{ justifyContent: 'center' }}>
+            <Button variant="primary" style={{margin: '20px', width: '20%'}} onClick={confirmButtonAction}>Yes</Button>
+            <Button variant="secondary" style={{margin: '20px', width: '20%'}} onClick={handleClose}>No</Button>
+          </Modal.Footer>
+        </Modal>
+    
       </div>
 
       <Footer />
@@ -159,8 +183,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute', 
-    alignItems: 'center',
-    textAlign: 'center',
+    //alignItems: 'center',
+    //textAlign: 'center',
     top: '40%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -169,7 +193,8 @@ const styles = {
     border: '1px solid #ccc',
     borderRadius: '10px',
     zIndex: 1000,
-    width: '25%'
+    width: '27%',
+    height: '33%',
   }
 };
 

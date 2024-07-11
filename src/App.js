@@ -10,6 +10,7 @@ import Welcome from './components/Welcome';
 import Spiti from './components/Spiti';
 import Booking from './components/Booking';
 import ManageBookings from './components/ManageBookings';
+import Ladakh from './components/Ladakh';
 
 import BasicNavbar from './components/Navbar';
 
@@ -17,7 +18,7 @@ import BasicNavbar from './components/Navbar';
 function App() {
 
   return (
-    <>
+    <div className=''>
     
     {/* href reloads the pages when rendered */} 
     {/* <div className='Header' style={{border: '1px solid black', margin: '20px', textAlign: 'center', padding: '15px'}}>
@@ -57,12 +58,13 @@ function App() {
         <Route path="/spiti" element={<Spiti />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/managebookings" element={<ManageBookings />} />
+        <Route path="/ladakh" element={<Ladakh />} />
 
       </Routes>
 
     </Router>
 
-    </>
+    </div>
   );
 }
 

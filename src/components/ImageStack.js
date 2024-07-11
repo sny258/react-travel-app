@@ -1,25 +1,25 @@
 import React from 'react';
 
-function ImageStack(props) {
+function ImageStack ({ images }) {
 
-    // Increase height of main div on hover
-    const onMouseOverMainDiv = (e) => {
-        e.currentTarget.style.height = '250px';
-    }
-    // Restore original height of main div on hover out
-    const onMouseOutMainDiv = (e) => {
-        e.currentTarget.style.height = '180px';
-    }
-    // Expand the flex of image div size on hover
-    const onMouseOverImageDiv = (e) => {
-        e.currentTarget.style.flex = 2;
-    }
-    // Restore original flex size of image div on hover out
-    const onMouseOutImageDiv = (e) => {
-        e.currentTarget.style.flex = 1;
-    }
+  // Increase height of main div on hover
+  const onMouseOverMainDiv = (e) => {
+      e.currentTarget.style.height = '275px';
+  }
+  // Restore original height of main div on hover out
+  const onMouseOutMainDiv = (e) => {
+      e.currentTarget.style.height = '160px';
+  }
+  // Expand the flex of image div size on hover
+  const onMouseOverImageDiv = (e) => {
+      e.currentTarget.style.flex = 3;
+  }
+  // Restore original flex size of image div on hover out
+  const onMouseOutImageDiv = (e) => {
+      e.currentTarget.style.flex = 1;
+  }
 
-    return (
+  return (
     <div>
       <div style={styles.mainDiv} onMouseOver={onMouseOverMainDiv} onMouseOut={onMouseOutMainDiv}>
         
@@ -33,7 +33,7 @@ function ImageStack(props) {
           <img src={props.image3} style={styles.image} alt="place 3"/>
         </div> */}
 
-        {props.images.map((image, index) => (
+        {images.map((image, index) => (
           <div key={index} style={styles.imageDiv} onMouseOver={onMouseOverImageDiv} onMouseOut={onMouseOutImageDiv}>
             <img src={image} style={styles.image} alt={`place ${index + 1}`}/>
           </div>
@@ -47,8 +47,11 @@ function ImageStack(props) {
 const styles = {
   mainDiv: {
     display: 'flex',
-    gap: '5px',
-    transition: 'height 0.5s'
+    gap: '3px',
+    transition: 'height 0.5s',
+    marginLeft: '20px',
+    //for less than 3 images default height was large, it reloves the first hover lag also.
+    height: '160px'
   },
   imageDiv: {
       flex: 1,
@@ -56,7 +59,8 @@ const styles = {
       display: 'flex',
       justifyContent: 'center',
       position: 'relative',
-      overflow: 'hidden'            //overflow Ensures the container clips the image overflow
+      //overflow Ensures the container clips the image overflow
+      overflow: 'hidden'
   },
   image: {
       width: '100%',

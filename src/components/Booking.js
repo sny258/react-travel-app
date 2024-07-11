@@ -3,15 +3,22 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import axios from 'axios';
 import Footer from './Footer';
+import { useLocation } from 'react-router-dom';
 
 
-function Booking({ sessionUser }) {
+function Booking() {
+ 
+  // Get the trip name send from the previous page from the location state
+  const location = useLocation();
+  const { trip: defaultTrip } = location.state || {};
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [trip, setTrip] = useState('');
+  const [trip, setTrip] = useState(defaultTrip || '');
   const [date, setDate] = useState('');
   const [people, setPeople] = useState(1);
-  //const [error, setError] = useState('');
+  // hook to be used to trigger useEffect when booking is done
+  const [booked, setBooked] = useState(false);
 
   // Set the default config for axios
   axios.defaults.withCredentials = true;
@@ -19,10 +26,13 @@ function Booking({ sessionUser }) {
   // Set default date to next week
   useEffect(() => {
     const nextWeek = new Date();
-    nextWeek.setDate(nextWeek.getDate() + 7);
-    const formattedDate = nextWeek.toISOString().split('T')[0]; // Format date as yyyy-mm-dd
-    setDate(formattedDate);
-  }, []);
+    const defaultDate = () => {
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      const formattedDate = nextWeek.toISOString().split('T')[0]; // Format date as yyyy-mm-dd
+      setDate(formattedDate);
+    }
+    defaultDate();
+  }, [booked]);
 
   // Modal state
   const [show, setShow] = useState(false);
@@ -31,9 +41,11 @@ function Booking({ sessionUser }) {
     // Reset form fields
     setName('');
     setEmail('');
-    setTrip('');
+    setTrip(defaultTrip || '');
     setDate('');
     setPeople(1);
+    // set true to false and wise versa
+    setBooked(!booked);
   };
   //function to handle booking
   const handleBooking = async (e) => {
@@ -58,7 +70,7 @@ function Booking({ sessionUser }) {
       }
     } catch (error) {
       console.error('Login error:', error.response?.data?.message || error.message);
-      alert('Login failed');
+      alert('Booking failed');
     }
     // show modal
     setShow(true);

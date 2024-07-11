@@ -9,6 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+//import { FaMapMarkerAlt } from "react-icons/fa";
+import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import Map from '../maps.png';
+
 
 
 
@@ -45,6 +50,14 @@ function AllPackages() {
   //   }
   // };
 
+  // Global modal logic to show the map image
+  const [show, setShow] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState('');
+  const handleClose = () => setShow(false);
+  const handleShow = (imageUrl) => {
+    setModalImageUrl(imageUrl);
+    setShow(true);
+  };
   
 
 
@@ -60,6 +73,11 @@ function AllPackages() {
         <ProgressBar striped variant="success" now={progress} label={`${Math.round(progress)}%`} />
       </div> */}
 
+      {/* Modal to show the map image */}
+      <Modal show={show} onHide={handleClose}>
+        <img src={modalImageUrl} alt="map" style={{ width: '100%' }} />
+      </Modal>
+
       <div className='WelcomeContent' style={styles.welcomeContent}>
         {/* <div style={styles.headingContainer}>
           <h2>Where would you like to go ?</h2>
@@ -67,13 +85,21 @@ function AllPackages() {
 
         <div style={styles.cardContainer}>
           <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
-            />
+            <div>
+              <Card.Img
+                variant="top"
+                style={styles.cardImage}
+                src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
+              />
+              <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon} />
+            </div>
+            <div style={styles.tourDetails}>
+              <p>7 days & 6 nights</p>
+              <p>₹ 25,000</p>
+              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
+            </div>
             <Card.Body>
-              <Card.Title>Spiti Valley</Card.Title>
+              <Card.Title> Spiti Valley </Card.Title>
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
@@ -82,17 +108,24 @@ function AllPackages() {
           </Card>
 
           <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180"
-            />
+            <div>
+              <Card.Img
+                variant="top"
+                style={styles.cardImage}
+                src="https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180"
+              />
+              <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png ")} style=  {styles.mapIcon} />
+            </div>
+            <div style={styles.tourDetails}>
+              <p>7 days & 6 nights</p>
+              <p>₹ 20,000</p>
+            </div>
             <Card.Body>
               <Card.Title>Ladakh</Card.Title>
               <Card.Text>
-                Ladakh, often referred to as "The Land of High Passes," is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
+                Ladakh, often referred to as "The Land of High Passes" is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
               </Card.Text>
-              <Button variant="primary">Explore</Button>
+              <Button variant="primary" onClick={() => navigate('/ladakh')}>Explore</Button>
             </Card.Body>
           </Card>
 
@@ -102,6 +135,11 @@ function AllPackages() {
               style={styles.cardImage}
               src="https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg"
             />
+            <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style=  {styles.mapIcon} />
+            <div style={styles.tourDetails}>
+              <p>5 days & 4 nights</p>
+              <p>₹ 15,000</p>
+            </div>
             <Card.Body>
               <Card.Title>Kedarnath</Card.Title>
               <Card.Text>
@@ -117,6 +155,10 @@ function AllPackages() {
               style={styles.cardImage}
               src="https://images.unsplash.com/photo-1699214101660-df4e21fbabcd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
+            <div style={styles.tourDetails}>
+              <p>3 days & 2 nights</p>
+              <p>₹ 10,000</p>
+            </div>
             <Card.Body>
               <Card.Title>Tungnath</Card.Title>
               <Card.Text>
@@ -132,6 +174,10 @@ function AllPackages() {
               style={styles.cardImage}
               src="https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
+            <div style={styles.tourDetails}>
+              <p>4 days & 3 nights</p>
+              <p>₹ 15,000</p>
+            </div>
             <Card.Body>
               <Card.Title>Munnar</Card.Title>
               <Card.Text>
@@ -147,6 +193,10 @@ function AllPackages() {
               style={styles.cardImage}
               src="https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
+            <div style={styles.tourDetails}>
+              <p>6 days & 5 nights</p>
+              <p>₹ 25,000</p>
+            </div>
             <Card.Body>
               <Card.Title>Goa</Card.Title>
               <Card.Text>
@@ -215,6 +265,33 @@ const styles = {
     objectFit: 'cover',
     borderRadius: '10px 10px 0 0',
   },
+  tourDetails: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    color: '#777',
+    padding: '5px 10px 0px 10px'
+  },
+  mapIcon: {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    //fontSize: '1.5em',
+    //color: '#0599fb',
+    cursor: 'pointer',
+    width: '25px',
+    height: '25px',
+    backgroundColor: 'white',     // Added white background
+    borderRadius: '50%',
+    padding: '1px'
+  },
+  mapIcon2: {
+    //color: '#0599fb',
+    cursor: 'pointer',
+    marginLeft: '10px',
+    width: '22px',
+    height: '22px',
+    paddingBottom: '0px',
+  }
 };
 
 export default AllPackages;

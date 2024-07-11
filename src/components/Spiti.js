@@ -37,7 +37,9 @@ const Spiti = () => {
     if (localStorage.getItem("user") == null) {
       setShowBooking(true);
     } else {
-      navigate('/booking');
+      //navigate('/booking');
+      //send trip name to booking page as state hook
+      navigate('/booking', { state: { trip: 'Spiti Valley' } });
     }
   };
 
@@ -81,6 +83,22 @@ const Spiti = () => {
     "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1642474620281-1343d25b18f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
+
+  // Review Modal
+  const [showReview, setShowReview] = useState(false);
+  const [reviewData, setReviewData] = useState('');
+  const user = localStorage.getItem('user');
+  // Add review function
+  const addReview = () => {
+    const review = document.getElementById('reviews');
+    const newReview = document.createElement('div');
+    newReview.innerHTML = `<h4>${user}</h4><p>${reviewData}</p>`;
+    Object.assign(newReview.style, styles.reviewCard);
+    review.appendChild(newReview);
+    setShowReview(false);
+    setReviewData(''); // Reset form
+  };
+
 
   return (
     <div>
@@ -292,7 +310,51 @@ const Spiti = () => {
             </Modal.Footer>
           </Modal>
         </div>
+      </div>
 
+      {/* Reviews Section */}
+      <div style={styles.itinerary}>
+        <h3 style={styles.heading}>Reviews</h3>
+
+        <div className="Reviews" id="reviews" style={styles.review}>
+          <div style={styles.reviewCard}>
+            <h4>Eren Yeager</h4>
+            <p>It was an amazing experience. The tour was well-organized and the guide was very knowledgeable. I would definitely recommend this tour to anyone who wants to explore the beauty of Spiti Valley.</p>
+          </div>
+          <div style={styles.reviewCard}>
+            <h4>Mikasa</h4>
+            <p>One of the best tours I have ever been on. The tour guide was very knowledgeable and the itinerary was well-planned. I would definitely recommend this tour to anyone who wants to explore the beauty of Spiti Valley.</p>
+          </div>
+        </div>
+  
+        <div>
+          { user && (
+          <Button variant="primary" style={{ margin: '20px' }} onClick={() => setShowReview(true)}>Add Review</Button>
+          )}
+          <Modal show={showReview} onHide={() => setShowReview(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Add Review</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Review</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="review"
+                    value={reviewData}
+                    onChange={(e) => setReviewData(e.target.value )}
+                  />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={addReview}>Submit</Button>
+              <Button variant="secondary" onClick={() => setShowReview(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
 
     </div>
@@ -385,6 +447,20 @@ const styles = {
     top: '50px',                    /* gap from top for scrolling div */
     marginTop: '100px',             /* or either make alignItems: 'center' */ 
     width: '24%',   
+  },
+  review : {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+  },
+  reviewCard: {
+    width: '40%',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#f9f9f9',
+    margin: '20px',
   },
 };
 

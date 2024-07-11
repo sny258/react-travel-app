@@ -131,6 +131,15 @@ li {
 
 
 /* Signup page css */
+.success-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);     /* Blackish shade */
+  z-index: 999;                               /* Lower than the popup but higher than other content */
+}
 .success-popup {
   display: flex;
   position: absolute;
@@ -196,6 +205,24 @@ li {
 /* .modal {
   --bs-modal-margin: 7.0rem;
 } */
+/* .modal-content {
+  width: 50%
+} */
+.custom-modal-width .modal-content {
+  max-width: 300px; /* Adjust this value as needed */
+  margin: auto;
+}
+
+
+
+
+/* for card body */
+.card-body {
+  padding-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 
 
 
@@ -217,5 +244,36 @@ li {
   color: #0599fb !important;  /* Set text color to blue for active tab */
   background-color: white !important;  /* Keep background color white for active tab */
   /*border-color: #0599fb !important;  /* Change border color to blue for active tab */
+  border-bottom-color: #0599fb !important;
 }
 
+
+
+
+
+/* ladakh grid css */
+/* */
+/* .gridContainer {
+  display: grid;
+  gap: 2px;
+  width: 80vw;
+  height: 85vh;
+  grid-template-columns: repeat(9,auto);    /* make it 3 for 3 columns */
+  /* border: 1px solid #ccc;
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+} */
+/* .gridItem {
+  width: 0; 
+  height: 0; 
+  min-height: 100%; 
+  min-width: 100%; 
+  cursor: pointer;
+  transition: .35s linear;
+}
+.gridItem:hover {
+  width:  calc(120vh * 1.5/3);
+  height: calc(45vw * 1.5/3);
+}  */

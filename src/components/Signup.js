@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 //import BasicNavbar from './Navbar';
 import Button from 'react-bootstrap/Button';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 
 function Signup() {
@@ -145,18 +146,20 @@ function Signup() {
       {/* SignUp Popup on condition, this way browser will only render this untill it's required */}
 
       {isSingUpPopupOpen && (
-      <div className="success-popup" id="successPopup">
-
-        {/* <h1 id="successMessage" style={{margin: '15px'}}>Popup</h1> */}
-        {/* <button type="button" className="btn-popup" onClick={() => navigate('/login')>Login</  button> */}
-        {/* <button type="button" className="btn-popup" onClick={() => window.locationhref = "/  login"}>Login</button> */}
-        {/* on click here will take precedence over the one in handleSignup, so remove it*/}
-        {/* <button type="button" id="btn-popup" style={{margin: '15px'}}>Login</button> */}
-
-        {/* this code for conditionally showing popup*/}
-        <h1 id="successMessage" style={{margin: '15px', fontSize: '1.5rem'}}>{popupMessage}</h1>
-        <Button type="button" id="btn-popup" style={{margin: '15px'}} onClick={buttonAction}>{buttonText}</Button>
-
+      <div className="success-popup-backdrop">
+        <div className="success-popup" id="successPopup">
+  
+          {/* <h1 id="successMessage" style={{margin: '15px'}}>Popup</h1> */}
+          {/* <button type="button" className="btn-popup" onClick={() => navigate('/login')>Login</    button> */}
+          {/* <button type="button" className="btn-popup" onClick={() => window.locationhref = "/  login"}  >Login</button> */}
+          {/* on click here will take precedence over the one in handleSignup, so remove it*/}
+          {/* <button type="button" id="btn-popup" style={{margin: '15px'}}>Login</button> */}
+  
+          {/* this code for conditionally showing popup*/}
+          < CloseButton style={{position: 'absolute', top: '5px', right: '5px'}} onClick={() => setIsSingUpPopupOpen(false)} />
+          <h1 id="successMessage" style={{margin: '15px', fontSize: '1.5rem'}}>{popupMessage}</h1>
+          <Button type="button" id="btn-popup" style={{margin: '15px'}} onClick={buttonAction}>  {buttonText}</Button>
+        </div>
       </div>
       )} 
 
