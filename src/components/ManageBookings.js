@@ -19,6 +19,11 @@ function ManageBookings() {
   // Set the default config for axios, to ensure credentials (like cookies) are sent with requests.
   axios.defaults.withCredentials = true;
 
+  // scroll to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Fetch bookings on component mount and when refreshBookings changes
   useEffect(() => {
     const fetchBookings = async () => {
@@ -96,6 +101,7 @@ function ManageBookings() {
                 <th>Email</th>
                 <th>Trip</th>
                 <th>Date</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -108,9 +114,23 @@ function ManageBookings() {
                   <td>{booking.trip}</td>
                   <td>{booking.date}</td>
                   <td>
-                    <Button variant="danger" onClick={() => deleteButtonAction(booking.id)}>
-                      Cancel
-                    </Button>
+                    {new Date(booking.date) < new Date() ? (
+                      <span style={{ color: 'green', fontWeight: '500' }}>Completed</span>
+                    ) : (
+                      <span style={{ color: 'red', fontWeight: '500' }}>Upcoming</span>
+                    )}
+                  </td>
+                  <td>
+                    {/* mark passed date bookings as completed */}
+                    {new Date(booking.date) < new Date() ? (
+                      <Button variant="success" onClick={() => deleteButtonAction(booking.id)}>
+                        Delete
+                      </Button>
+                    ) : (
+                      <Button variant="danger" onClick={() => deleteButtonAction(booking.id)}>
+                        Cancel
+                      </Button>
+                    )}
                   </td>
                 </tr>
               ))}

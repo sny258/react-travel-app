@@ -151,6 +151,7 @@ function Booking() {
               value={date}
               onChange={(e) => setDate(e.target.value)}
               required
+              //min={(new Date()).toISOString().split('T')[0]}      // Set min date to today
               style={styles.input}
             />
           </Form.Group>

@@ -89,7 +89,7 @@ const Spiti = () => {
   // Review Modal
   const [showReview, setShowReview] = useState(false);
   const [reviewData, setReviewData] = useState('');
-  const user = localStorage.getItem('user');
+  //const user = localStorage.getItem('user');
   // // Add review function
   // const addReview = () => {
   //   const review = document.getElementById('reviews');
@@ -160,6 +160,41 @@ const Spiti = () => {
         alert('Adding review failed !!!');
     }
   }
+
+  // Logics to show add review button only if user has completed the trip
+  // reviewable is a state variable
+  const [reviewable, setReviewable] = useState(false);
+   // hook to make add review button visible only if user has completed the trip
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const user = localStorage.getItem('user');
+        const response = await axios.get(`http://localhost:5000/bookings/${user}`);
+        console.log('Bookings data:', response.data);
+        // Check if the user has booked a trip to 'Ladakh' that is in the past
+        const hasCompletedTrip = response.data.bookings.some(booking => {
+          return booking.trip === 'Ladakh' && new Date(booking.date) < new Date();
+        });
+        // allow 7 days after the trip to add review
+        // const hasCompletedTrip = response.data.bookings.some(booking => {
+        //   const bookingDate = new Date(booking.date);
+        //   const currentDate = new Date();
+        //   currentDate.setDate(currentDate.getDate() - 7); // Subtract 7 days from current date
+        //   return booking.trip === 'Ladakh' && bookingDate < currentDate;
+        // });
+        // Set reviewable based on the check
+        setReviewable(hasCompletedTrip);
+      } catch (error) {
+        console.error('Error fetching bookings:', error.response?.data?.error || error.message);
+      }
+    };
+    // only execute if user is logged in
+    const user = localStorage.getItem('user');
+    if (user) {
+      fetchBookings();
+    }
+  }, []);     // only executes ones on initial render
+
   
   
   return (
@@ -472,7 +507,7 @@ const Spiti = () => {
         </div>
   
         <div>
-          { user && (
+          { reviewable && (
           <Button variant="primary" style={{ margin: '20px' }} onClick={() => setShowReview(true)}>Add Review</Button>
           )}
           <Modal show={showReview} onHide={() => setShowReview(false)}>
