@@ -299,7 +299,7 @@ const Spiti = () => {
             </Modal.Footer>
           </Modal>
 
-          <Modal show={showBooking} onHide={handleBookingClose}>
+          <Modal show={showBooking} onHide={handleBookingClose} className="spiti-booking-modal-width">
             <Modal.Header closeButton>
               <Modal.Title>Booking Alert !!!</Modal.Title>
             </Modal.Header>

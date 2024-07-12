@@ -373,12 +373,12 @@ const Spiti = () => {
             </Modal.Footer>
           </Modal>
 
-          <Modal show={showBooking} onHide={handleBookingClose}>
+          <Modal show={showBooking} onHide={handleBookingClose} className="ladakh-booking-modal-width">
             <Modal.Header closeButton>
               <Modal.Title>Booking Alert !!!</Modal.Title>
             </Modal.Header>
             <Modal.Body>Please login to book the trip.</Modal.Body>
-            <Modal.Footer style={{ justifyContent: 'center', gap: '30px' }}>
+            <Modal.Footer>
               <Button variant="primary" onClick={() => navigate('/login')}>Login</Button>
               <Button variant="secondary" onClick={handleBookingClose}>Close</Button>
             </Modal.Footer>

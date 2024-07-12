@@ -85,7 +85,7 @@ function ManageBookings() {
     <>
       <div className='booking-details' style={styles.bookingDetails}>
         <div className="Heading" style={styles.heading}>
-          <h1>Your Bookings ... 😃</h1>
+          <h1>Your Bookings ... 😊</h1>
         </div>
         <div className='TableContainer' style={styles.tableContainer}>
           <Table className='Table' striped bordered hover responsive style={styles.table}>
@@ -134,7 +134,7 @@ function ManageBookings() {
           </div>
         )} */}
 
-        <Modal show={show} onHide={handleClose} dialogClassName="custom-modal-width">
+        <Modal show={show} onHide={handleClose} className="delete-booking-modal-width">
           {/* <Modal.Header closeButton>
             <Modal.Title>Cancellation Alert !!!</Modal.Title>
           </Modal.Header> */}
@@ -142,8 +142,8 @@ function ManageBookings() {
             Are you sure 🤔
           </Modal.Body>
           <Modal.Footer style={{ justifyContent: 'center' }}>
-            <Button variant="primary" style={{margin: '20px', width: '20%'}} onClick={confirmButtonAction}>Yes</Button>
-            <Button variant="secondary" style={{margin: '20px', width: '20%'}} onClick={handleClose}>No</Button>
+            <Button variant="primary" style={{margin: '15px', width: '20%'}} onClick={confirmButtonAction}>Yes</Button>
+            <Button variant="secondary" style={{margin: '15px', width: '20%'}} onClick={handleClose}>No</Button>
           </Modal.Footer>
         </Modal>
     

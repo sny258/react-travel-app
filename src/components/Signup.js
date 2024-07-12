@@ -10,6 +10,10 @@ import CloseButton from 'react-bootstrap/CloseButton';
 
 
 function Signup() {
+  
+  // Using state to toggle the password visibility
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  // form input states
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');
@@ -101,7 +105,7 @@ function Signup() {
           <h2>Please Signup !!!</h2>
         </div>
         {/* form to take signup details */}
-        <form className="signupForm" onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', width: '60%', borderRadius: '10px', margin: '10px 0 30px 0', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}>
+        <form className="signupForm" onSubmit={handleSignup} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', width: '70%', borderRadius: '10px', margin: '10px 0 30px 0', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}>
           <input
             type="text"
             placeholder="Firstname"
@@ -130,13 +134,20 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          {/* Password input with show/hide password functionality */}
+          <div style={{ width: '100.5%', textAlign: 'center' }} >
+            <input style={{ padding: '5.35px', marginRight: '2px' }}
+              type={passwordVisible ? 'text' : 'password'}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? '🐵' : '🙈'}
+            </span>
+          </div>
+          {/* form submit button */}
           <Button variant="success" type="submit" style={{ marginTop: '15px', width: '30%', padding: '4px' }}>Signup</Button>
         </form> 
 

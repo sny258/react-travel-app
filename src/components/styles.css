@@ -98,11 +98,11 @@ li {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 70%;
+  width: 75%;
   margin-bottom: 10px;
 }
 .resetPasswordForm input {
-  width: 100%;
+  width: 95%;
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 2px;
@@ -115,7 +115,7 @@ li {
   border-color: #86b7fe;
 }
 .loginForm input {
-  width: 100%;
+  width: 95%;
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 2px;
@@ -202,14 +202,17 @@ li {
 
 
 /* for modal */
-/* .modal {
-  --bs-modal-margin: 7.0rem;
-} */
-/* .modal-content {
-  width: 50%
-} */
-.custom-modal-width .modal-content {
+.delete-booking-modal-width .modal-content {
   max-width: 300px; /* Adjust this value as needed */
+  margin: auto;
+  margin-top: 8rem;
+}
+.spiti-booking-modal-width .modal-content {
+  max-width: 350px; /* Adjust this value as needed */
+  margin: auto;
+}
+.ladakh-booking-modal-width .modal-content {
+  max-width: 350px; /* Adjust this value as needed */
   margin: auto;
 }
 

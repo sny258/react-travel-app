@@ -11,6 +11,10 @@ import CloseButton from 'react-bootstrap/CloseButton';
 
 
 function Login() {
+  
+  // Using state to toggle the password visibility
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   //const [error, setError] = useState('');
@@ -155,7 +159,7 @@ function Login() {
         </div>
 
         {/* Login form */}
-        <form className="loginForm" onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}>
+        <form className="loginForm" onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '53%'}}>
           <input
             type="text"
             placeholder="Username"
@@ -163,13 +167,19 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          {/* Password field with toggle visibility */}
+          <div style={{ width: '100.5%', textAlign: 'center' }} >
+            <input  style={{ marginRight: '1.5px' }}
+              type={passwordVisible ? 'text' : 'password'}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? '🐵' : '🙈'}
+            </span>
+          </div>
           {/* Login button to subnit the form */}
           <Button type="submit" style={{marginTop: '20px', width: '40%', padding: '3px'}}>Login</Button>
 
@@ -217,13 +227,19 @@ function Login() {
             onChange={(e) => setResetEmail(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="New_Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
+          {/* Password field with toggle visibility */}
+          <div style={{ width: '100.5%', textAlign: 'center' }} >
+            <input  style={{ marginRight: '1.5px' }}
+              type={passwordVisible ? 'text' : 'password'}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? '🐵' : '🙈'}
+            </span>
+          </div>
           {/* Reset Password button */}
           <Button type="submit" style={{margin: '20px 20px 0 20px', width: '60%', padding: '4px'}}>Reset Password</Button>
         </form>
