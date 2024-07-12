@@ -53,6 +53,12 @@ db.serialize(() => {
     people INTEGER,
     date TEXT
   )`);
+  db.run(`CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    trip TEXT,
+    username TEXT,
+    review TEXT
+  )`);
 });
 
 // Signup endpoints
@@ -182,6 +188,28 @@ app.delete('/booking/cancel/:id', (req, res) => {
       return res.status(400).json({ error: err.message });
     }
     return res.status(200).json({ message: 'Booking deleted successfully' });
+  });
+});
+
+// Add Review endpoint
+app.post('/add-review', (req, res) => {
+  const { trip, username, reviewData } = req.body;
+  db.run(`INSERT INTO reviews(trip, username, review) VALUES(?, ?, ?)`, [trip, username, reviewData], function(err) {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    return res.status(200).json({ message: 'Review added successfully' });
+  });
+});
+
+// Get reviews endpoint
+app.get('/reviews/:trip', (req, res) => {
+  const trip = req.params.trip;
+  db.all(`SELECT * FROM reviews WHERE trip = ?`, [trip], (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    return res.status(200).json({ reviews: rows });
   });
 });
 

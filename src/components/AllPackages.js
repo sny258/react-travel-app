@@ -91,15 +91,18 @@ function AllPackages() {
                 style={styles.cardImage}
                 src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
               />
-              <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon} />
+              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon} /> */}
             </div>
             <div style={styles.tourDetails}>
               <p>7 days & 6 nights</p>
               <p>₹ 25,000</p>
-              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
+              <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} />
             </div>
             <Card.Body>
-              <Card.Title> Spiti Valley </Card.Title>
+              <Card.Title> 
+                Spiti Valley
+                {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
+              </Card.Title>
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
@@ -114,11 +117,11 @@ function AllPackages() {
                 style={styles.cardImage}
                 src="https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180"
               />
-              <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png ")} style=  {styles.mapIcon} />
             </div>
             <div style={styles.tourDetails}>
               <p>7 days & 6 nights</p>
               <p>₹ 20,000</p>
+              <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} />
             </div>
             <Card.Body>
               <Card.Title>Ladakh</Card.Title>
@@ -135,10 +138,10 @@ function AllPackages() {
               style={styles.cardImage}
               src="https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg"
             />
-            <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style=  {styles.mapIcon} />
             <div style={styles.tourDetails}>
               <p>5 days & 4 nights</p>
               <p>₹ 15,000</p>
+              <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} />
             </div>
             <Card.Body>
               <Card.Title>Kedarnath</Card.Title>

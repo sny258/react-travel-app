@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 
@@ -54,6 +54,11 @@ function Welcome() {
   //   }
   // };
 
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // code for tab's SVG coloring when selected
   const [activeKey, setActiveKey] = useState('explore');
   const getColor = (key) => (key === activeKey ? '#0599fb' : 'black');
@@ -72,6 +77,7 @@ function Welcome() {
           className="mb-3 custom-tabs" // Apply the custom class here
           justify// or fill
         >
+          { /* All packages tab */ }
           <Tab eventKey="explore" title=
             {
               <div>
@@ -82,7 +88,7 @@ function Welcome() {
             }>
             <AllPackages />
           </Tab>
-
+          { /* Spiti tab */}
           <Tab eventKey="spiti" title=
             {
               <div>
@@ -92,8 +98,7 @@ function Welcome() {
             }>
             <AllPackages />
           </Tab>
-
-
+          { /* Ladakh tab */}
           <Tab eventKey="ladakh" title=
             {
               <div>
@@ -103,7 +108,7 @@ function Welcome() {
             }>
             <AllPackages />
           </Tab>
-
+          { /* Kashmir tab */}
           <Tab eventKey="kashmir" title=
             {
               <div>
@@ -113,7 +118,7 @@ function Welcome() {
             } disabled>
             <AllPackages />
           </Tab>
-
+          { /* Thailand tab */}
           <Tab eventKey="thailand" title=
             {
               <div>

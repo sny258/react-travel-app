@@ -10,6 +10,8 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import './styles.css';
 import ImageStack from './ImageStack';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 
 const Spiti = () => {
@@ -18,6 +20,9 @@ const Spiti = () => {
   const [name, setName] = useState('');
   const [emailphone, setEmailPhone] = useState('');
   const [query, setQuery] = useState('');
+
+  // Set the default config for axios
+  axios.defaults.withCredentials = true;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -88,16 +93,77 @@ const Spiti = () => {
   const [showReview, setShowReview] = useState(false);
   const [reviewData, setReviewData] = useState('');
   const user = localStorage.getItem('user');
-  // Add review function
-  const addReview = () => {
-    const review = document.getElementById('reviews');
-    const newReview = document.createElement('div');
-    newReview.innerHTML = `<h4>${user}</h4><p>${reviewData}</p>`;
-    Object.assign(newReview.style, styles.reviewCard);
-    review.appendChild(newReview);
-    setShowReview(false);
-    setReviewData(''); // Reset form
-  };
+  // // Add review function
+  // const addReview = () => {
+  //   const review = document.getElementById('reviews');
+  //   const newReview = document.createElement('div');
+  //   newReview.innerHTML = `<h4>${user}</h4><p>${reviewData}</p>`;
+  //   Object.assign(newReview.style, styles.reviewCard);
+  //   review.appendChild(newReview);
+  //   setShowReview(false);
+  //   setReviewData(''); // Reset form
+  // };
+
+
+  // Use state to store the reviews
+  const [reviews, setReviews] = useState([]);
+  // Use state to trigger re-fetching reviews
+  const [refreshReviews, setRefreshReviews] = useState(false);
+  // useEffect to fetch the reviews
+  useEffect(() => {
+    const trip = 'Spiti Valley';
+    const getReviews = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/reviews/' + trip, {
+          validateStatus: function (status) {
+            // Consider any status code less than 500 as a success status.
+            return status < 500;
+          }
+        });
+        console.log('Response:', response);
+        if (response.status === 200) {
+          setReviews(response.data.reviews);
+        } else {
+          console.error('Reviews error:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Reviews error:', error.response?.data?.message || error.message);
+      }
+    };
+    getReviews();
+  }, [refreshReviews]);
+
+  // function to handle review submit
+  const handleAddReview = async (e) => {
+    e.preventDefault();
+    const username = localStorage.getItem("user");
+    const trip = 'Spiti Valley';
+    console.log(reviewData);
+    try {
+      const response = await axios.post('http://localhost:5000/add-review', { trip, username, reviewData }, {
+        validateStatus: function (status) {
+          // Consider any status code less than 500 as a success status.
+          return status < 500;
+        }
+      });
+      console.log('Response:', response);
+      if (response.status === 200) {
+        toast.success('Review added successfully', {position: "top-center"});
+        // Re-fetch the reviews
+        setRefreshReviews(!refreshReviews);
+        // Close the modal
+        setShowReview(false);
+        setReviewData('');
+      } else {
+        console.error('Review error:', response.data.message);
+        toast.error('Adding review failed !!!');
+      }
+    } catch (error) {
+        console.error('Review error:', error.response?.data?.message || error.message);
+        alert('Adding review failed !!!');
+    }
+  }
+
 
 
   return (
@@ -317,6 +383,8 @@ const Spiti = () => {
         <h3 style={styles.heading}>Reviews</h3>
 
         <div className="Reviews" id="reviews" style={styles.review}>
+          
+          {/* Hardcoded reviews */}
           <div style={styles.reviewCard}>
             <h4>Eren Yeager</h4>
             <p>It was an amazing experience. The tour was well-organized and the guide was very knowledgeable. I would definitely recommend this tour to anyone who wants to explore the beauty of Spiti Valley.</p>
@@ -325,6 +393,15 @@ const Spiti = () => {
             <h4>Mikasa</h4>
             <p>One of the best tours I have ever been on. The tour guide was very knowledgeable and the itinerary was well-planned. I would definitely recommend this tour to anyone who wants to explore the beauty of Spiti Valley.</p>
           </div>
+        
+          {/* Dynamic reviews from DB */}
+          {reviews.map((review, index) => (
+            <div key={index} style={styles.reviewCard}>
+              <h4>{review.username}</h4>
+              <p>{review.review}</p>
+            </div>
+          ))}
+
         </div>
   
         <div>
@@ -336,7 +413,7 @@ const Spiti = () => {
               <Modal.Title>Add Review</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form>
+              <Form onSubmit={handleAddReview}>
                 <Form.Group className="mb-3">
                   <Form.Label>Review</Form.Label>
                   <Form.Control
@@ -344,15 +421,16 @@ const Spiti = () => {
                     rows={3}
                     name="review"
                     value={reviewData}
-                    onChange={(e) => setReviewData(e.target.value )}
+                    onChange={(e) => setReviewData(e.target.value)}
+                    required
                   />
                 </Form.Group>
+                <Modal.Footer>
+                  <Button variant="primary" type="submit">Submit</Button>
+                  <Button variant="secondary" onClick={() => setShowReview(false)}>Close</Button>
+                </Modal.Footer>
               </Form>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={addReview}>Submit</Button>
-              <Button variant="secondary" onClick={() => setShowReview(false)}>Close</Button>
-            </Modal.Footer>
           </Modal>
         </div>
       </div>

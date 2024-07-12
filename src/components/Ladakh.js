@@ -10,6 +10,8 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import './styles.css';
 import ImageStack from './ImageStack';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 
 const Spiti = () => {
@@ -83,22 +85,81 @@ const Spiti = () => {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Aerial_View_of_Leh_Kushok_Bakula_Rinpoche_Airport_%28IXL%29_Ladakh_Jammu_%26_Kashmir_India.jpg/1200px-Aerial_View_of_Leh_Kushok_Bakula_Rinpoche_Airport_%28IXL%29_Ladakh_Jammu_%26_Kashmir_India.jpg?20140612005411"
   ];
 
-
+  
   // Review Modal
   const [showReview, setShowReview] = useState(false);
   const [reviewData, setReviewData] = useState('');
   const user = localStorage.getItem('user');
-  // Add review function
-  const addReview = () => {
-    const review = document.getElementById('reviews');
-    const newReview = document.createElement('div');
-    newReview.innerHTML = `<h4>${user}</h4><p>${reviewData}</p>`;
-    Object.assign(newReview.style, styles.reviewCard);
-    review.appendChild(newReview);
-    setShowReview(false);
-    setReviewData(''); // Reset form
-  };
-  
+  // // Add review function
+  // const addReview = () => {
+  //   const review = document.getElementById('reviews');
+  //   const newReview = document.createElement('div');
+  //   newReview.innerHTML = `<h4>${user}</h4><p>${reviewData}</p>`;
+  //   Object.assign(newReview.style, styles.reviewCard);
+  //   review.appendChild(newReview);
+  //   setShowReview(false);
+  //   setReviewData(''); // Reset form
+  // };
+
+
+  // Use state to store the reviews
+  const [reviews, setReviews] = useState([]);
+  // Use state to trigger re-fetching reviews
+  const [refreshReviews, setRefreshReviews] = useState(false);
+  // useEffect to fetch the reviews
+  useEffect(() => {
+    const trip = 'Ladakh';
+    const getReviews = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/reviews/' + trip, {
+          validateStatus: function (status) {
+            // Consider any status code less than 500 as a success status.
+            return status < 500;
+          }
+        });
+        console.log('Response:', response);
+        if (response.status === 200) {
+          setReviews(response.data.reviews);
+        } else {
+          console.error('Reviews error:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Reviews error:', error.response?.data?.message || error.message);
+      }
+    };
+    getReviews();
+  }, [refreshReviews]);
+
+  // function to handle review submit
+  const handleAddReview = async (e) => {
+    e.preventDefault();
+    const username = localStorage.getItem("user");
+    const trip = 'Ladakh';
+    console.log(reviewData);
+    try {
+      const response = await axios.post('http://localhost:5000/add-review', { trip, username, reviewData }, {
+        validateStatus: function (status) {
+          // Consider any status code less than 500 as a success status.
+          return status < 500;
+        }
+      });
+      console.log('Response:', response);
+      if (response.status === 200) {
+        toast.success('Review added successfully', {position: "top-center"});
+        // Re-fetch the reviews
+        setRefreshReviews(!refreshReviews);
+        // Close the modal
+        setShowReview(false);
+        setReviewData('');
+      } else {
+        console.error('Review error:', response.data.message);
+        toast.error('Adding review failed !!!');
+      }
+    } catch (error) {
+        console.error('Review error:', error.response?.data?.message || error.message);
+        alert('Adding review failed !!!');
+    }
+  }
   
   
   return (
@@ -392,6 +453,7 @@ const Spiti = () => {
         <h3 style={styles.heading}>Reviews</h3>
 
         <div className="Reviews" id="reviews" style={styles.review}>
+          {/* Static reviews */}
           <div style={styles.reviewCard}>
             <h4>Homelander</h4>
             <p>It was an amazing experience. The tour was well organized and the guide was very   knowledgeable. I would highly recommend this tour to anyone looking to explore Ladakh.</p>
@@ -400,6 +462,13 @@ const Spiti = () => {
             <h4>Billy Butcher</h4>
             <p>The tour exceeded my expectations. The itinerary was well-planned and the accommodations were comfortable. I had a great time exploring the beautiful landscapes of Ladakh.</p>
           </div>
+          {/* Dynamic reviews from DB */}
+          {reviews.map((review, index) => (
+            <div key={index} style={styles.reviewCard}>
+              <h4>{review.username}</h4>
+              <p>{review.review}</p>
+            </div>
+          ))}
         </div>
   
         <div>
@@ -411,7 +480,7 @@ const Spiti = () => {
               <Modal.Title>Add Review</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form>
+              <Form onSubmit={handleAddReview}>
                 <Form.Group className="mb-3">
                   <Form.Label>Review</Form.Label>
                   <Form.Control
@@ -419,15 +488,16 @@ const Spiti = () => {
                     rows={3}
                     name="review"
                     value={reviewData}
-                    onChange={(e) => setReviewData(e.target.value )}
+                    onChange={(e) => setReviewData(e.target.value)}
+                    required
                   />
                 </Form.Group>
+                <Modal.Footer>
+                  <Button variant="primary" type="submit">Submit</Button>
+                  <Button variant="secondary" onClick={() => setShowReview(false)}>Close</Button>
+                </Modal.Footer>
               </Form>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={addReview}>Submit</Button>
-              <Button variant="secondary" onClick={() => setShowReview(false)}>Close</Button>
-            </Modal.Footer>
           </Modal>
         </div>
       </div>
