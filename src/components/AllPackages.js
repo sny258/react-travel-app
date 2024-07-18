@@ -96,12 +96,12 @@ function AllPackages() {
             <div style={styles.tourDetails}>
               <p>7 days & 6 nights</p>
               <p>₹ 25,000</p>
-              <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} />
+              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
             </div>
             <Card.Body>
               <Card.Title> 
                 Spiti Valley
-                {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
+                <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} />
               </Card.Title>
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
@@ -121,10 +121,13 @@ function AllPackages() {
             <div style={styles.tourDetails}>
               <p>7 days & 6 nights</p>
               <p>₹ 20,000</p>
-              <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} />
+              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} /> */}
             </div>
             <Card.Body>
-              <Card.Title>Ladakh</Card.Title>
+              <Card.Title>
+                Ladakh
+                <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} />
+              </Card.Title>
               <Card.Text>
                 Ladakh, often referred to as "The Land of High Passes" is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
               </Card.Text>
@@ -140,15 +143,18 @@ function AllPackages() {
             />
             <div style={styles.tourDetails}>
               <p>5 days & 4 nights</p>
-              <p>₹ 15,000</p>
-              <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} />
+              <p>₹ 12,000</p>
+              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} /> */}
             </div>
             <Card.Body>
-              <Card.Title>Kedarnath</Card.Title>
+              <Card.Title>
+                Kedarnath
+                <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} />
+              </Card.Title>
               <Card.Text>
                 Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.
               </Card.Text>
-              <Button variant="primary">Explore</Button>
+              <Button variant="primary" onClick={() => navigate('/kedarnath')}>Explore</Button>
             </Card.Body>
           </Card>
 
@@ -294,6 +300,7 @@ const styles = {
     width: '22px',
     height: '22px',
     paddingBottom: '0px',
+    verticalAlign: 'top'
   }
 };
 

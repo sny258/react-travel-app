@@ -9,6 +9,9 @@ import { toast } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
 import CloseButton from 'react-bootstrap/CloseButton';
 
+import p_hide from '../p_hide.png';
+import p_show from '../p_show.png';
+
 
 function Login() {
   
@@ -168,16 +171,19 @@ function Login() {
             required
           />
           {/* Password field with toggle visibility */}
-          <div style={{ width: '100.5%', textAlign: 'center' }} >
-            <input  style={{ marginRight: '1.5px' }}
+          <div style={{ width: '100.5%', marginLeft: '11.5px' }} >
+            <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+            {/* <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
               {passwordVisible ? '🐵' : '🙈'}
+            </span> */}
+            <span style={{ cursor: 'pointer', marginLeft: '-25px'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? <img src={p_show} alt="show" style={{width: '20px', height: '20px'}} /> : <img src={p_hide} alt="hide" style={{width: '20px', height: '20px'}} />}
             </span>
           </div>
           {/* Login button to subnit the form */}
@@ -228,16 +234,19 @@ function Login() {
             required
           />
           {/* Password field with toggle visibility */}
-          <div style={{ width: '100.5%', textAlign: 'center' }} >
-            <input  style={{ marginRight: '1.5px' }}
+          <div style={{ width: '100.5%', marginLeft: '-4.5px' }} >
+            <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-30px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+            {/* <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-33px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>
               {passwordVisible ? '🐵' : '🙈'}
+            </span> */}
+            <span style={{ cursor: 'pointer', marginLeft: '-25px'}} onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? <img src={p_show} alt="show" style={{width: '20px', height: '20px'}} /> : <img src={p_hide} alt="hide" style={{width: '20px', height: '20px'}} />}
             </span>
           </div>
           {/* Reset Password button */}

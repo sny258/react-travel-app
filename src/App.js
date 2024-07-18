@@ -11,6 +11,7 @@ import Spiti from './components/Spiti';
 import Booking from './components/Booking';
 import ManageBookings from './components/ManageBookings';
 import Ladakh from './components/Ladakh';
+import Kedarnath from './components/Kedarnath';
 
 import BasicNavbar from './components/Navbar';
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/managebookings" element={<ManageBookings />} />
         <Route path="/ladakh" element={<Ladakh />} />
+        <Route path="/kedarnath" element={<Kedarnath />} />
 
       </Routes>
 

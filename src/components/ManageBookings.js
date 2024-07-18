@@ -6,6 +6,9 @@ import Footer from './Footer';
 import { Modal } from 'react-bootstrap';
 //import './styles.css';
 
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
 
 function ManageBookings() {
   
@@ -85,10 +88,17 @@ function ManageBookings() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
+  // tabs to manage bookings
+  const [activeKey, setActiveKey] = useState('upcoming');
+  const getColor = (key) => (key === activeKey ? '#0599fb' : 'black');
+
+  const upcomingBookings = bookings.filter(booking => new Date(booking.date) >= new Date());
+  const completedBookings = bookings.filter(booking => new Date(booking.date) < new Date());
+
 
   return (
     <>
-      <div className='booking-details' style={styles.bookingDetails}>
+      {/* <div className='booking-details' style={styles.bookingDetails}>
         <div className="Heading" style={styles.heading}>
           <h1>Your Bookings ... 😊</h1>
         </div>
@@ -122,7 +132,7 @@ function ManageBookings() {
                   </td>
                   <td>
                     {/* mark passed date bookings as completed */}
-                    {new Date(booking.date) < new Date() ? (
+                    {/* {new Date(booking.date) < new Date() ? (
                       <Button variant="success" onClick={() => deleteButtonAction(booking.id)}>
                         Delete
                       </Button>
@@ -141,7 +151,103 @@ function ManageBookings() {
               )}
             </tbody>
           </Table>
+        </div>  */}
+
+      <div className='booking-details' style={styles.bookingDetails}>
+        <div className="Heading" style={styles.heading}>
+          <h1>Your Bookings ... 😊</h1>
         </div>
+        <Tabs
+          activeKey={activeKey}
+          onSelect={(k) => setActiveKey(k)}
+          id="controlled-tab-example"
+          //custom className manage-bookings-tabs is added to override the default styles in styles.css
+          className="mb-3 custom-tabs manage-bookings-tabs"
+          justify
+        >
+          <Tab eventKey="upcoming" title="Upcoming" style={{ color: getColor('upcoming') }}>
+            <div className='TableContainer' style={styles.tableContainer}>
+              <Table className='Table' striped bordered hover responsive style={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Trip</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {upcomingBookings.map(booking => (
+                    <tr key={booking.id}>
+                      <td>{booking.id}</td>
+                      <td>{booking.name}</td>
+                      <td>{booking.email}</td>
+                      <td>{booking.trip}</td>
+                      <td>{booking.date}</td>
+                      <td>
+                        <span style={{ color: 'green', fontWeight: '500' }}>Upcoming</span>
+                      </td>
+                      <td>
+                        <Button variant="danger" onClick={() => deleteButtonAction(booking.id)}>
+                          Cancel
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                  {upcomingBookings.length === 0 && (
+                    <tr>
+                      <td colSpan="7">No upcoming bookings found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </div>
+          </Tab>
+          <Tab eventKey="completed" title="Completed" style={{ color: getColor('completed') }}>
+            <div className='TableContainer' style={styles.tableContainer}>
+              <Table className='Table' striped bordered hover responsive style={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Trip</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {completedBookings.map(booking => (
+                    <tr key={booking.id}>
+                      <td>{booking.id}</td>
+                      <td>{booking.name}</td>
+                      <td>{booking.email}</td>
+                      <td>{booking.trip}</td>
+                      <td>{booking.date}</td>
+                      <td>
+                        <span style={{ color: 'green', fontWeight: '500' }}>Completed</span>
+                      </td>
+                      <td>
+                        <Button variant="primary" onClick={() => deleteButtonAction(booking.id)}>
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                  {completedBookings.length === 0 && (
+                    <tr>
+                      <td colSpan="7">No completed bookings found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </div>
+          </Tab>
+        </Tabs>
 
         {/* Delete confirmation popup */}
         {/* {deletePopupOpen && (
@@ -193,28 +299,35 @@ const styles = {
     borderBottom: '2px solid #ddd'
   },
   tableContainer: {
-    width: '80%',
-    overflowX: 'auto'
+    width: '100%',
+    overflowX: 'auto',
+    marginTop: '20px',
   },
   table: {
     verticalAlign: 'middle',
   },
-  deletePopup: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'absolute', 
-    //alignItems: 'center',
-    //textAlign: 'center',
-    top: '40%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#fff',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '10px',
-    zIndex: 1000,
-    width: '27%',
-    height: '33%',
+  // deletePopup: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   position: 'absolute', 
+  //   //alignItems: 'center',
+  //   //textAlign: 'center',
+  //   top: '40%',
+  //   left: '50%',
+  //   transform: 'translate(-50%, -50%)',
+  //   backgroundColor: '#fff',
+  //   padding: '20px',
+  //   border: '1px solid #ccc',
+  //   borderRadius: '10px',
+  //   zIndex: 1000,
+  //   width: '27%',
+  //   height: '33%',
+  // },
+  tabsTitle: {
+    fontWeight: '500',
+    fontSize: '13px',
+    paddingBottom: '5px',
+    borderRadius: '10px'
   }
 };
 

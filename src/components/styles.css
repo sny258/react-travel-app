@@ -215,6 +215,13 @@ li {
   max-width: 350px; /* Adjust this value as needed */
   margin: auto;
 }
+.kedarnathModal .modal-content {
+  max-width: 1000px; /* Adjust this value as needed */
+  margin: auto;
+}
+/* .modal {
+  --bs-modal-width: 100%;
+} */
 
 
 
@@ -229,7 +236,7 @@ li {
 
 
 
-/* for custom tabs in welcome page*/
+/* for custom tabs in welcome page, sutom-tabs is default classname for the tabs*/
 .custom-tabs .nav-link {
   color: black !important;  /* Set default text color to black */
   background-color: white !important;  /* Set default background color to white */
@@ -252,31 +259,46 @@ li {
 
 
 
-
-
-/* ladakh grid css */
-/* */
-/* .gridContainer {
-  display: grid;
-  gap: 2px;
-  width: 80vw;
-  height: 85vh;
-  grid-template-columns: repeat(9,auto);    /* make it 3 for 3 columns */
-  /* border: 1px solid #ccc;
-  margin: 20px auto;
-  padding: 5px;
+/* for custom tabs in manage bookings page*/
+.manage-bookings-tabs .nav-link {
+  color: black !important;  /* Set default text color to black */
+  background-color: white !important;  /* Set default background color to white */
+  border: 1px solid transparent;  /* Ensure there's a border for visual separation */
+  font-weight: 500;
+  font-size: 18px;
+  padding-bottom: 5px;
   border-radius: 10px;
-  overflow: hidden;
-} */
-/* .gridItem {
-  width: 0; 
-  height: 0; 
-  min-height: 100%; 
-  min-width: 100%; 
-  cursor: pointer;
-  transition: .35s linear;
 }
-.gridItem:hover {
-  width:  calc(120vh * 1.5/3);
-  height: calc(45vw * 1.5/3);
-}  */
+
+
+
+
+/* kedarnath grid css */
+.gridItem img:hover {
+  transform: scale(1.07);
+}
+
+
+
+/* Image Stack Carousel css */
+.itinerary-carousel .carousel-indicators {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 15%;
+  margin: auto auto 10px auto;
+  border-radius: 10px;
+}
+.itinerary-carousel .carousel-indicators [data-bs-target] {
+  width: 15px;
+}
+.itinerary-carousel .carousel-control-next,
+.itinerary-carousel .carousel-control-prev {
+  width: 7%;
+  opacity: 2;
+}
+.itinerary-carousel .carousel-control-next .carousel-control-next-icon,
+.itinerary-carousel .carousel-control-prev .carousel-control-prev-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
