@@ -314,14 +314,14 @@ const Kedarnath = () => {
 
       <div className="AboutItinerary" style={{display: 'flex', flexDirection: 'column', padding: '30px 50px 20px 50px', margin: '20px', borderRadius: '15px', border: '1px solid #ccc', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9'}}>
         <div>
-          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd'}}>About the Tour</h3>
+          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd', width: '20%'}}>About the Tour</h3>
         </div>
         <div>
           <p>The Kedarnath Yatra Package is an extraordinary journey that connects with the sacred, finds inner peace, and embraces the breathtaking beauty of the Himalayas. Our journey kicks off in Delhi, the capital city, and we will venture into the tranquil landscapes of Uttarakhand and make way for Guptkashi, a serene town in the majestic Himalayan mountains. However, the prime destination is Kedarnath, the land of Lord Shiva, nestled amidst the towering peaks of the Himalayas. Here, you will be greeted by snow-clad mountains and pristine vistas, and once you reach the ambiance, it will touch your heart. The Kedarnath Yatra Package is a transformative journey and a chance to experience the ultimate beauty in a single breath.
           </p>
         </div>
         <div>
-          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd'}}>Quick Info</h4>
+          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd', width: '15%'}}>Quick Info</h4>
           <ul style={{marginLeft: '10px'}}>
             <li><span style={{fontWeight: '600'}}>Route:</span> Delhi - Haridwar - Guptkashi - Kedarnath - Rishikesh - Delhi
             </li>
@@ -611,7 +611,7 @@ const styles = {
   },
   gridItem: {
     border: '1px solid #ddd',
-    borderRadius: '10px',
+    borderRadius: '7px',
     overflow: 'hidden',
     cursor: 'pointer',
     position: 'relative'
@@ -620,7 +620,7 @@ const styles = {
     gridRow: '1 / 4',
     gridColumn: '1 / 3',
     border: '1px solid #ddd',
-    borderRadius: '10px',
+    borderRadius: '7px',
     overflow: 'hidden',
     cursor: 'pointer'
   },

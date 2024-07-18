@@ -102,7 +102,7 @@ function Signup() {
     
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', border: '1px solid #ccc', height: '80vh', margin: '20px', borderRadius: '20px' }}>
 
-      <div className='SignupContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%' }}>
+      <div className='SignupContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%' }}>
         {/* heading */}
         <div style={{margin: '15px', borderBottom: '2px solid #ddd'}}>
           <h2>Please Signup !!!</h2>
@@ -138,8 +138,8 @@ function Signup() {
             required
           />
           {/* Password input with show/hide password functionality */}
-          <div style={{ width: '100.5%', marginLeft: '60px' }} >
-            <input style={{ padding: '5.35px' }}
+          <div style={{ width: '100.5%', marginLeft: '-4.5px' }} >
+            <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
               value={password}

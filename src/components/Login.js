@@ -155,14 +155,14 @@ function Login() {
         <img id="logo" src={logo} alt="Logo" style={{width: '350px', height: '350px'}}></img>
       </div> */}
 
-      <div className='LoginContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%' }}>
+      <div className='LoginContent' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', width: '40%', position: 'absolute' }}>
         {/* Login Header */}
         <div style={{margin: '20px', borderBottom: '2px solid #ddd'}}>
           <h2>Please Login !!!</h2>
         </div>
 
         {/* Login form */}
-        <form className="loginForm" onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', border: '1.5px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '53%'}}>
+        <form className="loginForm" onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '20px', border: '1.5px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '53%'}}>
           <input
             type="text"
             placeholder="Username"
@@ -171,7 +171,7 @@ function Login() {
             required
           />
           {/* Password field with toggle visibility */}
-          <div style={{ width: '100.5%', marginLeft: '11.5px' }} >
+          <div style={{ width: '100.5%', marginLeft: '-4.5px' }} >
             <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
@@ -188,11 +188,7 @@ function Login() {
           </div>
           {/* Login button to subnit the form */}
           <Button type="submit" style={{marginTop: '20px', width: '40%', padding: '3px'}}>Login</Button>
-
-          {/* link to open the forgot password popup, but it throws warning since no link used */}
-          {/* <a href="#" id="forgot-password-link" onClick={() => document.getElementById  ('reset-password').style.display = 'flex'}>forgot password ?</a> */}
-
-          {/* button to open the forgot password popup */}
+          {/* button to open the forgot password popup, link throws warning since no link used */}
           <button type='button' id='forgot-password-link' style={{background: 'none', border: 'none', color: 'purple', textDecoration: 'underline', cursor: 'pointer'}} onClick={showPopup}>forgot password ?</button>
         </form>
 
@@ -200,7 +196,6 @@ function Login() {
         <div style={{marginTop: '20px'}}>
           <Button variant="success" type="submit" style={{width: '100px', padding: '4px', marginBottom: '30px'}} onClick={() => navigate('/signup')}>Signup</Button>
         </div>
-
         {/* for error message */}
         {/* <div style={{marginTop: '20px', height: '40px'}}>
           {error && <p style={{color: 'red', fontSize: '25px'}}>{error}</p>}
@@ -214,9 +209,7 @@ function Login() {
         <div>
           <h1 style={{ marginBottom: '20px', borderBottom: '2px solid #ddd' }}>Reset Password !!!</h1>
         </div>
-
         <CloseButton onClick={() => closeResetPasswordPopup()} style={{position: 'absolute', top: '5px', right: '5px' }} />
-
         {/* form forreset password */}
         <form id="reset-password-form" className='resetPasswordForm' onSubmit={resetPassword}>
           <input
@@ -260,7 +253,7 @@ function Login() {
         {/* reset message */}
         {/* <p id="reset-message" style={{color: 'red', fontSize: '25px', height: '30px'}}></p> */}
       </div>
-    )}
+      )}
 
     </div>
     </>

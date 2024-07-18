@@ -213,7 +213,7 @@ const Spiti = () => {
         <Carousel className="Carousel" style={styles.carousel}>
           <Carousel.Item>
             <img
-              style={styles.image}
+              style={{...styles.image, objectFit: 'fill'}}
               src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
               alt="img-1"
             />
@@ -260,13 +260,13 @@ const Spiti = () => {
 
       <div className="AboutItinerary" style={{display: 'flex', flexDirection: 'column', padding: '30px 50px 20px 50px', margin: '20px', borderRadius: '15px', border: '1px solid #ccc', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9'}}>
         <div>
-          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd'}}>About the Tour</h3>
+          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd', width: '20%'}}>About the Tour</h3>
         </div>
         <div>
           <p>Imagine starting your journey in Delhi, leaving behind the city's chaos, and entering the serene landscapes of Manali and Spiti Valley, where rugged mountains meet clear blue skies. Kaza, Tabo, Dhankar, Pin Valley, and the shimmering Chandra Tal Lake will be your playgrounds, each offering a unique flavor of Spiti's natural beauty and ancient monasteries. This journey is a rare opportunity to explore remote high-altitude villages and ancient monasteries and connect with the warm-hearted locals.</p>
         </div>
         <div>
-          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd'}}>Quick Info</h4>
+          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd', width: '15%'}}>Quick Info</h4>
           <ul style={{marginLeft: '10px'}}>
             <li><span style={{fontWeight: '600'}}>Route:</span> Delhi - Manali - Kaza - Tabo - Dhankar - Pin Valley - Chandra Tal - Manali - Delhi
             </li>
@@ -489,7 +489,7 @@ const styles = {
     marginBottom: '20px',
     borderBottom: '2px solid #ddd',
     paddingBottom: '10px',
-    width: '100%',
+    width: '40%',
   },
   title: {
     fontSize: '2.5em',
@@ -504,8 +504,8 @@ const styles = {
   carousel: {
     width: '90%',
     maxWidth: '1200px',
-    height: '500px',
-    padding: '10px',
+    height: 'auto',
+    padding: '5px',
     border: '1px solid #ddd',
     borderRadius: '10px',
     overflow: 'hidden',

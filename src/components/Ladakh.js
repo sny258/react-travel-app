@@ -259,7 +259,7 @@ const Spiti = () => {
 
       <div className="AboutItinerary" style={{display: 'flex', flexDirection: 'column', padding: '30px 50px 20px 50px', margin: '20px', borderRadius: '15px', border: '1px solid #ccc', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9'}}>
         <div>
-          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd'}}>About the Tour</h3>
+          <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd', width: '20%'}}>About the Tour</h3>
         </div>
         <div>
           <p>Begin an incredible adventure as you explore the rough terrain and diverse culture of Ladakh, where the land is rugged and the traditions are rich.
@@ -268,7 +268,7 @@ const Spiti = () => {
           Traverse the challenging Khardung La Pass, the world's highest motorable road, and explore the Nubra Valley, a cold desert with sand dunes and the enchanting Diskit Monastery.</p>
         </div>
         <div>
-          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd'}}>Quick Info</h4>
+          <h4 style={{marginTop: '10px', marginBottom: '20px', borderBottom: '2px solid #ddd', width: '15%'}}>Quick Info</h4>
           <ul style={{marginLeft: '10px'}}>
             <li><span style={{fontWeight: '600'}}>Route:</span> Leh - Sham Valley - Khardung La Pass - Nubra Valley - Pangong Tso - Chang La Pass - Stok Village - Leh
             </li>
@@ -488,7 +488,7 @@ const styles = {
     marginBottom: '20px',
     borderBottom: '2px solid #ddd',
     paddingBottom: '10px',
-    width: '100%',
+    width: '40%',
   },
   title: {
     fontSize: '2.5em',
@@ -503,8 +503,8 @@ const styles = {
   carousel: {
     width: '90%',
     maxWidth: '1200px',
-    height: '500px',
-    padding: '10px',
+    height: 'auto',
+    padding: '5px',
     border: '1px solid #ddd',
     borderRadius: '10px',
     overflow: 'hidden',
@@ -514,33 +514,6 @@ const styles = {
     height: '480px',
     objectFit: 'cover',
   },
- 
-
-  // gridContainer: {
-  //   display: 'grid',
-  //   gridTemplateColumns: '1fr 1fr 1fr',
-  //   gridTemplateRows: '1fr 1fr 1fr',
-  //   gap: '5px',
-  //   padding: '10px',
-  //   backgroundColor: '#fff',
-  //   width: '90%',
-  //   border: '1px solid black',
-  //   marginBottom: '20px',
-  //   //height: '100vh',
-  // },
-  // gridItemLarge: {
-  //   border: '1px solid black',
-  // },
-  // gridItem: {
-  //   border: '1px solid black',
-  // },
-  imageGrid: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-
-
   caption: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: '10px',

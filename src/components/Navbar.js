@@ -99,7 +99,8 @@ function BasicNavbar({
         // } else {
         //   navigate('/welcome');
         // }
-        navigate('/login');
+        //navigate('/login');
+        navigate('/welcome');
       } else {
         console.error('Logout error:', response.data.message);
       }

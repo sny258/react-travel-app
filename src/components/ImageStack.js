@@ -4,15 +4,15 @@ function ImageStack ({ images }) {
 
   // Increase height of main div on hover
   const onMouseOverMainDiv = (e) => {
-      e.currentTarget.style.height = '275px';
+      e.currentTarget.style.height = '350px';
   }
   // Restore original height of main div on hover out
   const onMouseOutMainDiv = (e) => {
-      e.currentTarget.style.height = '160px';
+      e.currentTarget.style.height = '175px';
   }
   // Expand the flex of image div size on hover
   const onMouseOverImageDiv = (e) => {
-      e.currentTarget.style.flex = 3;
+      e.currentTarget.style.flex = 4;
   }
   // Restore original flex size of image div on hover out
   const onMouseOutImageDiv = (e) => {
@@ -51,7 +51,7 @@ const styles = {
     transition: 'height 0.5s',
     marginLeft: '20px',
     //for less than 3 images default height was large, it reloves the first hover lag also.
-    height: '160px'
+    height: '175px'
   },
   imageDiv: {
       flex: 1,
