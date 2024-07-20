@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { MdOutlineExpandCircleDown } from "react-icons/md";
+
 
 const ItineraryCarousel = ({ images, caption }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  //state to handle expand effect
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const styles = {
     itineraryCarousel: {
@@ -15,8 +18,8 @@ const ItineraryCarousel = ({ images, caption }) => {
       marginLeft: '20px',
       transition: 'height 0.3s ease-in-out',
     },
-    itineraryCarouselHover: {
-      height: '400px',
+    itineraryCarouselExpand: {
+      height: '425px',
     },
     itineraryCarouselImage: {
       width: '100%',
@@ -24,45 +27,65 @@ const ItineraryCarousel = ({ images, caption }) => {
       objectFit: 'cover',
       transition: 'height 0.3s ease-in-out',
     },
-    itineraryCarouselImageHover: {
-      height: '400px',
+    itineraryCarouselImageExpand: {
+      height: '425px',
     },
     itineraryCarouseCaption: {
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
       borderRadius: '10px',
       padding: '10px',
-      width: '25%',
+      //width: '25%',
       margin: 'auto',
-    }
+      textAlign: 'Left',
+    },
+    expandCollpse: {
+      position: 'absolute',
+      bottom: '10px',
+      right: '10px',
+      fontSize: '1.5rem',
+      color: 'white',
+      cursor: 'pointer',
+      zIndex: 100
+    },
   };
 
+  const handleExpandCollapse = () => {
+    setIsExpanded(!isExpanded);
+  }
+
   return (
-    <Carousel 
-      className="itinerary-carousel"
-      style={{
-        // ... is required to merge the styles of hover to the original styles
-        ...styles.itineraryCarousel,
-        ...(isHovered && styles.itineraryCarouselHover),
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {images.map((image, index) => (
-        <Carousel.Item key={index}>
-          <img
-            style={{
-              ...styles.itineraryCarouselImage,
-              ...(isHovered && styles.itineraryCarouselImageHover),
-            }}
-            src={image}
-            alt={`img-${index + 1}`}
-          />
-          {/* <Carousel.Caption style={styles.itineraryCarouseCaption}>
-            <h3>{caption}</h3>
-          </Carousel.Caption> */}
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <div style={{ position: 'relative' }}>
+      <Carousel 
+        className="itinerary-carousel"
+        style={{
+          ...styles.itineraryCarousel,
+          ...(isExpanded && styles.itineraryCarouselExpand),
+        }}
+        //onMouseEnter={() => setIsExpanded(true)}
+        //onMouseLeave={() => setIsExpanded(false)}
+        indicators={false}
+      >
+        {images.map((image, index) => (
+          <Carousel.Item key={index}>
+            <img
+              style={{
+                ...styles.itineraryCarouselImage,
+                ...(isExpanded && styles.itineraryCarouselImageExpand),
+              }}
+              src={image}
+              alt={`img-${index + 1}`}
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel>
+      <MdOutlineExpandCircleDown 
+        style={{
+          ...styles.expandCollpse,
+          ...(isExpanded && { transform: 'rotate(180deg)' })
+        }} 
+        onClick={handleExpandCollapse}
+      />
+    </div>
   );
 };
 

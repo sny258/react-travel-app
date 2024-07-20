@@ -50,38 +50,67 @@ const Spiti = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const images1 = [
+  const carouselImages = [
+    {
+      src: "https://bhagyashritravels.com/wp-content/uploads/2020/02/Feature-4.jpg",
+      title: "Leh Palace",
+      description: "Leh Palace is a former royal palace overlooking the town of Leh."
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/rvdfnbgi18znqf3z6hmgwc78xcrj_shutterstock_678172303.jpg?w=1440&dpr=2",
+      title: "Khardung La Pass",
+      description: " Khardung La Pass is the highest motorable road in the world."
+    },
+    {
+      src: "https://images.unsplash.com/photo-1446757981584-845b14aa7dd0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Pangong Tso",
+      description: "Pangong Tso is a high-altitude lake in the Himalayas situated at a height of about 4,350 m."
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/lghrecukmid36r5xozvcxlxwe7vz_1512047963_Nubra.jpg?dpr=1.5&w=885",
+      title: "Nubra Valley",
+      description: "Nubra Valley is a cold desert with sand dunes and the enchanting Diskit Monastery."
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/ldz7nnp5wpbuptli19l75ny6d5t4_shutterstock_1447004072.jpg?h=-40&w=auto&dpr=1.5",
+      title: "Thiksey Monastery",
+      description: "Thiksey Monastery is a Tibetan Buddhist monastery in Ladakh, India."
+    }
+  ];
+
+
+  const itineraryImages1 = [
     "https://media1.thrillophilia.com/filestore/1i4kspcpe1ghd3f5v2aqrpn3sjb5_shutterstock_263762033.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/87inlreu7jga05gnoz65ut8amstv_darshan-chudasama-v1oGBUnXVDs-unsplash.jpg?dpr=1.5&w=1280",
-    "https://media1.thrillophilia.com/filestore/nflzf1c2z51dqs36caqve0ybhn9w_shutterstock_157287893.jpg?dpr=1.5&w=1280"
+    "https://media1.thrillophilia.com/filestore/u6evhfn0rsa2p6duvj6lswl1n6mj_fetchpik.com-35tcrpDeli.jpg?h=-40&w=auto&dpr=1.5"
   ];
-  const images2 = [
+  const itineraryImages2 = [
     "https://media1.thrillophilia.com/filestore/cm1cp8ubbo66jba1turgurcbo4em_shutterstock_147739688.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/qe2cfak5kqscoftfeijqosbt3662_shutterstock_1379616569.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/rnemkur6qxwvoaqpbi2g9tv6u4ru_shutterstock_487598509.jpg?dpr=1.5&w=1280"
   ];
-  const images3 = [
+  const itineraryImages3 = [
     "https://media1.thrillophilia.com/filestore/rvdfnbgi18znqf3z6hmgwc78xcrj_shutterstock_678172303.jpg?w=1440&dpr=2",
     "https://media1.thrillophilia.com/filestore/nsbd7zmiekq3k3i904pma93akpq2_shutterstock_1891533388.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/4o8wuueeokfjc0n1f9efibghkxio_shutterstock_1598248549.jpg?dpr=1.5&w=1280"
   ];
-  const images4 = [
+  const itineraryImages4 = [
     "https://media1.thrillophilia.com/filestore/1c3idyomo23g056utwmma3m32vzh_shutterstock_796094905.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/yn4sda5ev1ymz71rnlultjcc61oa_shutterstock_737766418.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/g6u6y1sk9vi1dzcolll74e2e96ob_shutterstock_1035858844.jpg?dpr=1.5&w=1280"
   ];
-  const images5 = [
+  const itineraryImages5 = [
     "https://media1.thrillophilia.com/filestore/hnq0ehetop48ipblffhsitsglhhm_shutterstock_605685947.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/ii4ta0x2e0ilccfmd65bj3on0nuh_shutterstock_362370104.jpg?dpr=1.5&w=1280",
     "https://media1.thrillophilia.com/filestore/0hl049hvtkwsyaovvpyvzlodpqqh_shutterstock_632699069.jpg?dpr=1.5&w=1280"
   ];
-  const images6 = [
+  const itineraryImages6 = [
     "https://c7.alamy.com/comp/EC12WD/stok-village-view-from-the-shanti-stupa-at-leh-EC12WD.jpg",
     "https://media1.thrillophilia.com/filestore/06opv9r08vlam5481rmdshii91ic_shutterstock_1547948675%20(1).jpg?w=1440&dpr=2",
     "https://media1.thrillophilia.com/filestore/n111vk8pr61k3t7kdy3srtajpiar_shutterstock_628634045.jpg?dpr=1.5&w=1280"
   ];
-  const images7 = [
-    "https://www.lehladakhtourism.com/hote-naro/images/naro1.jpg",
+  const itineraryImages7 = [
+    "https://www.lehladakhtourism.com/hotel-in-ladakh/images/luxury-hotels-in-leh-ladakh.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Aerial_View_of_Leh_Kushok_Bakula_Rinpoche_Airport_%28IXL%29_Ladakh_Jammu_%26_Kashmir_India.jpg/1200px-Aerial_View_of_Leh_Kushok_Bakula_Rinpoche_Airport_%28IXL%29_Ladakh_Jammu_%26_Kashmir_India.jpg?20140612005411"
   ];
 
@@ -208,52 +237,21 @@ const Spiti = () => {
           <h1 style={styles.title}>Ladakh</h1>
           <p style={styles.subtitle}>Enjoy the beauty of Ladakh with us.</p>
         </div>
-
+        {/* carousel */}
         <Carousel className="Carousel" style={styles.carousel}>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://bhagyashritravels.com/wp-content/uploads/2020/02/Feature-4.jpg"
-              alt="img-1"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Leh Palace</h3>
-              <p>Leh Palace is a former royal palace overlooking the town of Leh.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://media1.thrillophilia.com/filestore/rvdfnbgi18znqf3z6hmgwc78xcrj_shutterstock_678172303.jpg?w=1440&dpr=2"
-              alt="img-2"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Khardung La Pass</h3>
-              <p> Khardung La Pass is the highest motorable road in the world.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://images.unsplash.com/photo-1446757981584-845b14aa7dd0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="img-3"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Pangong Tso</h3>
-              <p>Pangong Tso is a high-altitude lake in the Himalayas situated at a height of about 4,350 m.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://media1.thrillophilia.com/filestore/lghrecukmid36r5xozvcxlxwe7vz_1512047963_Nubra.jpg?dpr=1.5&w=885"
-              alt="img-4"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Nubra Valley</h3>
-              <p>Nubra Valley is a cold desert with sand dunes and the enchanting Diskit Monastery.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
+          {carouselImages.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img
+                style={styles.image}
+                src={image.src}
+                alt={`img-${index + 1}`}
+              />
+              <Carousel.Caption style={styles.caption}>
+                <h3>{image.title}</h3>
+                <p>{image.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </div>
 
@@ -294,7 +292,7 @@ const Spiti = () => {
                   <li>Seek solace at the historical Shanti Stupa, a white-domed stupa on a hilltop in Chanspa.</li>
                 </ul>
                 {/* <ImageStack image1="https://images.unsplash.com/photo-1712758178352-2a2651153bf3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" image2="https://images.unsplash.com/photo-1677820915366-27d887c9b872?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" image3="https://images.unsplash.com/photo-1652543393354-2056fc3e9551?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/> */}
-                <ImageStack images={images1} />
+                <ImageStack images={itineraryImages1} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
@@ -306,7 +304,7 @@ const Spiti = () => {
                   <li>Visit the iconic Alchi Monastery, a 1000-year-old monastery known for its ancient wall paintings.</li>
                   <li>End your day with a visit to the Likir Monastery, a Buddhist monastery known for its 75-foot statue of Maitreya Buddha.</li>
                 </ul>
-                <ImageStack images={images2} />
+                <ImageStack images={itineraryImages2} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
@@ -318,7 +316,7 @@ const Spiti = () => {
                   <li>Visit the enchanting Hunder Village, known for its sand dunes and Bactrian camels.</li>
                   <li>Explore the Diskit Monastery, a 14th-century monastery known for its giant statue of Maitreya Buddha and breathtaking views of the Nubra Valley.</li>
                 </ul>
-                <ImageStack images={images3} />
+                <ImageStack images={itineraryImages3} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="3">
@@ -330,7 +328,7 @@ const Spiti = () => {
                   <li>Set up camp by the lake and enjoy a peaceful evening by the water, surrounded by the majestic mountains of Ladakh.</li>
                   <li>Experience the magic of Pangong Tso as the sun sets, casting a golden glow over the lake and the surrounding mountains.</li>
                 </ul>
-                <ImageStack images={images4} />
+                <ImageStack images={itineraryImages4} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="4">
@@ -342,7 +340,7 @@ const Spiti = () => {
                   <li>Visit the charming Shey Palace, a former summer palace of the Ladakh kings known for its beautiful gardens and stunning views of the Indus Valley.</li>
                   <li>Explore the Thiksey Monastery, a 12-story monastery known for its stunning architecture and ancient relics.</li>
                 </ul>
-                <ImageStack images={images5} />
+                <ImageStack images={itineraryImages5} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="5">
@@ -354,7 +352,7 @@ const Spiti = () => {
                   <li>Explore the beautiful Stok Monastery, a Buddhist monastery known for its stunning architecture and ancient relics.</li>
                   <li>End your day with a visit to the Hemis Monastery, the largest and wealthiest monastery in Ladakh known for its annual Hemis Festival.</li>
                 </ul>
-                <ImageStack images={images6} />
+                <ImageStack images={itineraryImages6} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="6">
@@ -365,7 +363,7 @@ const Spiti = () => {
                   <li>After breakfast, check out from the hotel and proceed to the airport for your onward journey.</li>
                   <li>End of the tour with unforgettable memories of Ladakh.</li>
                 </ul>
-                <ImageStack images={images7} />
+                <ImageStack images={itineraryImages7} />
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

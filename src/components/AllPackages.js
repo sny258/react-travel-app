@@ -106,7 +106,7 @@ function AllPackages() {
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
-              <Button variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
+              <Button className="cardBtn" variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
             </Card.Body>
           </Card>
 
@@ -131,7 +131,7 @@ function AllPackages() {
               <Card.Text>
                 Ladakh, often referred to as "The Land of High Passes" is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
               </Card.Text>
-              <Button variant="primary" onClick={() => navigate('/ladakh')}>Explore</Button>
+              <Button className="cardBtn" variant="primary" onClick={() => navigate('/ladakh')}>Explore</Button>
             </Card.Body>
           </Card>
 
@@ -154,7 +154,7 @@ function AllPackages() {
               <Card.Text>
                 Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.
               </Card.Text>
-              <Button variant="primary" onClick={() => navigate('/kedarnath')}>Explore</Button>
+              <Button className="cardBtn" variant="primary" onClick={() => navigate('/kedarnath')}>Explore</Button>
             </Card.Body>
           </Card>
 
@@ -173,7 +173,7 @@ function AllPackages() {
               <Card.Text>
                 At astonishing elevation of 3680 metres above sea level, this temple is the highest Shiva temple in the world. Chandrashila AKA the Moon Peak is the peak situated above the Tungnath Temple, offers majestic view of the Himalayas.
               </Card.Text>
-              <Button variant="primary">Explore</Button>
+              <Button className="cardBtn" variant="primary">Explore</Button>
             </Card.Body>
           </Card>
 
@@ -192,7 +192,7 @@ function AllPackages() {
               <Card.Text>
                 Munnar is a hill station situated about 1600m above sea level at the confluence of three mountain streams Muthirapuzha, Nallathanni and Kundala. Munnar is renowned for its scenic tea plantations, lush green hills, and serene lakes.
               </Card.Text>
-              <Button variant="primary">Explore</Button>
+              <Button className="cardBtn" variant="primary">Explore</Button>
             </Card.Body>
           </Card>
 
@@ -211,7 +211,7 @@ function AllPackages() {
               <Card.Text>
               Goa, on India's southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa's diverse cuisine and festive vibe make it a top destination.
               </Card.Text>
-              <Button variant="primary">Explore</Button>
+              <Button className="cardBtn" variant="primary">Explore</Button>
             </Card.Body>
           </Card>
 

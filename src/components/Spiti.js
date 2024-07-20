@@ -53,41 +53,67 @@ const Spiti = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const images1 = [
+  const carouselImages = [
+    {
+      src: "https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/",
+      title: "Langza Buddha Statue",
+      description: "Lord Buddha's iconic statue localted Langza village of Spiti valley"
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/2e2jk8u5jhn1fhm7ogkczahuli72_snapedit_1697441789958.png?dpr=1.5&w=1280",
+      title: "Key Monestry",
+      description: "A centuries-old Tibetan Buddhist monastery situated majestically in the Spiti Valley"
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/kccxfelb04fndkur10u9h4bsf7qj_hxt6odbxvxvxc7rd693f6ymwzk65_shutterstock_2005336715.jpeg?dpr=1.5&w=1280",
+      title: "Hikkim Post Office",
+      description: "located at 3,657 meters in the Spiti Valley"
+    },
+    {
+      src: "https://media1.thrillophilia.com/filestore/djrv9m3ejfeio6oqk89bww3kwqvq_shutterstock_679406089.jpg?dpr=1.5&w=1280",
+      title: "Chandratal Lake",
+      description: "A mesmerizing high-altitude gem in Himachal Pradesh, India."
+    }
+  ];
+
+
+
+  const itineraryImages1 = [
     "https://images.unsplash.com/photo-1712758178352-2a2651153bf3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1677820915366-27d887c9b872?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1652543393354-2056fc3e9551?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
-  const images2 = [
+  const itineraryImages2 = [
     "https://images.unsplash.com/photo-1657452924934-5d7626640f07?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1655470062377-ef3f5161960a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D",
+    "https://media1.thrillophilia.com/filestore/ttzqz2i615rcxmf3utrj8vuhyl6b_1r63bshs3mcl7wvlj1z5s3wb0ctj_shutterstock_1840910884.jpeg?w=auto&h=600",
     "https://images.unsplash.com/photo-1571677465484-2dd540924245?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D"
   ];
-  const images3 = [
+  const itineraryImages3 = [
     "https://images.unsplash.com/photo-1651319487316-c661cd4a7cb9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1651319478024-a5bc4349b2c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1692719058797-2954b100c8fe?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
-  const images4 = [
+  const itineraryImages4 = [
     "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1598429725052-bbd6eca769d1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D"
   ];
-  const images5 = [
+  const itineraryImages5 = [
     "https://images.unsplash.com/photo-1706439380633-d1c19e0b9b4b?q=80&w=1990&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://plus.unsplash.com/premium_photo-1661963083312-8adde31d9900?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6_Gp0taur6z7BVka6-kd6TOI3w6Njs0IXzQ-NnajF02oJmqZNZEWGHJcRe9XILk5jh8qR6me-9OyOtNA_qMVOhaNLtzoCJHqNFyCAKdvcbpeqauhb9-qX-HP6OlnJw-isF1e5FM7SGMY/s640/IMG_1461.JPG"
   ];
-  const images6 = [
+  const itineraryImages6 = [
     "https://images.unsplash.com/photo-1619282401041-56e69dcc5335?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://media1.thrillophilia.com/filestore/djrv9m3ejfeio6oqk89bww3kwqvq_shutterstock_679406089.jpg?dpr=1.5&w=1280",
     "https://images.unsplash.com/photo-1631139946993-b29d3b5c00a9?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
-  const images7 = [
+  const itineraryImages7 = [
     "https://images.unsplash.com/photo-1670758553990-c46cece80aa8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1642474620281-1343d25b18f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
+  
 
   // Review Modal
   const [showReview, setShowReview] = useState(false);
@@ -205,59 +231,29 @@ const Spiti = () => {
       {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
       {/* <BasicNavbar /> */}
 
-      <div className="Spiti" style={styles.itinerary}>
+      <div className="Ladakh" style={styles.itinerary}>
         <div className="Heading" style={styles.heading}>
-          <h1 style={styles.title}>Spiti Valley</h1>
-          <p style={styles.subtitle}>Enjoy the beauty of Spiti Valley with us.</p>
+        <h1 style={styles.title}>Spiti Valley</h1>
+        <p style={styles.subtitle}>Enjoy the beauty of Spiti Valley with us.</p>
         </div>
+        {/* carousel */}
         <Carousel className="Carousel" style={styles.carousel}>
-          <Carousel.Item>
-            <img
-              style={{...styles.image, objectFit: 'fill'}}
-              src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
-              alt="img-1"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Langza Buddha Statue</h3>
-              <p>Lord Buddha's iconic statue localted Langza village of Spiti valley</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://media1.thrillophilia.com/filestore/2e2jk8u5jhn1fhm7ogkczahuli72_snapedit_1697441789958.png?dpr=1.5&w=1280"
-              alt="img-2"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Key Monestry</h3>
-              <p>A centuries-old Tibetan Buddhist monastery situated majestically in the Spiti Valley </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://media1.thrillophilia.com/filestore/kccxfelb04fndkur10u9h4bsf7qj_hxt6odbxvxvxc7rd693f6ymwzk65_shutterstock_2005336715.jpeg?dpr=1.5&w=1280"
-              alt="img-3"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Hikkim Post Office</h3>
-              <p>located at 3,657 meters in the Spiti Valley, is one of the highest post offices in the world.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={styles.image}
-              src="https://media1.thrillophilia.com/filestore/djrv9m3ejfeio6oqk89bww3kwqvq_shutterstock_679406089.jpg?dpr=1.5&w=1280"
-              alt="img-4"
-            />
-            <Carousel.Caption style={styles.caption}>
-              <h3>Chandratal Lake</h3>
-              <p>A mesmerizing high-altitude gem in Himachal Pradesh, India.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
+          {carouselImages.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img
+                style={styles.image}
+                src={image.src}
+                alt={`img-${index + 1}`}
+              />
+              <Carousel.Caption style={styles.caption}>
+                <h3>{image.title}</h3>
+                <p>{image.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </div>
-
+      
       <div className="AboutItinerary" style={{display: 'flex', flexDirection: 'column', padding: '30px 50px 20px 50px', margin: '20px', borderRadius: '15px', border: '1px solid #ccc', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9'}}>
         <div>
           <h3 style={{marginBottom: '20px', borderBottom: '2px solid #ddd', width: '20%'}}>About the Tour</h3>
@@ -290,7 +286,7 @@ const Spiti = () => {
                   <li>It will be a 502 Km journey taking almost 10-12 Hours.</li>
                 </ul>
                 {/* <ImageStack image1="https://images.unsplash.com/photo-1712758178352-2a2651153bf3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" image2="https://images.unsplash.com/photo-1677820915366-27d887c9b872?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" image3="https://images.unsplash.com/photo-1652543393354-2056fc3e9551?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/> */}
-                <ImageStack images={images1} />
+                <ImageStack images={itineraryImages1} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
@@ -303,7 +299,7 @@ const Spiti = () => {
                   <li>Stroll through Mall Road, lined with shops, cafes, and local eateries.</li>
                   <li>Return to the hotel for a cozy overnight stay, reminiscing about the day's adventures and cultural encounters.</li>
                 </ul>
-                <ImageStack images={images2} />
+                <ImageStack images={itineraryImages2} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
@@ -316,7 +312,7 @@ const Spiti = () => {
                   <li>Stop at Losar for hot tea, then continue your journey to vibrant Kaza through captivating panoramas.</li>
                   <li>Arrive in Kaza, and experience its cultural vibrancy and breathtaking landscapes.</li>
                 </ul>
-                <ImageStack images={images3} />
+                <ImageStack images={itineraryImages3} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="3">
@@ -329,7 +325,7 @@ const Spiti = () => {
                   <li>Continue your journey to Kibber, a picturesque village with captivating landscapes and breathtaking mountain vistas.</li>
                   <li>End your tour in Gette, a secluded village with stunning aerial views of Kaza. Capture the beauty and tie prayer flags.</li>
                 </ul>
-                <ImageStack images={images4} />
+                <ImageStack images={itineraryImages4} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="4">
@@ -342,10 +338,10 @@ const Spiti = () => {
                   <li>Your journey continues to the scenic Pin Valley, a thriving national park.</li>
                   <li>Delve into the serenity of Kungri Monastery before reaching Mudh, the final motorable village in Pin Valley, a testament to the region's allure.</li>
                 </ul>
-                <ImageStack images={images5} />
+                <ImageStack images={itineraryImages5} />
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="5">
+            <Accordion.Item eventKey="6">
               <Accordion.Header>Day 6 : Kaza to Chandratal Lake</Accordion.Header>
               <Accordion.Body>
                 <ul>
@@ -354,7 +350,7 @@ const Spiti = () => {
                   <li>Nestled at 14,100 feet, Chandratal's charm changes with light, casting captivating reflections against the Chandra Bhaga range.</li>
                   <li>Embrace Chandratal's allure, descend to your campsite, and see the galaxy full of stars with your naked eyes.</li>
                 </ul>
-                <ImageStack images={images6} />
+                <ImageStack images={itineraryImages6} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="6">
@@ -365,7 +361,7 @@ const Spiti = () => {
                   <li>It will be a 111km journey taking almost 4-5 hours.</li>
                   <li>Hope you will carry lots of memories along with you.</li>
                 </ul>
-                <ImageStack images={images7} />
+                <ImageStack images={itineraryImages7} />
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

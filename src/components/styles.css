@@ -215,8 +215,9 @@ li {
   max-width: 350px; /* Adjust this value as needed */
   margin: auto;
 }
-.kedarnathModal .modal-content {
-  max-width: 1000px; /* Adjust this value as needed */
+.kedarnathModal .modal-content,
+.imageStackModal .modal-content {
+  max-width: 900px; /* Adjust this value as needed */
   margin: auto;
 }
 /* .modal {
@@ -231,6 +232,24 @@ li {
   padding-top: 0px;
   padding-left: 10px;
   padding-right: 10px;
+}
+.card-img-top,
+.card-title img,
+.cardBtn,
+.card {
+  transition: transform ease-in-out 0.2s;
+}
+/* .card-img-top:hover {
+  transform: scale(1.05);
+} */
+.card-title img:hover {
+  transform: scale(1.25);
+}
+.cardBtn:hover {
+  transform: scale(1.03);
+}
+.card:hover {
+  transform: scale(1.07);
 }
 
 
@@ -280,7 +299,7 @@ li {
 
 
 
-/* Image Stack Carousel css */
+/* ImageStack & ImageStackCarousel css */
 .itinerary-carousel .carousel-indicators {
   background-color: rgba(0, 0, 0, 0.5);
   width: 15%;

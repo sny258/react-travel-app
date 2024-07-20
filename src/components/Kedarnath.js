@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 
+import { IoIosCloseCircle } from "react-icons/io";
 import './styles.css';
 //import ImageStack from './ImageStack';
 import { toast } from 'react-toastify';
@@ -266,6 +267,7 @@ const Kedarnath = () => {
             </Carousel.Item>
           ))}
         </Carousel>
+        <IoIosCloseCircle style={styles.closeIcon} onClick={handleClose2}/>
       </Modal>
 
       <div className="Kedarnath" style={styles.itinerary}>
@@ -526,8 +528,8 @@ const styles = {
   carousel: {
     width: '100%',
     maxWidth: '1200px',
-    height: '504px',
-    padding: '1px',
+    height: '500px',
+    padding: '0px',
     border: '1px solid #ddd',
     borderRadius: '10px',
     overflow: 'hidden',
@@ -542,6 +544,15 @@ const styles = {
     borderRadius: '10px',
     padding: '10px',
   },
+  closeIcon: {
+    position: 'absolute',
+    top: '2px',
+    right: '2px',
+    color: 'white',
+    fontSize: '25px',
+    cursor: 'pointer',
+    zIndex: '1000',
+  }, 
   itineraryContainer: {
     display: 'flex',
     justifyContent: 'space-around',
