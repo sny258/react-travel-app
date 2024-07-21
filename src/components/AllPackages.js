@@ -50,15 +50,84 @@ function AllPackages() {
   //   }
   // };
 
+  const destinations = [
+    {
+      name: 'Spiti Valley',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/',
+      days: '7 days & 6 nights',
+      price: '₹ 25,000',
+      description: 'The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.',
+      mapUrl: 'https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1',
+      navigateTo: '/spiti'
+    },
+    {
+      name: 'Ladakh',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180',
+      days: '7 days & 6 nights',
+      price: '₹ 20,000',
+      description: 'Ladakh, often referred to as "The Land of High Passes" is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.',
+      mapUrl: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png',
+      navigateTo: '/ladakh'
+    },
+    {
+      name: 'Kedarnath',
+      imageUrl: 'https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg',
+      days: '5 days & 4 nights',
+      price: '₹ 12,000',
+      description: 'Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.',
+      mapUrl: 'https://www.manchalamushafir.com/tour/kedarnath-yatra/images/trekking-route-of-kedarnath-temple.webp',
+      navigateTo: '/kedarnath'
+    },
+    {
+      name: 'Tungnath',
+      imageUrl: 'https://images.unsplash.com/photo-1699214101660-df4e21fbabcd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      days: '3 days & 2 nights',
+      price: '₹ 10,000',
+      description: 'At astonishing elevation of 3680 metres above sea level, this temple is the highest Shiva temple in the world. Chandrashila AKA the Moon Peak is the peak situated above the Tungnath Temple, offers majestic view of the Himalayas.',
+      mapUrl: 'https://www.taleof2backpackers.com/wp-content/uploads/2019/08/DEORIATAL-TUNGANATH-CHANDRASHILA-TREK-MAP.jpg',
+      navigateTo: ''
+    },
+    {
+      name: 'Munnar',
+      imageUrl: 'https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      days: '4 days & 3 nights',
+      price: '₹ 15,000',
+      description: 'Munnar is a hill station situated about 1600m above sea level at the confluence of three mountain streams Muthirapuzha, Nallathanni and Kundala. Munnar is renowned for its scenic tea plantations, lush green hills, and serene lakes.',
+      mapUrl: 'https://tapioca.co.in/wp-content/uploads/2019/12/Bangalore-to-Munnar-Routes.png',
+      navigateTo: ''
+    },
+    {
+      name: 'Goa',
+      imageUrl: 'https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      days: '6 days & 5 nights',
+      price: '₹ 25,000',
+      description: 'Goa, on India\'s southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa\'s diverse cuisine and festive vibe make it a top destination.',
+      mapUrl: 'https://weevolveshop.com/wp-content/uploads/2020/09/24-1.jpg',
+      navigateTo:''
+    }
+  ];
+
   // Global modal logic to show the map image
   const [show, setShow] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
+  const [modalAlt, setModalAlt] = useState('');
   const handleClose = () => setShow(false);
-  const handleShow = (imageUrl) => {
+  const handleShow = (imageUrl,alt) => {
     setModalImageUrl(imageUrl);
+    setModalAlt(alt);
     setShow(true);
   };
   
+  // Card hover logic, to show more content on hover
+  // const [isHovered, setIsHovered] = useState(false);
+  // const handleMouseOver = (e) => {
+  //   setIsHovered(true);
+  //   e.currentTarget.style.height = '510px';
+  // }
+  // const handleMouseOut = (e) => {
+  //   setIsHovered(false);
+  //   e.currentTarget.style.height = '290px';
+  // }
 
 
   return (
@@ -75,7 +144,7 @@ function AllPackages() {
 
       {/* Modal to show the map image */}
       <Modal show={show} onHide={handleClose}>
-        <img src={modalImageUrl} alt="map" style={{ width: '100%' }} />
+        <img src={modalImageUrl} alt={modalAlt} style={{ width: '100%', height: '500px' }} />
       </Modal>
 
       <div className='WelcomeContent' style={styles.welcomeContent}>
@@ -84,138 +153,67 @@ function AllPackages() {
         </div> */}
 
         <div style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <div>
+          {destinations.map((destination, index) => (
+            <Card style={styles.card} key={index}>
+              <div>
+                <Card.Img
+                  variant="top"
+                  style={styles.cardImage}
+                  src={destination.imageUrl}
+                />
+                {/* <img src={Map} alt={`map-${index}`} onClick={() => handleShow(destination.mapUrl)} style={styles.mapIcon} /> */}
+              </div>
+              <div style={styles.tourDetails}>
+                <p>{destination.days}</p>
+                <p>{destination.price}</p>
+              </div>
+              <Card.Body>
+                <Card.Title>
+                  {destination.name}
+                  <img src={Map} alt={`map-${index}`} onClick={() => handleShow(destination.mapUrl,destination.name)} style={styles.mapIcon2} />
+                </Card.Title>
+                <Card.Text>
+                  {destination.description}
+                </Card.Text>
+                <Button className="cardBtn" variant="primary" onClick={() => navigate(destination.navigateTo)}>Explore</Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+
+        {/* <div style={styles.cardContainer}>
+          <Card style={styles.card}> */}
+          {/* <Card style={styles.card} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}> */}
+            {/* <div>
               <Card.Img
                 variant="top"
                 style={styles.cardImage}
                 src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
-              />
+              /> */}
               {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon} /> */}
-            </div>
+            {/* </div>
             <div style={styles.tourDetails}>
               <p>7 days & 6 nights</p>
-              <p>₹ 25,000</p>
+              <p>₹ 25,000</p> */}
               {/* <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} /> */}
-            </div>
+            {/* </div>
             <Card.Body>
               <Card.Title> 
                 Spiti Valley
                 <img src={Map} alt="Map" onClick={() => handleShow("https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1")} style={styles.mapIcon2} />
               </Card.Title>
+              {isHovered &&
+              <>
               <Card.Text>
                 The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
               </Card.Text>
               <Button className="cardBtn" variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
+              </>
+              }
             </Card.Body>
           </Card>
+        </div> */}
 
-          <Card style={styles.card}>
-            <div>
-              <Card.Img
-                variant="top"
-                style={styles.cardImage}
-                src="https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180"
-              />
-            </div>
-            <div style={styles.tourDetails}>
-              <p>7 days & 6 nights</p>
-              <p>₹ 20,000</p>
-              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} /> */}
-            </div>
-            <Card.Body>
-              <Card.Title>
-                Ladakh
-                <img src={Map} alt="Map" onClick={() => handleShow("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png")} style={styles.mapIcon2} />
-              </Card.Title>
-              <Card.Text>
-                Ladakh, often referred to as "The Land of High Passes" is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
-              </Card.Text>
-              <Button className="cardBtn" variant="primary" onClick={() => navigate('/ladakh')}>Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg"
-            />
-            <div style={styles.tourDetails}>
-              <p>5 days & 4 nights</p>
-              <p>₹ 12,000</p>
-              {/* <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} /> */}
-            </div>
-            <Card.Body>
-              <Card.Title>
-                Kedarnath
-                <img src={Map} alt="Map" onClick={() => handleShow("https://rishikeshdaytour.com/blog/wp-content/uploads/2022/06/Rishikesh-to-Kedarnath.jpg")} style={styles.mapIcon2} />
-              </Card.Title>
-              <Card.Text>
-                Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.
-              </Card.Text>
-              <Button className="cardBtn" variant="primary" onClick={() => navigate('/kedarnath')}>Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://images.unsplash.com/photo-1699214101660-df4e21fbabcd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <div style={styles.tourDetails}>
-              <p>3 days & 2 nights</p>
-              <p>₹ 10,000</p>
-            </div>
-            <Card.Body>
-              <Card.Title>Tungnath</Card.Title>
-              <Card.Text>
-                At astonishing elevation of 3680 metres above sea level, this temple is the highest Shiva temple in the world. Chandrashila AKA the Moon Peak is the peak situated above the Tungnath Temple, offers majestic view of the Himalayas.
-              </Card.Text>
-              <Button className="cardBtn" variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <div style={styles.tourDetails}>
-              <p>4 days & 3 nights</p>
-              <p>₹ 15,000</p>
-            </div>
-            <Card.Body>
-              <Card.Title>Munnar</Card.Title>
-              <Card.Text>
-                Munnar is a hill station situated about 1600m above sea level at the confluence of three mountain streams Muthirapuzha, Nallathanni and Kundala. Munnar is renowned for its scenic tea plantations, lush green hills, and serene lakes.
-              </Card.Text>
-              <Button className="cardBtn" variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <div style={styles.tourDetails}>
-              <p>6 days & 5 nights</p>
-              <p>₹ 25,000</p>
-            </div>
-            <Card.Body>
-              <Card.Title>Goa</Card.Title>
-              <Card.Text>
-              Goa, on India's southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa's diverse cuisine and festive vibe make it a top destination.
-              </Card.Text>
-              <Button className="cardBtn" variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-        </div>
       </div>
 
       {/* Display the GIFs from the Giphy API */}
