@@ -215,6 +215,10 @@ li {
   max-width: 350px; /* Adjust this value as needed */
   margin: auto;
 }
+.payment-modal .modal-content {
+  max-width: 750px;
+  margin: auto;
+}
 .kedarnathModal .modal-content,
 .imageStackModal .modal-content {
   max-width: 900px; /* Adjust this value as needed */
