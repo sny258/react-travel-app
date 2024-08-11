@@ -85,9 +85,7 @@ function Footer() {
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> Pune, Maharashtra 411057</p>
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> India</p>
           </div>
-        </div>
-
-        
+        </div>        
       </div>
       
       <div className='FooterLogo' style={styles.footerLogo}>

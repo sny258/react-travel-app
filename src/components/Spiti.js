@@ -548,7 +548,7 @@ const styles = {
     borderRadius: '15px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     // position: '-webkit-sticky',
-    position: 'sticky',
+    position: 'sticky',             /* make it sticky */
     top: '50px',                    /* gap from top for scrolling div */
     marginTop: '100px',             /* or either make alignItems: 'center' */ 
     width: '24%',   

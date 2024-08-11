@@ -85,16 +85,56 @@ function Booking() {
     window.scrollTo(0, 0);
   }, []);
 
+  const amount = 2100 * people;
+
 
   return (
     <>
     {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
     {/* <BasicNavbar /> */}
 
-    <div style={{border: '1px solid #ccc', borderRadius: '20px', margin: '20px'}}>
+    <div style={{border: '1px solid #ccc', borderRadius: '20px', margin: '20px', padding: '10px', justifyContent: 'space-between'}}>
+    
+    <div style={{margin: '20px auto', padding: '10px', textAlign: 'center',borderBottom: '2px solid #ddd', width: '30%'}}>
+      <h1>Booking a trip 😃</h1>
+    </div>
+    
+    <div style={{display: 'flex', margin: '40px 20px 20px 20px', padding: '10px', justifyContent: 'space-between'}}>
+      
+    <div style={{ padding: '20px 40px 20px 20px', width: '60%', fontSize: '0.8em', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff'}}>
+      <h3>Trip Advance</h3>
+      <ul>
+        <li>The advance amount is INR 2,100/- (2,000 Advance, 100 GST)</li>
+        <li>The remaining amount will be collected at the starting of the trip.</li>
+        <li>After payment, our team will connect with you within 24 hours for the collection of identity proof, confirming trip dates, and will explain the whole itinerary on call as well.</li>
+      </ul>
+
+      <p style={{margin: '30px 0 30px 0'}}><strong>NOTE: Age Limit 18 Years - 40 Years</strong></p>
+      
+      <h4>Terms & Conditions:</h4>
+      <ul>
+        <li>Full Payment of the trip cost must be made before the trip begins.</li>
+        <li>The IDs shall all be verified before boarding. No boarding shall be entertained without a valid Govt. ID.</li>
+        <li>No refunds shall be made towards any inclusion(s) not availed by the Client.</li>
+        <li>No act of misconduct or indiscipline shall be tolerated on the tours. We are a cordial travel community and we aspire to bring to you a hassle-free and memorable experience.</li>
+        <li>We shall not be responsible for any delays or alterations in the program or indirectly incurred expenses in cases such as Natural Hazards, accident, breakdown of machinery, weather conditions, landslides, political closure or any untoward incidents.</li>
+        <li>Numerous factors such as weather and road conditions the physical ability of participants etc. may bring alteration in the itinerary. We reserve the right to make necessary changes in the schedule in the interest of safety, comfort and general well-being!</li>
+        <li>Passenger will not be allowed to board the bus if he is having any of the symptoms of Covid-19 and no refund shall be made in that case.</li>
+        <li>If any passenger experiences any of the Covid-19 symptoms while on the trip, he will be isolated there and then and have to face all the extra expenses for the same.</li>
+        <li>A person is required to follow all the safety measures prescribed by WHO during the trip for his safety and as well as for the safety of others, if he fails to do so or deny to do so, we have all the right to cancel his or her trip and no refund shall be made.</li>
+        <li>Any dispute arising out of this agreement shall be subject to the jurisdiction of the courts in Delhi.</li>
+      </ul>
+      <p style={{marginTop: '30px', color: 'green'}}>
+        <strong>You agree to share information entered on this page with Us (owner of this page) once you click on the Pay button. This information will be used to process your booking and for communication purposes.</strong>
+      </p>
+      <div style={{marginTop: '40px', borderTop: '1px solid #ccc', paddingTop: '10px'}}>
+        <img id="rzp-logo" alt="rzp-logo" src="https://cdn.razorpay.com/logo.svg" style={{ verticalAlign: 'middle', height: '40px', padding: '5px' }} />
+      </div>
+    </div>
+
       <div className="Booking" style={styles.booking}>
         <div className="Heading" style={styles.heading}>
-          <h1>Booking a trip 😃</h1>
+          <h3>Booking Details</h3>
         </div>
         <Form onSubmit={handleBooking} style={styles.bookingform}>
           <Form.Group controlId="formName" style={styles.formGroup}>
@@ -133,7 +173,7 @@ function Booking() {
           </Form.Group>
           <Form.Group controlId="formPeople" style={styles.formGroup}>
             <InputGroup>
-            <InputGroup.Text id="basic-addon1">Number of people:</InputGroup.Text>
+            <InputGroup.Text id="basic-addon1" style={{paddingLeft: '5px', paddingRight: '15px'}}>Number of people:</InputGroup.Text>
               <Button variant="outline-secondary" onClick={() => handlePeopleChange(-1)}>-</Button>
               <Form.Control
                 type="text"
@@ -171,7 +211,7 @@ function Booking() {
     </Modal>
 
     <Footer />
-
+    </div>
     </>
   );
 }
@@ -187,20 +227,24 @@ const styles = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     backgroundColor: '#fff',
     margin: '20px auto',
-    width: '40%'
+    width: '35%',
+    height: 'fit-content',
+    position: 'sticky',
+    top: '100px',
+    marginTop: '0px',
   },
   heading: {
     textAlign: 'center',
     marginBottom: '20px',
     borderBottom: '2px solid #ddd',
     paddingBottom: '10px',
-    width: '100%',
+    width: '60%',
   },
   bookingform: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '80%',
+    width: '100%'
   },
   formGroup: {
     width: '80%',
@@ -220,8 +264,8 @@ const styles = {
     width: '60px',
   },
   bookingbutton: {
-    marginTop: '15px',
-    width: '30%',
+    marginTop: '30px',
+    width: '31%',
   },
 };
 
