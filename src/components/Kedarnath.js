@@ -590,7 +590,7 @@ const styles = {
     position: 'sticky',
     top: '50px',                    /* gap from top for scrolling div */
     marginTop: '100px',             /* or either make alignItems: 'center' */ 
-    width: '24%',   
+    width: '26%',   
   },
   review : {
     display: 'flex',

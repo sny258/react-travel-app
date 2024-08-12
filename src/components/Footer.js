@@ -81,7 +81,7 @@ function Footer() {
             </p>
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> Takashi's Hustle Pvt. Ltd.</p>
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> 258, 3rd Floor, Mystic Towers</p>
-            <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> Phase 3, Rajiv Gandhi Infotech Park, Hinjawadi</p>
+            <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> Phase 3, Rajiv Gandhi Infotech Park, Hinjewadi</p>
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> Pune, Maharashtra 411057</p>
             <p className="gridColumnParagraph" style={styles.gridColumnParagraph}> India</p>
           </div>

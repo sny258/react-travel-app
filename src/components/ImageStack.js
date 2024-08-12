@@ -8,7 +8,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 function ImageStack ({ images }) {
   // Increase height of main div on hover
   const onMouseOverMainDiv = (e) => {
-      e.currentTarget.style.height = '210px';
+      e.currentTarget.style.height = '200px';
   }
   // Restore original height of main div on hover out
   const onMouseOutMainDiv = (e) => {
