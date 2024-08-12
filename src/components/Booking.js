@@ -39,35 +39,18 @@ function Booking() {
     defaultDate();
   }, [booked]);
 
-  // Booking Modal state
-  const [show, setShow] = useState(false);
-  const handleClose = () => {
-    setShow(false);
-    // Reset form fields
-    setName('');
-    setEmail('');
-    setTrip(defaultTrip || '');
-    setDate('');
-    setPeople(1);
-    setUPI('');
-    // set true to false and wise versa
-    setBooked(!booked);
-  };
   //function to handle booking
   const handleBooking = async (e) => {
     e.preventDefault();
     const username = localStorage.getItem("user");
     try {
       console.log('Booking a trip...');
-      // close the payment modal
-      //setShowPayment(false);
       // show loading spinner for 3 sec before booking confirmation
       setLoading(true);
       // Simulate payment processing delay
       setTimeout(() => {
         setLoading(false);
-        setShowPayment(false);
-        setShow(true);
+        setBooked(true);
       }, 3000); // 3 seconds delay
       //server side call to booking API
       const response = await axios.post('http://localhost:5000/booking', { username, name, email, trip, people, date }, {
@@ -79,7 +62,6 @@ function Booking() {
       console.log('Response:', response);
       if (response.status === 200) {
         console.log('Booking successful:', response.data.message);
-        //setShow(true);
       } else {
         console.error('Booking error:', response.data.message);
         //alert('Booking failed. Please try again.');
@@ -105,9 +87,14 @@ function Booking() {
   const [showPayment, setShowPayment] = useState(false);
   const handleClosePayment = () => {
     setShowPayment(false);
-    //remove the discount
-    setApplyDiscount(false);
+    setApplyDiscount(false);  //remove the discount
+    setBooked(false);
     setUPI('');
+    setName('');
+    setEmail('');
+    setTrip(defaultTrip || '');
+    setDate('');
+    setPeople(1);
   };
   const handleShowPayment = (e) => {
     e.preventDefault();
@@ -243,25 +230,23 @@ function Booking() {
       </div>
     </div>
 
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Booking Message !!!</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>Congratulations {name}, your booking for {trip} has been confirmed 🥳</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-
     <Modal show={showPayment} onHide={handleClosePayment} size="xl" className="payment-modal">
       <Modal.Header closeButton>
-        <Modal.Title style={{ textAlign: 'center', width: '100%' }}>Payment Options !!!</Modal.Title>
+        <Modal.Title style={{ textAlign: 'center', width: '100%' }}>
+          {booked ? 'Booking Message !!!' : 'Payment Options !!!'}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px', gap: '30px' }}>
               <h5>Processing Payment...</h5>
               <Spinner animation="border" role="status"/>
+            </div>
+          ) : booked ? (
+            <div style={{ padding: '40px', textAlign: 'center', fontSize: '1.0em' }}>
+              <p>Dear <strong>{name}</strong>,</p>
+              <p>Your booking for the <strong>{trip}</strong> on <strong>{date}</strong> has been successfully confirmed <span style={{fontSize: '1.5em'}}>🥳</span>.</p>
+              <p>We look forward to providing you with an excellent experience.</p>
             </div>
           ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '0.60fr 1fr', gap: '20px' }}>
