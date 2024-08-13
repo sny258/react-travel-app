@@ -1,73 +1,35 @@
 import React, { useState, useEffect } from 'react';
-//import { useNavigate } from 'react-router-dom';
-//import axios from 'axios';
 
-//import BasicNavbar from './Navbar';
 import Footer from './Footer';
-
-//import ProgressBar from 'react-bootstrap/ProgressBar';
-//import Button from 'react-bootstrap/Button';
-//import Card from 'react-bootstrap/Card';
 
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import ExploreSVG from '../svg/exploreSVG';
+//import ExploreSVG from '../svg/exploreSVG';
 import LadakhSVG from '../svg/ladakhSVG';
 import SpitiSVG from '../svg/spitiSVG';
 import KashmirSVG from '../svg/kashmirSVG';
-import ThailandSVG from '../svg/thailandSVG';
+//import ThailandSVG from '../svg/thailandSVG';
 import AllPackages from './AllPackages';
+import Explore from '../svg/explore.png';
+import Himachal from '../svg/himachal.png';
+import Uttrakhand from '../svg/uttrakhand.png';
+//import Other from '../svg/other.png';
 
 
 function Welcome() {
-  
-  //const navigate = useNavigate();
-
-  // Progress Bar JS logic
-  // const [progress, setProgress] = useState(0);
-  // const handleScroll = () => {
-  //   const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-  //   const currentScroll = window.scrollY;
-  //   const scrolled = (currentScroll / totalHeight) * 100;
-  //   setProgress(scrolled);
-  // };
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
-
-
-  // Fetch GIFs from Giphy API
-  // const [gifs, setGifs] = useState([]);
-  // useEffect(() => {
-  //   fetchGifs();
-  // }, []);
-  // const fetchGifs = async () => {
-  //   try {
-  //     const response = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=RYt46DnsO1PtMde4tf9oxxxxxxxlimit=20');
-  //     const data = await response.json();
-  //     console.log(data); // Log the response data
-  //     setGifs(data.data);
-  //   } catch (error) {
-  //     console.error('Error fetching GIFs:', error);
-  //   }
-  // };
-
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // code for tab's SVG coloring when selected
-  const [activeKey, setActiveKey] = useState('explore');
+  const [activeKey, setActiveKey] = useState('Explore');
   const getColor = (key) => (key === activeKey ? '#0599fb' : 'black');
+  const filter = 'invert(50%) sepia(100%) saturate(1000%) hue-rotate(180deg) brightness(100%) contrast(100%)';
 
-
-  return (
-    
+  return ( 
     <div>
-      
       <div className='WelcomeTabContent' style={styles.welcomeContent}>
         <Tabs
           //defaultActiveKey="explore"
@@ -78,183 +40,87 @@ function Welcome() {
           justify// or fill
         >
           { /* All packages tab */ }
-          <Tab eventKey="explore" title=
+          <Tab eventKey="Explore" title=
             {
               <div>
-                {/* <SpitiSVG color={'green'} /> */}
-                <ExploreSVG color={getColor('explore')} />
+                {/* <ExploreSVG color={'green'} /> */}
+                {/* <ExploreSVG color={getColor('explore')} /> */}
+                <img src={Explore} alt='Explore' 
+                  style={{width: '60px', height: '50px', filter: getColor('Explore') === 'black' ? 'none' : filter }} 
+                />
                 <p>Explore</p>
               </div>
             }>
             <AllPackages />
           </Tab>
-          { /* Spiti tab */}
-          <Tab eventKey="spiti" title=
-            {
-              <div>
-                <SpitiSVG color={getColor('spiti')} />
-                <p>spiti</p>
-              </div>
-            }>
-            <AllPackages />
-          </Tab>
           { /* Ladakh tab */}
-          <Tab eventKey="ladakh" title=
+          <Tab eventKey="Ladakh" title=
             {
               <div>
-                <LadakhSVG color={getColor('ladakh')} />
-                <p>ladakh</p>
+                <LadakhSVG color={getColor('Ladakh')} />
+                <p>Ladakh</p>
               </div>
             }>
-            <AllPackages />
+            <AllPackages Destinations={['Ladakh', 'Ladakh Bike Tour', 'Zanskar Valley']} />
+          </Tab>
+          { /* Uttrakhand tab */ }
+          <Tab eventKey="Uttrakhand" title=
+            {
+              <div>
+                <img src={Uttrakhand} alt='Uttrakhand' 
+                  style={{width: '60px', height: '50px', filter: getColor('Uttrakhand') === 'black' ? 'none' : filter }} 
+                />
+                <p>Uttrakhand</p>
+              </div>
+            }>
+            <AllPackages Destinations={['Kedarnath', 'Tungnath', 'Valley of Flowers']} />
+          </Tab>
+          { /* Spiti tab */}
+          <Tab eventKey="Spiti" title=
+            {
+              <div>
+                <SpitiSVG color={getColor('Spiti')} />
+                <p>Spiti</p>
+              </div>
+            }>
+            <AllPackages Destinations={['Spiti Valley', 'Spiti Bike Tour', 'Winter Spiti']} />
+          </Tab>
+          { /* Himachal tab */ }
+          <Tab eventKey="Himachal" title=
+            {
+              <div>
+                <img src={Himachal} alt='Himachal' 
+                  style={{width: '60px', height: '50px', filter: getColor('Himachal') === 'black' ? 'none' : filter }} 
+                />
+                <p>Himachal</p>
+              </div>
+            }>
+            <AllPackages Destinations={['Kasol', 'Jibhi', 'Manali-Sissu']} />
           </Tab>
           { /* Kashmir tab */}
-          <Tab eventKey="kashmir" title=
+          <Tab eventKey="Kashmir" title=
             {
               <div>
                 <KashmirSVG color={'gray'} />
-                <p style={{color: 'gray'}}>kashmir</p>
+                <p style={{color: 'gray'}}>Kashmir</p>
               </div>
             } disabled>
             <AllPackages />
           </Tab>
           { /* Thailand tab */}
-          <Tab eventKey="thailand" title=
+          {/* <Tab eventKey="Thailand" title=
             {
               <div>
                 <ThailandSVG color={'gray'} />
-                <p style={{color: 'gray'}}>thailand</p>
+                <p style={{color: 'gray'}}>Thailand</p>
               </div>
             } disabled>
             <AllPackages />
-          </Tab>
-   
-        </Tabs>        
+          </Tab> */}
+        </Tabs>      
       </div>
 
-      {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout"></BasicNavbar> */}
-      {/* <BasicNavbar /> */}
-      
-      {/* Wrap ProgressBar in a div and apply fixed positioning */}
-      {/* <div style={{position: 'fixed', top: 0, width: '100%', zIndex: 1000}}>
-        <ProgressBar striped variant="success" now={progress} label={`${Math.round(progress)}%`} />
-      </div> */}
-
-      {/* this part has been moved to AllPackages.js */}
-      {/* <div className='WelcomeContent' style={styles.welcomeContent}>
-        <div style={styles.headingContainer}>
-          <h2>Where would you like to go ?</h2>
-        </div>
-
-        <div style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://media1.thrillophilia.com/filestore/2e9qkcdyryljx74c1rfbz9p88nua_wanderon-spiti-winter-11.jpg?dpr=1.5&w=1280/"
-            />
-            <Card.Body>
-              <Card.Title>Spiti Valley</Card.Title>
-              <Card.Text>
-                The beauty of Spiti Valley is located on the northern side of Ladakh. In the east lies Tibet and Kinnaur in the southeast. The north is bordered by Kullu, At an altitude of 12,500 feet above sea level with breathtaking beauty.
-              </Card.Text>
-              <Button variant="primary" onClick={() => navigate('/spiti')}>Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://media1.thrillophilia.com/filestore/8x6uyeud8vsavok04lbe0xs5z8hp_shutterstock_1711483000.jpg?h=238&w=auto&dpr=1.5/100px180"
-            />
-            <Card.Body>
-              <Card.Title>Ladakh</Card.Title>
-              <Card.Text>
-                Ladakh, often referred to as "The Land of High Passes," is a region located in the northernmost part of India, within the state of Jammu and Kashmir. It is known for its stunning landscapes, unique culture, and spiritual heritage.
-              </Card.Text>
-              <Button variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Kedarnath</Card.Title>
-              <Card.Text>
-                Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.
-              </Card.Text>
-              <Button variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://images.unsplash.com/photo-1699214101660-df4e21fbabcd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <Card.Body>
-              <Card.Title>Tungnath</Card.Title>
-              <Card.Text>
-                At astonishing elevation of 3680 metres above sea level, this temple is the highest Shiva temple in the world. Chandrashila AKA the Moon Peak is the peak situated above the Tungnath Temple, offers majestic view of the Himalayas.
-              </Card.Text>
-              <Button variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <Card.Body>
-              <Card.Title>Munnar</Card.Title>
-              <Card.Text>
-                Munnar is a hill station situated about 1600m above sea level at the confluence of three mountain streams Muthirapuzha, Nallathanni and Kundala. Munnar is renowned for its scenic tea plantations, lush green hills, and serene lakes.
-              </Card.Text>
-              <Button variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-          <Card style={styles.card}>
-            <Card.Img
-              variant="top"
-              style={styles.cardImage}
-              src="https://images.unsplash.com/photo-1642922835816-e2ac68db5c42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <Card.Body>
-              <Card.Title>Goa</Card.Title>
-              <Card.Text>
-              Goa, on India's southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa's diverse cuisine and festive vibe make it a top destination.
-              </Card.Text>
-              <Button variant="primary">Explore</Button>
-            </Card.Body>
-          </Card>
-
-        </div>
-      </div> */}
-
-      {/* Display the GIFs from the Giphy API */}
-      {/* <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '5px', border: '1px solid black'}}>
-
-        <h1 style={{margin: '5px', border: '1px solid black'}}>Image Gallery</h1>
-
-        <div className="gif-gallery" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', border: '1px solid black', width: '90%'}}>
-          {Array.isArray(gifs) && gifs.map((gif) => (
-            <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
-          ))}
-        </div>
-
-      </div> */}
-
       <Footer />
-
     </div>
   );
 }
@@ -271,33 +137,8 @@ const styles = {
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    margin: '20px ',
+    margin: '20px',
   },
-  // headingContainer: {
-  //   margin: '10px',
-  //   padding: '5px',
-  //   textAlign: 'center',
-  //   borderBottom: '2px solid #ddd',
-  // },
-  // cardContainer: {
-  //   display: 'flex',
-  //   justifyContent: 'space-around',
-  //   margin: '5px',
-  //   padding: '5px',
-  //   width: '100%',
-  //   flexWrap: 'wrap'
-  // },
-  // card: {
-  //   width: '18rem',
-  //   margin: '10px 10px 100px 10px',
-  //   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  //   borderRadius: '10px',
-  // },
-  // cardImage: {
-  //   height: '200px',
-  //   objectFit: 'cover',
-  //   borderRadius: '10px 10px 0 0',
-  // },
 };
 
 export default Welcome;

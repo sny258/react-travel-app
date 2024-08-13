@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import { MdOutlineExpandCircleDown } from "react-icons/md";
+//import { MdOutlineExpandCircleDown } from "react-icons/md";
 
 
 const ItineraryCarousel = ({ images, caption }) => {
@@ -26,6 +26,7 @@ const ItineraryCarousel = ({ images, caption }) => {
       height: '250px',
       objectFit: 'cover',
       transition: 'height 0.3s ease-in-out',
+      cursor: 'pointer',
     },
     itineraryCarouselImageExpand: {
       height: '425px',
@@ -63,7 +64,7 @@ const ItineraryCarousel = ({ images, caption }) => {
         }}
         //onMouseEnter={() => setIsExpanded(true)}
         //onMouseLeave={() => setIsExpanded(false)}
-        indicators={false}
+        indicators={false}    //to hide the indicators
       >
         {images.map((image, index) => (
           <Carousel.Item key={index}>
@@ -74,17 +75,18 @@ const ItineraryCarousel = ({ images, caption }) => {
               }}
               src={image}
               alt={`img-${index + 1}`}
+              onClick={handleExpandCollapse}
             />
           </Carousel.Item>
         ))}
       </Carousel>
-      <MdOutlineExpandCircleDown 
+      {/* <MdOutlineExpandCircleDown 
         style={{
           ...styles.expandCollpse,
           ...(isExpanded && { transform: 'rotate(180deg)' })
         }} 
         onClick={handleExpandCollapse}
-      />
+      /> */}
     </div>
   );
 };

@@ -253,7 +253,7 @@ li {
   transform: scale(1.03);
 }
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 
@@ -324,4 +324,17 @@ li {
   border-radius: 50%;
   width: 20px;
   height: 20px;
+}
+
+
+
+
+
+/* Change arrow color */
+.slick-prev, .slick-next {
+  background: green !important;
+}
+.childDiv {
+  margin: 5px;
+  border: 1px solid green;
 }

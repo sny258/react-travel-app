@@ -17,7 +17,7 @@ import Map from '../maps.png';
 
 
 
-function AllPackages() {
+function AllPackages({ Destinations }) {
   const navigate = useNavigate();
 
   // Progress Bar JS logic
@@ -73,7 +73,7 @@ function AllPackages() {
       name: 'Kedarnath',
       imageUrl: 'https://as2.ftcdn.net/v2/jpg/05/82/10/05/1000_F_582100502_d8LWRlWFRJqsaD03dHMbrnuc8xZ0uSW5.jpg',
       days: '5 days & 4 nights',
-      price: '₹ 12,000',
+      price: '₹ 15,000',
       description: 'Kedarnath is a revered pilgrimage site in the Indian Himalayas, known for its ancient Shiva temple, one of the twelve Jyotirlingas. Nestled amidst breathtaking mountain scenery, offering spiritual solace and stunning natural beauty.',
       mapUrl: 'https://www.manchalamushafir.com/tour/kedarnath-yatra/images/trekking-route-of-kedarnath-temple.webp',
       navigateTo: '/kedarnath'
@@ -104,8 +104,85 @@ function AllPackages() {
       description: 'Goa, on India\'s southwest coast, is famous for its beaches, nightlife, and Portuguese heritage. Panaji and Old Goa feature colonial architecture and historic churches. Goa\'s diverse cuisine and festive vibe make it a top destination.',
       mapUrl: 'https://weevolveshop.com/wp-content/uploads/2020/09/24-1.jpg',
       navigateTo:''
+    },
+    {
+      name: 'Kasol',
+      imageUrl: 'https://res.cloudinary.com/dyiffrkzh/image/upload/v1702119355/bbj/isybrzrsi55fpudlcrj9.jpg',
+      days: '5 days & 4 nights',
+      price: '₹ 20,000',
+      description: 'Kasol is a hamlet in the district Kullu, Himachal Pradesh, northern India. It is situated in Parvati Valley, on the banks of the Parvati River, on the way between Bhuntar and Manikaran. It is located 30 km from Bhuntar and 3.5 km from Manikaran.',
+      mapUrl: 'https://www.thesearchingsouls.com/wp-content/uploads/2024/02/Kasol-Kheerganga-map.jpg',
+      navigateTo:'' 
+    },
+    {
+      name: 'Jibhi',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/a1m3hf92l4jkzheyh64jli0pxzfd_1585741491_19764999_1749960138355337_3189050905618022400_n.jpg?w=1080&h=auto&dpr=1.5',
+      days: '5 days & 4 nights',
+      price: '₹ 20,000',
+      description: 'Jibhi is a hidden gem in the Banjar Valley of Himachal Pradesh. It is a serene and unspoiled place with lush green landscapes, snow-capped mountains, and pristine rivers. The Great Himalayan National Park is located near Jibhi.',
+      mapUrl: 'https://incrediblespiti.com/wp-content/uploads/2023/10/Mountain-Magic-Tirthan-and-Lahaul-6N-7D-Map.png',
+      navigateTo:''
+    },
+    {
+      name: 'Valley of Flowers',
+      imageUrl: 'https://trekthehimalayas.com/images/ValleyofFlowersTrek/Slider/b3d630fb-3f9a-4cc6-9fef-1be72e135695_VOF.jpg',
+      days: '8 days & 7 nights',
+      price: '₹ 25,000',
+      description: 'Valley of Flowers trek is a must-do trek for all nature lovers. The valley is a UNESCO World Heritage Site and is located in the Chamoli district of Uttarakhand. The valley is known for its endemic flora and fauna and breathtaking views.',
+      mapUrl: 'https://trekthehimalayas.com/images/ValleyofFlowersTrek/Map/3ef1c4c3-b654-4e59-a2b5-c9599174adf5_valley%20of%20flowers%20trek%20the%20himalayas.webp',
+      navigateTo:''
+    },
+    {
+      name: 'Spiti Bike Tour',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/nzp2mepuqvagrgc7m61qihquv1hx_shutterstock_2005361438%20(1).jpg?w=auto&h=600',
+      days: '10 days & 9 nights',
+      price: '₹ 35,000',
+      description: 'Spiti valley is a cold desert mountain valley located high in the Himalayas in the north-eastern part of the Indian state of Himachal Pradesh. Name "Spiti" means "The Middle Land", i.e. the land between Tibet and India.',
+      mapUrl: 'https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1',
+      navigateTo:''
+    },
+    {
+      name: 'Ladakh Bike Tour',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/206s3cugn55llxkyni4dbyslftf1_shutterstock_418181005.jpg?dpr=1.5&w=1280',
+      days: '10 days & 9 nights',
+      price: '₹ 30,000',
+      description: 'Ladakh, the land of high passes, is situated in the northernmost part of India. It is known for its stunning landscapes, unique culture, and spiritual heritage. The region is a paradise for adventure enthusiasts and nature lovers.',
+      mapUrl: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png',
+      navigateTo:''
+    },
+    {
+      name: 'Manali-Sissu',
+      imageUrl: 'https://media.assettype.com/outlooktraveller%2Fimport%2Foutlooktraveller%2Fpublic%2Fuploads%2Farticles%2Fexplore%2Findex.jpg?w=1200&auto=format%2Ccompress&fit=max',
+      days: '5 days & 4 nights',
+      price: '₹ 15,000',
+      description: 'Manali is a high-altitude Himalayan resort town in India’s northern Himachal Pradesh state. It has reputation as a backpacker’s hub. Set on the Beas River, it’s a gateway for skiing in the Solang Valley and trekking in Parvati Valley.',
+      mapUrl: 'https://incrediblespiti.com/wp-content/uploads/2023/10/Mountain-Magic-Tirthan-and-Lahaul-6N-7D-Map.png',
+      navigateTo:''
+    },
+    {
+      name: 'Zanskar Valley',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/7xay6ho6nvaujsiyr81z3whsspc7_1580898888_14597530492_df3e4fb075_k.jpg?w=1440&dpr=2',
+      days: '7 days & 6 nights',
+      price: '₹ 25,000',
+      description: 'Zanskar Valley is a remote region in the Indian union territory of Ladakh. It is known for its stunning landscapes, unique culture, and spiritual heritage. The region is a paradise for adventure enthusiasts and nature lovers.',
+      mapUrl: 'https://www.ladakh-tourism.net/wp-content/uploads/2021/05/Zanskar-map.jpg',
+      navigateTo:''
+    },
+    {
+      name: 'Winter Spiti',
+      imageUrl: 'https://media1.thrillophilia.com/filestore/2e2jk8u5jhn1fhm7ogkczahuli72_snapedit_1697441789958.png?dpr=1.5&w=1280',
+      days: '10 days & 9 nights',
+      price: '₹ 35,000',
+      description: 'Spiti valley during winter season is a must visit for all adventure enthusiasts. The valley is a cold desert mountain valley located high in the Himalayas in the north-eastern part of the Indian state of Himachal Pradesh.',
+      mapUrl: 'https://i0.wp.com/tripologer.com/wp-content/uploads/2016/09/Spiti-Circuit-Map-Spiti-Valley-Circuit-Route-Map.jpg?w=1200&ssl=1',
+      navigateTo:''
     }
   ];
+
+  // Filter destinations based on Destinations prop
+  const filteredDestinations = Destinations
+    ? destinations.filter(destination => Destinations.includes(destination.name))
+    : destinations;
 
   // Global modal logic to show the map image
   const [show, setShow] = useState(false);
@@ -152,8 +229,14 @@ function AllPackages() {
           <h2>Where would you like to go ?</h2>
         </div> */}
 
-        <div style={styles.cardContainer}>
-          {destinations.map((destination, index) => (
+        <div 
+          // without this less than 4 cards, default minWidth was considerd
+          style={{
+            ...styles.cardContainer,
+            minWidth: filteredDestinations.length > 2 ? '1075px' : '800px', 
+          }}
+        >
+          {filteredDestinations.map((destination, index) => (
             <Card style={styles.card} key={index}>
               <div>
                 <Card.Img
@@ -240,12 +323,12 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    //border: '1px solid black',
-    padding: '20px',
+    //border: '1px solid #ccc',
+    padding: '20px 10px 0px 10px',
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    margin: '20px',
+    margin: '40px 20px 20px 20px',
   },
   headingContainer: {
     margin: '10px',
@@ -257,13 +340,16 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     margin: '5px',
-    padding: '5px',
-    width: '100%',
-    flexWrap: 'wrap'
+    //padding: '5px',
+    width: '100%',            // Make sure it stretches to full width of the parent
+    maxWidth: '1075px',       // Set a maximum width to prevent it from expanding too much
+    minWidth: '800px',        // Ensure it doesn’t shrink below a certain width
+    flexWrap: 'wrap',
+    boxSizing: 'border-box'   // Include padding and border in the width
   },
   card: {
     width: '18rem',
-    margin: '10px 10px 100px 10px',
+    margin: '10px 0px 50px 0px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '10px',
   },
