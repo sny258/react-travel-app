@@ -83,6 +83,7 @@ function Login() {
     // close the toast if it's open
     toast.dismiss();
   }
+
   const resetPassword = async (e) => {
     e.preventDefault();
     try {
@@ -105,6 +106,8 @@ function Login() {
         setTimeout(() => {
           closeResetPasswordPopup();
         }, 5700);
+      } else if (response.data.message === 'New password cannot be the same as the old password') {
+        toast.error('New password cannot be the same as the old password 😬', {position: "top-center"});
       } else {
         //document.getElementById("reset-message").textContent = 'Invalid details, user not found. 😬';
         toast.error('Invalid details, user not found. 😬', {position: "top-center"});
@@ -128,6 +131,7 @@ function Login() {
       console.log('Response:', response);
       if (response.data.message === 'Login successful') {
         // store the user in localStorage, sessionStorage has scope till the tab is open
+        //username = response.data.username;
         localStorage.setItem('user', username)
         // navigate to the welcome page
         navigate('/welcome');
@@ -231,8 +235,8 @@ function Login() {
             <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
               required
             />
             {/* <span style={{fontSize: '1.3rem', cursor: 'pointer', marginLeft: '-33px', color: '#007bff'}} onClick={() => setPasswordVisible(!passwordVisible)}>

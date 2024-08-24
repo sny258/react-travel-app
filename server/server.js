@@ -5,6 +5,9 @@ const cors = require('cors');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const nodemailer = require('nodemailer');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+const FileStore = require('session-file-store')(session);
 
 const app = express();
 const port = 5000;
@@ -19,12 +22,31 @@ app.use(cors(
   credentials: true
   }
 ));
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // Note: In production, set this to true and use HTTPS
-}));
+// session middleware
+// app.use(session({
+//   secret: 'your-secret-key',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { secure: false } // Note: In production, set this to true and use HTTPS
+// }));
+
+// session middleware which will store the session data in the sessions directory to prevent data loss on server restart
+const sessionDir = path.resolve(__dirname, 'sessions');
+app.use(
+  session({
+    store: new FileStore({
+      path: sessionDir              // Specify your custom directory
+    }),
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60, // 1 Hour
+      secure: false
+    }
+  })
+);
+
 
 // SQLite database setup
 const dbPath = path.resolve(__dirname, 'database.db');
@@ -61,7 +83,8 @@ db.serialize(() => {
   )`);
 });
 
-// Signup endpoints
+
+// Signup endpoint
 app.post('/signup', (req, res) => {
   const { firstname, lastname, username, email, password } = req.body;
   // Check if the user already exists
@@ -147,7 +170,11 @@ app.post('/reset-password', (req, res) => {
       // If the user does not exist, send an error message
       return res.status(404).json({ error: 'Invalid details, user not found.' });
     } else {
-      // If the user exists, update the password
+      // if the user exists, check if the new password is the same as the old password
+      if (user.password === newPassword) {
+        return res.status(400).json({ message: 'New password cannot be the same as the old password' });
+      }
+      // Update the password
       db.run(`UPDATE users SET password = ? WHERE username = ?`, [newPassword, resetUsername], function(err) {
         if (err) {
           return res.status(400).json({ error: err.message });
@@ -211,6 +238,39 @@ app.get('/reviews/:trip', (req, res) => {
     }
     return res.status(200).json({ reviews: rows });
   });
+});
+
+
+app.post('/send-email', async (req, res) => {
+  const { to, subject, text } = req.body;
+  try {
+    // Create a transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      auth: {
+        user: process.env.SMTP_MAIL,
+        pass: process.env.SMTP_PASSWORD     //https://myaccount.google.com/apppasswords, 2FA must be enabled
+      }
+    });
+    // for queries reciepient should be owner (to will be send as blank from client side)
+    const recipient = to || process.env.SMTP_MAIL;
+    // Email options
+    let mailOptions = {
+      from: process.env.EMAIL_USER,           // sender address
+      to: recipient,                          // list of receivers
+      subject: subject,                       // Subject line
+      text: text,                             // plain text body
+      //html: `<b>${text}</b>`                // html
+    };
+    // Send mail with defined transport object
+    let info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
+    res.status(200).json({ message: 'Email sent successfully!', info });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ message: 'Failed to send email', error });
+  }
 });
 
 

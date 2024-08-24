@@ -1,6 +1,6 @@
 import './App.css';
 //import { useState } from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
@@ -14,10 +14,21 @@ import Ladakh from './components/Ladakh';
 import Kedarnath from './components/Kedarnath';
 
 import BasicNavbar from './components/Navbar';
+import PrivateRoute from './components/privateRoute';
 
 
 function App() {
 
+  const NotFound = () => {
+    return (
+      <div style={{textAlign: 'center', marginTop: '50px'}}>
+        <h2>404 - Page Not Found</h2>
+        <p>Sorry, the page you are looking for does not exist.</p>
+        <Link to="/welcome">Go to Welcome Page</Link>
+      </div>
+    );
+  };
+  
   return (
     <div className=''>
     
@@ -57,10 +68,14 @@ function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/spiti" element={<Spiti />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/managebookings" element={<ManageBookings />} />
+        {/* <Route path="/booking" element={<Booking />} /> */}
+        <Route path="/booking" element={<PrivateRoute element={Booking} />} />
+        {/* <Route path="/managebookings" element={<ManageBookings />} /> */}
+        <Route path="/managebookings" element={<PrivateRoute element={ManageBookings} />} />
         <Route path="/ladakh" element={<Ladakh />} />
         <Route path="/kedarnath" element={<Kedarnath />} />
+        {/* Catch-all route */}
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
 

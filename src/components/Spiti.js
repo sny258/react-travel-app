@@ -12,6 +12,7 @@ import './styles.css';
 import ImageStack from './ImageStack';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+//import sendEmail from './emailService';
 
 
 const Spiti = () => {
@@ -28,6 +29,13 @@ const Spiti = () => {
   const handleClose = () => setShow(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    // //send email
+    // const response = sendEmail(
+    //   ``,
+    //   `New Query from ${name} <${emailphone}>`,
+    //   `Hi,\n\nWe have received a query from ${name} <${emailphone}>.\nQuery: ${query}\n\nRegards,\ntakashi`
+    // );
+    // console.log('Response',response);
     // show modal
     setShow(true);
     // Reset form fields

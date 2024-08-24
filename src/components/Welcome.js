@@ -95,7 +95,7 @@ function Welcome() {
                 <p>Himachal</p>
               </div>
             }>
-            <AllPackages Destinations={['Kasol', 'Jibhi', 'Manali-Sissu']} />
+            <AllPackages Destinations={['Manali-Sissu', 'Jibhi']} />
           </Tab>
           { /* Kashmir tab */}
           <Tab eventKey="Kashmir" title=
@@ -138,6 +138,7 @@ const styles = {
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     margin: '20px',
+    //backgroundImage: 'url("https://media1.thrillophilia.com/filestore/2e2jk8u5jhn1fhm7ogkczahuli72_snapedit_1697441789958.png?dpr=1.5&w=1280")',
   },
 };
 

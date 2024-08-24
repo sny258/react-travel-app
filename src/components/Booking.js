@@ -5,7 +5,8 @@ import axios from 'axios';
 import Footer from './Footer';
 import { useLocation } from 'react-router-dom';
 import qrCode from '../QR.png';
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
+//import sendEmail from './emailService';
 
 
 function Booking() {
@@ -21,6 +22,7 @@ function Booking() {
   const [people, setPeople] = useState(1);
   // hook to be used to trigger useEffect when booking is done
   const [booked, setBooked] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [UPI, setUPI] = useState('');
   // Loading spinner state
   const [loading, setLoading] = useState(false);
@@ -47,11 +49,6 @@ function Booking() {
       console.log('Booking a trip...');
       // show loading spinner for 3 sec before booking confirmation
       setLoading(true);
-      // Simulate payment processing delay
-      setTimeout(() => {
-        setLoading(false);
-        setBooked(true);
-      }, 3000); // 3 seconds delay
       //server side call to booking API
       const response = await axios.post('http://localhost:5000/booking', { username, name, email, trip, people, date }, {
         validateStatus: function (status) {
@@ -62,15 +59,44 @@ function Booking() {
       console.log('Response:', response);
       if (response.status === 200) {
         console.log('Booking successful:', response.data.message);
+        // Simulate payment processing delay before showing the confirmation
+        setTimeout(() => {
+          setLoading(false);
+          setBooked(true);
+        }, 3000); // 3 seconds delay
+        // //send email to company
+        // const response1 = sendEmail(
+        //   ``,
+        //   `New Booking from ${name} <${email}>`,
+        //   `Hi,\n\nA new booking has been made by ${name} <${email}> for the ${trip} on ${date}.\n\nRegards,\ntakashi`
+        // );
+        // console.log('Response', response1);
+        // //send email to user
+        // const response2 = sendEmail(
+        //   `${email}`,
+        //   `Booking Confirmation from Takshi's Hustle`,
+        //   `Hi ${name},\n\nYour booking for the ${trip} on ${date} has been successfully confirmed.\n\nWe look forward to providing you with an excellent experience.\n\nRegards,\ntakashi`
+        // );
+        // console.log('Response', response2);
       } else {
         console.error('Booking error:', response.data.message);
         //alert('Booking failed. Please try again.');
-        toast.error('Booking failed. Please try again.', {position: "top-center"});
+        setTimeout(() => {
+          setLoading(false);
+          //handleClosePayment();
+          setFailed(true);
+          //toast.error('Booking failed. Please try again.', {position: "top-center"});
+        }, 3000); // 3 seconds delay
       }
     } catch (error) {
       console.error('Booking error:', error.response?.data?.message || error.message);
       //alert('Booking failed');
-      toast.error('Booking failed.', {position: "top-center"});
+      setTimeout(() => {
+        setLoading(false);
+        //handleClosePayment();
+        setFailed(true);
+        //toast.error('Booking failed. Please try again.', {position: "top-center"});
+      }, 3000); // 3 seconds delay
     }
   };
 
@@ -233,7 +259,7 @@ function Booking() {
     <Modal show={showPayment} onHide={handleClosePayment} size="xl" className="payment-modal">
       <Modal.Header closeButton>
         <Modal.Title style={{ textAlign: 'center', width: '100%' }}>
-          {booked ? 'Booking Message !!!' : 'Payment Options !!!'}
+          {booked || failed ? 'Booking Message !!!' : 'Payment Options !!!'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -247,6 +273,11 @@ function Booking() {
               <p>Dear <strong>{name}</strong>,</p>
               <p>Your booking for the <strong>{trip}</strong> on <strong>{date}</strong> has been successfully confirmed <span style={{fontSize: '1.5em'}}>🥳</span>.</p>
               <p>We look forward to providing you with an excellent experience.</p>
+            </div>
+          ) : failed ? (
+            <div style={{ padding: '40px', textAlign: 'center', fontSize: '1.0em' }}>
+              <p>Sorry, your booking got failed <span style={{fontSize: '1.5em'}}>🥲</span>.</p>
+              <p>Please try again.</p>
             </div>
           ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '0.60fr 1fr', gap: '20px' }}>

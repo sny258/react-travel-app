@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+//import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
@@ -11,6 +14,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from '../logo192.png';
+
 
 function BasicNavbar({
   link1 = 'Home',
@@ -22,10 +26,10 @@ function BasicNavbar({
 
   // useNavigate hook returns a navigate function that can be used to programmatically navigate to a different route
   const navigate = useNavigate();
-  // useLocation hook returns the location object that represents the current URL
-  const location = useLocation();
-  // useRef hook is mutable object that persists across re-renders.
-  const isMounted = useRef(false);
+  // // useLocation hook returns the location object that represents the current URL.
+  // const location = useLocation();
+  // // useRef hook is mutable object that persists across re-renders. 
+  // const isMounted = useRef(false);
 
   // offcanvas logic
   const [show, setShow] = useState(false);
@@ -39,44 +43,78 @@ function BasicNavbar({
   // Set the default config for axios
   axios.defaults.withCredentials = true;
 
-  // hook to check if user is authenticated and navigate accordingly
+  // // hook to check if user is authenticated and navigate accordingly
+  // useEffect(() => {
+  //   //Mark the component as mounted
+  //   isMounted.current = true;
+  //   // Skip authentication check if page is not booking
+  //   //if (location.pathname !== '/booking' && localStorage.getItem("user") == null) {
+  //   if (!['/booking', '/managebookings'].includes(location.pathname) && localStorage.getItem("user") == null) {
+  //     console.log('No auth check required !!!');
+  //     // Exit the useEffect hook early
+  //     return; 
+  //   }
+  //   // Function to check if the user is authenticated
+  //   const checkLogin = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:5000/isauthenticated', {
+  //         validateStatus: function (status) {
+  //           // Consider any status code less than 500 as a success status.
+  //           return status < 500;
+  //         },
+  //       });
+  //       console.log('Response:', response);
+  //       if (response.data.message === 'Authenticated !!!') {
+  //         // Update the state only if the component is still mounted
+  //         if (isMounted.current) {
+  //           setSessionUser(response.data.username);
+  //         }
+  //       } else {
+  //         navigate('/login');
+  //       }
+  //     } catch (error) {
+  //       console.error('Authentication error:', error.response?.data?.message || error.message);
+  //       navigate('/login');
+  //     } 
+  //   };
+  //   checkLogin();
+  //   // Cleanup function to mark the component as unmounted
+  //   return () => { isMounted.current = false; }
+  // }, [location.pathname, navigate]);                     // [] will execute hook only once
+
+
+  // get the username from the local storage and set it to the sessionUser state
   useEffect(() => {
-    //Mark the component as mounted
-    isMounted.current = true;
-    // Skip authentication check if page is not booking
-    //if (location.pathname !== '/booking' && localStorage.getItem("user") == null) {
-    if (!['/booking', '/managebookings'].includes(location.pathname) && localStorage.getItem("user") == null) {
-      console.log('No auth check required !!!');
-      // Exit the useEffect hook early
-      return; 
-    }
-    // Function to check if the user is authenticated
-    const checkLogin = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/isauthenticated', {
-          validateStatus: function (status) {
-            // Consider any status code less than 500 as a success status.
-            return status < 500;
-          },
-        });
-        console.log('Response:', response);
-        if (response.data.message === 'Authenticated !!!') {
-          // Update the state only if the component is still mounted
-          if (isMounted.current) {
-            setSessionUser(response.data.username);
+    const username = localStorage.getItem('user');
+    //console.log('useEffect triggered:', username);
+    if (username) {
+      const checkAuth = async () => {
+        try {
+          const response = await axios.get('http://localhost:5000/isauthenticated',{
+            validateStatus: function (status) {
+              return status < 500; // Resolve only if the status code is less than 500
+            }
+          });
+          console.log('Response:', response);
+          if (response.status === 200) {
+            setSessionUser(username);
+          } else {
+            setSessionUser(null);
+            // Clear the local storage user as session expired but user still in local storage
+            localStorage.removeItem("user");
+            toast.warning('Session expired, please login again !!!', {position: "top-center"});
           }
-        } else {
-          navigate('/login');
+        } catch (error) {
+          console.error('Authentication error:', error.response?.data?.message || error.message);
+          setSessionUser(null);
         }
-      } catch (error) {
-        console.error('Authentication error:', error.response?.data?.message || error.message);
-        navigate('/login');
-      } 
-    };
-    checkLogin();
-    // Cleanup function to mark the component as unmounted
-    return () => { isMounted.current = false; }
-  }, [location.pathname, navigate]);                     // [] will execute hook only once
+      };
+      // Call the checkAuth function
+      checkAuth();
+    } else {
+      setSessionUser(null);
+    }
+  }, [navigate]);
 
 
   const handleLogout = async (e) => {
@@ -113,6 +151,14 @@ function BasicNavbar({
   const manageBookings = () => {
     navigate('/managebookings');
   }
+
+  // Scroll to top on page load, add onClick={handleScrollToTop} to link1
+  // const location = useLocation();
+  // const handleScrollToTop = () => {
+  //   if (location.pathname === '/welcome') {
+  //     window.scrollTo({ top: 0, behavior: 'smooth' });
+  //   }
+  // };
 
 
   return (

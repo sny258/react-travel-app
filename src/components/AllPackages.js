@@ -106,10 +106,19 @@ function AllPackages({ Destinations }) {
       navigateTo:''
     },
     {
-      name: 'Kasol',
-      imageUrl: 'https://res.cloudinary.com/dyiffrkzh/image/upload/v1702119355/bbj/isybrzrsi55fpudlcrj9.jpg',
+      name: 'Manali-Sissu',
+      imageUrl: 'https://media.assettype.com/outlooktraveller%2Fimport%2Foutlooktraveller%2Fpublic%2Fuploads%2Farticles%2Fexplore%2Findex.jpg?w=1200&auto=format%2Ccompress&fit=max',
       days: '5 days & 4 nights',
       price: '₹ 20,000',
+      description: 'Manali is a high-altitude Himalayan resort town in India’s northern Himachal Pradesh state. It has reputation as a backpacker’s hub. Set on the Beas River, it’s a gateway for skiing in the Solang Valley and trekking in Parvati Valley.',
+      mapUrl: 'https://incrediblespiti.com/wp-content/uploads/2023/10/Mountain-Magic-Tirthan-and-Lahaul-6N-7D-Map.png',
+      navigateTo:''
+    },
+    {
+      name: 'Kasol',
+      imageUrl: 'https://res.cloudinary.com/dyiffrkzh/image/upload/v1702119355/bbj/isybrzrsi55fpudlcrj9.jpg',
+      days: '4 days & 3 nights',
+      price: '₹ 15,000',
       description: 'Kasol is a hamlet in the district Kullu, Himachal Pradesh, northern India. It is situated in Parvati Valley, on the banks of the Parvati River, on the way between Bhuntar and Manikaran. It is located 30 km from Bhuntar and 3.5 km from Manikaran.',
       mapUrl: 'https://www.thesearchingsouls.com/wp-content/uploads/2024/02/Kasol-Kheerganga-map.jpg',
       navigateTo:'' 
@@ -117,8 +126,8 @@ function AllPackages({ Destinations }) {
     {
       name: 'Jibhi',
       imageUrl: 'https://media1.thrillophilia.com/filestore/a1m3hf92l4jkzheyh64jli0pxzfd_1585741491_19764999_1749960138355337_3189050905618022400_n.jpg?w=1080&h=auto&dpr=1.5',
-      days: '5 days & 4 nights',
-      price: '₹ 20,000',
+      days: '3 days & 2 nights',
+      price: '₹ 10,000',
       description: 'Jibhi is a hidden gem in the Banjar Valley of Himachal Pradesh. It is a serene and unspoiled place with lush green landscapes, snow-capped mountains, and pristine rivers. The Great Himalayan National Park is located near Jibhi.',
       mapUrl: 'https://incrediblespiti.com/wp-content/uploads/2023/10/Mountain-Magic-Tirthan-and-Lahaul-6N-7D-Map.png',
       navigateTo:''
@@ -148,15 +157,6 @@ function AllPackages({ Destinations }) {
       price: '₹ 30,000',
       description: 'Ladakh, the land of high passes, is situated in the northernmost part of India. It is known for its stunning landscapes, unique culture, and spiritual heritage. The region is a paradise for adventure enthusiasts and nature lovers.',
       mapUrl: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PqEDqqj1gVV4kA5cO0jYeA.png',
-      navigateTo:''
-    },
-    {
-      name: 'Manali-Sissu',
-      imageUrl: 'https://media.assettype.com/outlooktraveller%2Fimport%2Foutlooktraveller%2Fpublic%2Fuploads%2Farticles%2Fexplore%2Findex.jpg?w=1200&auto=format%2Ccompress&fit=max',
-      days: '5 days & 4 nights',
-      price: '₹ 15,000',
-      description: 'Manali is a high-altitude Himalayan resort town in India’s northern Himachal Pradesh state. It has reputation as a backpacker’s hub. Set on the Beas River, it’s a gateway for skiing in the Solang Valley and trekking in Parvati Valley.',
-      mapUrl: 'https://incrediblespiti.com/wp-content/uploads/2023/10/Mountain-Magic-Tirthan-and-Lahaul-6N-7D-Map.png',
       navigateTo:''
     },
     {
@@ -233,7 +233,7 @@ function AllPackages({ Destinations }) {
           // without this less than 4 cards, default minWidth was considerd
           style={{
             ...styles.cardContainer,
-            minWidth: filteredDestinations.length > 2 ? '1075px' : '800px', 
+            //minWidth: filteredDestinations.length > 2 ? '1100px' : '800px', 
           }}
         >
           {filteredDestinations.map((destination, index) => (
@@ -324,11 +324,11 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     //border: '1px solid #ccc',
-    padding: '20px 10px 0px 10px',
+    padding: '20px 0px 0px 0px',
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    margin: '40px 20px 20px 20px',
+    margin: '40px 0px 20px 0px',
   },
   headingContainer: {
     margin: '10px',
@@ -339,13 +339,14 @@ const styles = {
   cardContainer: {
     display: 'flex',
     justifyContent: 'space-around',
+    columnGap: '75px',              // Add a fixed gap between the items
     margin: '5px',
-    //padding: '5px',
+    padding: '0px 20px',
     width: '100%',            // Make sure it stretches to full width of the parent
-    maxWidth: '1075px',       // Set a maximum width to prevent it from expanding too much
+    maxWidth: '1100px',       // Set a maximum width to prevent it from expanding too much
     minWidth: '800px',        // Ensure it doesn’t shrink below a certain width
     flexWrap: 'wrap',
-    boxSizing: 'border-box'   // Include padding and border in the width
+    boxSizing: 'border-box',   // Include padding and border in the width
   },
   card: {
     width: '18rem',
