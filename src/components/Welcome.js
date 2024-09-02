@@ -37,7 +37,8 @@ function Welcome() {
           onSelect={(k) => setActiveKey(k)}
           id="controlled-tab-example"
           className="mb-3 custom-tabs" // Apply the custom class here
-          justify// or fill
+          justify
+          //fill
         >
           { /* All packages tab */ }
           <Tab eventKey="Explore" title=
@@ -95,7 +96,7 @@ function Welcome() {
                 <p>Himachal</p>
               </div>
             }>
-            <AllPackages Destinations={['Manali-Sissu', 'Jibhi']} />
+            <AllPackages Destinations={['Manali-Sissu', 'Jibhi', 'Kasol']} />   { /* 'Kasol' */}
           </Tab>
           { /* Kashmir tab */}
           <Tab eventKey="Kashmir" title=
@@ -133,13 +134,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     border: '1px solid #ccc',
-    padding: '20px',
+    padding: '20px 20px 0px 20px',
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     margin: '20px',
     //backgroundImage: 'url("https://media1.thrillophilia.com/filestore/2e2jk8u5jhn1fhm7ogkczahuli72_snapedit_1697441789958.png?dpr=1.5&w=1280")',
-  },
+  }
 };
 
 export default Welcome;

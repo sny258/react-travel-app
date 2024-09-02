@@ -151,7 +151,7 @@ function Login() {
     <>
     {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout" /> */}
     {/* <BasicNavbar /> */}
-
+    
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', border: '1px solid #ccc', height: '80vh', margin: '20px', borderRadius: '20px' }}>
       
       {/* div for react svg logo */}
@@ -234,7 +234,7 @@ function Login() {
           <div style={{ width: '100.5%', marginLeft: '-4.5px' }} >
             <input
               type={passwordVisible ? 'text' : 'password'}
-              placeholder="Password"
+              placeholder="New_Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required

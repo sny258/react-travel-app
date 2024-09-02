@@ -17,7 +17,6 @@ import ImageStackCarousel from './ImageStackCarousel';
 
 
 const Kedarnath = () => {
-  
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [emailphone, setEmailPhone] = useState('');
@@ -30,6 +29,13 @@ const Kedarnath = () => {
   const handleClose = () => setShow(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    // //send email
+    // const response = sendEmail(
+    //   ``,
+    //   `New Query from ${name} <${emailphone}>`,
+    //   `Hi,\n\nWe have received a query from ${name} <${emailphone}>.\nQuery: ${query}\n\nRegards,\ntakashi`
+    // );
+    // console.log('Response',response);
     // show modal
     setShow(true);
     // Reset form fields
@@ -640,7 +646,8 @@ const styles = {
     height: '100%',
     objectFit: 'cover',
     overflow: 'hidden',
-    transition: 'transform 0.3s ease'
+    transition: 'transform 0.3s ease',
+    //backgroundColor: '#f0f0f0',
   }
 };
 

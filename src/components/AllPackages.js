@@ -13,8 +13,7 @@ import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Map from '../maps.png';
-
-
+import { useEffect } from 'react';
 
 
 function AllPackages({ Destinations }) {
@@ -206,9 +205,33 @@ function AllPackages({ Destinations }) {
   //   e.currentTarget.style.height = '290px';
   // }
 
+  // logic to set the number of cards based on screen width
+  const [gridStyle, setGridStyle] = useState(getGridStyle(window.innerWidth));
+  // Function to calculate the grid style based on the window width
+  function getGridStyle(width) {
+    if (width <= 800) {
+      return { gridTemplateColumns: '1fr', columnGap: '40px', };
+    }
+    if (width <= 1110) {
+      return { gridTemplateColumns: 'repeat(2, 1fr)', columnGap: '40px', };
+    }
+    if (width <= 1190) {
+      return { gridTemplateColumns: 'repeat(3, 1fr)', columnGap: '40px', };
+    }
+    return { gridTemplateColumns: 'repeat(3, 1fr)', columnGap: '75px', };
+  }
+  // useEffect to update the grid style on window resize
+  useEffect(() => {
+    const handleResize = () => { setGridStyle(getGridStyle(window.innerWidth)); };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
 
   return (
-    
     <div>
 
       {/* <BasicNavbar link1="Home" link2="About" dropdownAction2="Bookings" dropdownAction3="Logout"></BasicNavbar> */}
@@ -234,6 +257,7 @@ function AllPackages({ Destinations }) {
           style={{
             ...styles.cardContainer,
             //minWidth: filteredDestinations.length > 2 ? '1100px' : '800px', 
+            ...gridStyle
           }}
         >
           {filteredDestinations.map((destination, index) => (
@@ -250,7 +274,7 @@ function AllPackages({ Destinations }) {
                 <p>{destination.days}</p>
                 <p>{destination.price}</p>
               </div>
-              <Card.Body>
+              <Card.Body className="d-flex flex-column">
                 <Card.Title>
                   {destination.name}
                   <img src={Map} alt={`map-${index}`} onClick={() => handleShow(destination.mapUrl,destination.name)} style={styles.mapIcon2} />
@@ -258,7 +282,7 @@ function AllPackages({ Destinations }) {
                 <Card.Text>
                   {destination.description}
                 </Card.Text>
-                <Button className="cardBtn" variant="primary" onClick={() => navigate(destination.navigateTo)}>Explore</Button>
+                <Button className="mt-auto align-self-start cardBtn" variant="primary" onClick={() => navigate(destination.navigateTo)}>Explore</Button>
               </Card.Body>
             </Card>
           ))}
@@ -301,9 +325,7 @@ function AllPackages({ Destinations }) {
 
       {/* Display the GIFs from the Giphy API */}
       {/* <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '5px', border: '1px solid black'}}>
-
         <h1 style={{margin: '5px', border: '1px solid black'}}>Image Gallery</h1>
-
         <div className="gif-gallery" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', border: '1px solid black', width: '90%'}}>
           {Array.isArray(gifs) && gifs.map((gif) => (
             <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
@@ -328,7 +350,10 @@ const styles = {
     backgroundColor: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    margin: '40px 0px 20px 0px',
+    margin: '40px auto  20px auto ',
+    // width: '100%',                    // Make sure it stretches to full width of the parent
+    // maxWidth: '1300px',
+    // minWidth: '400px', 
   },
   headingContainer: {
     margin: '10px',
@@ -337,19 +362,22 @@ const styles = {
     borderBottom: '2px solid #ddd',
   },
   cardContainer: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    columnGap: '75px',              // Add a fixed gap between the items
-    margin: '5px',
-    padding: '0px 20px',
-    width: '100%',            // Make sure it stretches to full width of the parent
-    maxWidth: '1100px',       // Set a maximum width to prevent it from expanding too much
-    minWidth: '800px',        // Ensure it doesn’t shrink below a certain width
-    flexWrap: 'wrap',
-    boxSizing: 'border-box',   // Include padding and border in the width
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',    // Creates 3 equal-width columns
+    columnGap: '75px',                        // Add a fixed gap between the items
+    margin: '0px auto',
+    padding: '0px 25px',
+    boxSizing: 'border-box',          // Include padding and border in the width
+    alignItems: 'center',             // Center items vertically within their grid area
+    justifyItems: 'center',           // Center items horizontally within their grid area
+    // width: '100%',                    // Make sure it stretches to full width of the parent
+    // maxWidth: '1300px',               // Set a maximum width to prevent it from expanding too much
+    // minWidth: '400px',                // Ensure it doesn’t shrink below a certain width
+    // flexWrap: 'wrap',
   },
   card: {
-    width: '18rem',
+    width: '19rem',
+    height: '32.5rem',
     margin: '10px 0px 50px 0px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '10px',

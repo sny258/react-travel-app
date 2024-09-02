@@ -119,7 +119,7 @@ function Booking() {
     setName('');
     setEmail('');
     setTrip(defaultTrip || '');
-    setDate('');
+    //setDate('');
     setPeople(1);
   };
   const handleShowPayment = (e) => {

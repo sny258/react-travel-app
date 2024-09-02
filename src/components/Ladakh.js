@@ -25,6 +25,13 @@ const Spiti = () => {
   const handleClose = () => setShow(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    // //send email
+    // const response = sendEmail(
+    //   ``,
+    //   `New Query from ${name} <${emailphone}>`,
+    //   `Hi,\n\nWe have received a query from ${name} <${emailphone}>.\nQuery: ${query}\n\nRegards,\ntakashi`
+    // );
+    // console.log('Response',response);
     // show modal
     setShow(true);
     // Reset form fields
