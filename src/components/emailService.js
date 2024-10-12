@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../config'; 
 
 // Set the default config for axios
 axios.defaults.withCredentials = true;
@@ -9,7 +10,7 @@ const sendEmail = async (to, subject, text) => {
   console.log('Subject:', subject);
   console.log('Text:', text);
   try {
-    const response = await axios.post('http://localhost:5000/send-email', {to, subject, text}, {
+    const response = await axios.post(config.API_BASE_URL + '/send-email', {to, subject, text}, {
       validateStatus: function (status) {
         // Consider any status code less than 500 as a success status.
         return status < 500;

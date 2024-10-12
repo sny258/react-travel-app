@@ -347,3 +347,30 @@ li {
   min-width: 400px;
 } */
 
+
+
+/* DiscountBanner.css */
+.discount-banner {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 8px 0px;
+  position: relative;
+}
+.discount-banner p {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  animation: moveBanner 35s linear infinite; /* Adjust timing based on text length */
+  margin-bottom: 0;
+  will-change: transform;
+}
+/* Keyframes for smoother looping */
+@keyframes moveBanner {
+  0% {
+    transform: translateX(100vw); /* Start just outside the screen */
+  }
+  100% {
+    transform: translateX(-100%); /* Exit to the left, immediately restart */
+  }
+}

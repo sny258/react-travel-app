@@ -13,8 +13,9 @@ import ImageStack from './ImageStack';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+import config from '../config'; 
 
-const Spiti = () => {
+function Ladakh() {
   
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -147,7 +148,7 @@ const Spiti = () => {
     const trip = 'Ladakh';
     const getReviews = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/reviews/' + trip, {
+        const response = await axios.get(config.API_BASE_URL + '/reviews/' + trip, {
           validateStatus: function (status) {
             // Consider any status code less than 500 as a success status.
             return status < 500;
@@ -173,7 +174,7 @@ const Spiti = () => {
     const trip = 'Ladakh';
     console.log(reviewData);
     try {
-      const response = await axios.post('http://localhost:5000/add-review', { trip, username, reviewData }, {
+      const response = await axios.post(config.API_BASE_URL + '/add-review', { trip, username, reviewData }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;
@@ -205,7 +206,7 @@ const Spiti = () => {
     const fetchBookings = async () => {
       try {
         const user = localStorage.getItem('user');
-        const response = await axios.get(`http://localhost:5000/bookings/${user}`);
+        const response = await axios.get(config.API_BASE_URL + `/bookings/${user}`);
         console.log('Bookings data:', response.data);
         // Check if the user has booked a trip to 'Ladakh' that is in the past
         const hasCompletedTrip = response.data.bookings.some(booking => {
@@ -579,4 +580,4 @@ const styles = {
   },
 };
 
-export default Spiti;
+export default Ladakh;

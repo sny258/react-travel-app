@@ -9,6 +9,7 @@ import { Modal } from 'react-bootstrap';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
+import config from '../config'; 
 
 function ManageBookings() {
   
@@ -31,7 +32,7 @@ function ManageBookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/bookings/${username}`);
+        const response = await axios.get(config.API_BASE_URL + `/bookings/${username}`);
         console.log('Bookings data:', response.data);
         setBookings(response.data.bookings);
       } catch (error) {
@@ -46,7 +47,7 @@ function ManageBookings() {
   // Function to cancel booking
   const handleCancelBooking = async (booking_id) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/booking/cancel/${booking_id}`);
+      const response = await axios.delete(config.API_BASE_URL + `/booking/cancel/${booking_id}`);
       console.log('Cancel Booking Response:', response.data);
       if (response.status === 200) {
         console.log('Cancel Booking Status: ', response.data.message);

@@ -4,6 +4,8 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+import config from '../config'; 
+
 function PrivateRoute({ element: Component, ...rest }) {
   // hooks 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,7 +17,7 @@ function PrivateRoute({ element: Component, ...rest }) {
     if (username) {
       const checkAuth = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/isauthenticated',{
+          const response = await axios.get(config.API_BASE_URL + '/isauthenticated',{
             validateStatus: function (status) {
               return status < 500; // Resolve only if the status code is less than 500
             }

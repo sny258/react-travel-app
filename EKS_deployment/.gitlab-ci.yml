@@ -1,0 +1,163 @@
+
+stages:
+  - checkov_scan
+  - terraform
+  - sonarqube_scan
+  - docker_build
+  - deploy
+
+
+# scan the Terraform code using Checkov
+checkov_scan:
+  stage: checkov_scan
+  image:
+    name: bridgecrew/checkov:latest
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  variables:
+    tf_dir: "$CI_PROJECT_DIR/infra_tf"
+  before_script:
+    - echo "checkov scan begins .... "
+  script:
+    # Capture JUnit XML report without exiting
+    - checkov -d "$tf_dir" -o junitxml > checkov.test.xml  || true
+    # Use `script` to emulate `tty` for colored output.
+    #- script -q -c 'checkov -d . ; echo $? > CKVEXIT'
+    - script -q -c 'checkov -d "$tf_dir" ; echo $? > CKVEXIT'
+    - exit $(cat CKVEXIT)
+  artifacts:
+    reports:
+      junit: "checkov.test.xml"
+    paths:
+      - "checkov.test.xml"
+  allow_failure: true
+
+# Validate and plan the Terraform code
+terraform_validate_plan:
+  stage: terraform
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  before_script:
+    - export AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID                    # will be coming from gitlab variables
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY         # will be coming from gitlab variables
+  script:
+    - cd "$tf_dir"
+    - terraform init
+    - terraform validate
+    - terraform plan
+  artifacts:
+    paths:
+      - "$CI_PROJECT_DIR"
+
+# Deploy infra using Terraform code
+terraform_apply:
+  stage: terraform
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  variables:
+    GIT_STRATEGY: none               #to not clone git repo for evry stage/job 
+  before_script:
+    - export AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  script:
+    - cd "$tf_dir"
+    - terraform apply -auto-approve
+  artifacts:
+    paths:
+      - "$CI_PROJECT_DIR"
+  needs:
+    - job: terraform_validate_plan
+      artifacts: true
+
+
+#Scan the code using SonarQube
+build_project:
+  stage: sonarqube_scan
+  image:
+    name: node:22-slim
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - "$CI_PROJECT_DIR/build"
+  needs:
+    - terraform_apply
+    
+sonarqube_scan:
+  stage: sonarqube_scan
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    #SONAR_HOST_URL: "sonar_url"            # will be coming from gitlab variables
+    #SONAR_TOKEN: "sonar_token"             # will be coming from gitlab variables
+    sonar_project_key: "react-app-project-key"
+    sonar_project: "react-app-project"
+  script:
+    - sonar-scanner
+        -Dsonar.projectKey="$sonar_project_key"
+        -Dsonar.projectName="$sonar_project"
+        -Dsonar.sources="$CI_PROJECT_DIR/build"
+        -Dsonar.host.url="$SONAR_HOST_URL"
+        -Dsonar.login="$SONAR_TOKEN"
+  needs:
+    - job: build_project
+      artifacts: true
+
+
+#Build and push Docker images
+docker_build_push:
+  stage: docker_build
+  image:
+    name: docker:latest
+    services:
+      - docker:dind
+  variables:
+    ECR_REGISTRY: 197517724303.dkr.ecr.eu-west-1.amazonaws.com
+  before_script:
+    - echo "Logging into ECR"
+    - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 197517724303.dkr.ecr.eu-west-1.amazonaws.com
+    - echo "Logged into ECR"
+  script:
+    # building the images
+    - echo "Building Docker images..."
+    - docker build -t react-app-frontend ./EKS_deployment/frontend
+    - docker build -t react-app-backend ./EKS_deployment/backend
+    # pushing the images to ECR
+    - echo "Pushing Docker images to ECR..."
+    - docker tag react-app-frontend:latest $ECR_REGISTRY/react-app-frontend:latest
+    - docker tag react-app-backend:latest $ECR_REGISTRY/react-app-backend:latest
+    - docker push $ECR_REGISTRY/react-app-frontend:latest
+    - docker push $ECR_REGISTRY/react-app-backend:latest
+  artifacts:
+    paths:
+      - "$CI_PROJECT_DIR"
+  needs:
+    - job: terraform_apply
+
+
+# Deploy to EKS cluster
+deploy:
+  stage: deploy_app
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - pip3 install awscli
+    - aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+  script:
+    - kubectl apply -f EKS_deployment/backend.yaml
+    - kubectl apply -f EKS_deployment/frontend.yaml
+    - kubectl apply -f EKS_deployment/ingress.yaml
+  needs:
+    - job: docker_build_push
+

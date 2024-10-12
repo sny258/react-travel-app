@@ -8,6 +8,7 @@ import qrCode from '../QR.png';
 //import { toast } from 'react-toastify';
 //import sendEmail from './emailService';
 
+import config from '../config'; 
 
 function Booking() {
  
@@ -50,7 +51,7 @@ function Booking() {
       // show loading spinner for 3 sec before booking confirmation
       setLoading(true);
       //server side call to booking API
-      const response = await axios.post('http://localhost:5000/booking', { username, name, email, trip, people, date }, {
+      const response = await axios.post(config.API_BASE_URL + '/booking', { username, name, email, trip, people, date }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;

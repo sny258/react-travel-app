@@ -12,6 +12,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import p_hide from '../p_hide.png';
 import p_show from '../p_show.png';
 
+import config from '../config'; 
 
 function Login() {
   
@@ -87,7 +88,7 @@ function Login() {
   const resetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/reset-password', { resetUsername, resetEmail, newPassword }, {
+      const response = await axios.post(config.API_BASE_URL + '/reset-password', { resetUsername, resetEmail, newPassword }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;
@@ -122,7 +123,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password }, {
+      const response = await axios.post(config.API_BASE_URL + '/login', { username, password }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;

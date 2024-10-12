@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: react-app-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing           # This will create an internet-facing ALB
+    kubernetes.io/ingress.class: alb                            # Ingress class for AWS ALB
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'    # ALB listens on HTTP (port 80)
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/security-groups: sg-085ed924dcdaac13b
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /                              # Frontend service handling root path
+        pathType: Prefix
+        backend:
+          service:
+            name: react-app-frontend-service  # Frontend ClusterIP service
+            port:
+              number: 80

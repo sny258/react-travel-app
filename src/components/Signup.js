@@ -11,6 +11,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import p_hide from '../p_hide.png';
 import p_show from '../p_show.png';
 
+import config from '../config'; 
 
 function Signup() {
   
@@ -38,7 +39,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/signup', { firstname, lastname, username, email, password }, {
+      const response = await axios.post(config.API_BASE_URL + '/signup', { firstname, lastname, username, email, password }, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;

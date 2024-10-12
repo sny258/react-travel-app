@@ -15,6 +15,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from '../logo192.png';
 
+import config from '../config'; 
 
 function BasicNavbar({
   link1 = 'Home',
@@ -90,7 +91,7 @@ function BasicNavbar({
     if (username) {
       const checkAuth = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/isauthenticated',{
+          const response = await axios.get(config.API_BASE_URL + '/isauthenticated',{
             validateStatus: function (status) {
               return status < 500; // Resolve only if the status code is less than 500
             }
@@ -120,7 +121,7 @@ function BasicNavbar({
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/logout', {}, {
+      const response = await axios.post(config.API_BASE_URL + '/logout', {}, {
         validateStatus: function (status) {
           // Consider any status code less than 500 as a success status.
           return status < 500;
